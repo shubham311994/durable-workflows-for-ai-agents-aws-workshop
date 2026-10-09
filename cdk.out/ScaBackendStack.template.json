@@ -1,0 +1,1870 @@
+{
+ "Resources": {
+  "ApiGatewayCloudWatchRole86F22A4D": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "apigateway.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaBackendStack/ApiGatewayCloudWatchRole/Resource",
+    "cdk_nag": {
+     "rules_to_suppress": [
+      {
+       "reason": "AmazonAPIGatewayPushToCloudWatchLogs is the AWS recommended managed policy for API Gateway logging. See: https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-logging.html",
+       "id": "AwsSolutions-IAM4",
+       "applies_to": [
+        "Policy::arn:<AWS::Partition>:iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs"
+       ]
+      }
+     ]
+    }
+   }
+  },
+  "ApiGatewayAccount": {
+   "Type": "AWS::ApiGateway::Account",
+   "Properties": {
+    "CloudWatchRoleArn": {
+     "Fn::GetAtt": [
+      "ApiGatewayCloudWatchRole86F22A4D",
+      "Arn"
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaBackendStack/ApiGatewayAccount"
+   }
+  },
+  "TranscriptionStream1497D4C4": {
+   "Type": "AWS::Kinesis::Stream",
+   "Properties": {
+    "Name": "sca-transcription-stream",
+    "RetentionPeriodHours": 168,
+    "StreamEncryption": {
+     "Fn::If": [
+      "AwsCdkKinesisEncryptedStreamsUnsupportedRegions",
+      {
+       "Ref": "AWS::NoValue"
+      },
+      {
+       "EncryptionType": "KMS",
+       "KeyId": "alias/aws/kinesis"
+      }
+     ]
+    },
+    "StreamModeDetails": {
+     "StreamMode": "ON_DEMAND"
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "ScaBackendStack/TranscriptionStream/Resource",
+    "cdk_nag": {
+     "rules_to_suppress": [
+      {
+       "reason": "Using AWS managed key (aws/kinesis) for server-side encryption to optimize costs. Customer Managed Keys incur additional costs that scale with consumers/producers. For compliance requirements, consider using CMK.",
+       "id": "AwsSolutions-KDS3"
+      }
+     ]
+    }
+   }
+  },
+  "DeadLetterQueue9F481546": {
+   "Type": "AWS::SQS::Queue",
+   "Properties": {
+    "MessageRetentionPeriod": 1209600,
+    "QueueName": "sca-dead-letter-queue",
+    "VisibilityTimeout": 300
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "ScaBackendStack/DeadLetterQueue/Resource",
+    "cdk_nag": {
+     "rules_to_suppress": [
+      {
+       "reason": "This queue IS the Dead Letter Queue for Lambda functions. DLQs themselves do not require a DLQ as they are the final destination for failed messages.",
+       "id": "AwsSolutions-SQS3"
+      }
+     ]
+    }
+   }
+  },
+  "DeadLetterQueuePolicyB1FB890C": {
+   "Type": "AWS::SQS::QueuePolicy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sqs:*",
+       "Condition": {
+        "Bool": {
+         "aws:SecureTransport": "false"
+        }
+       },
+       "Effect": "Deny",
+       "Principal": {
+        "AWS": "*"
+       },
+       "Resource": {
+        "Fn::GetAtt": [
+         "DeadLetterQueue9F481546",
+         "Arn"
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "Queues": [
+     {
+      "Ref": "DeadLetterQueue9F481546"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaBackendStack/DeadLetterQueue/Policy/Resource"
+   }
+  },
+  "TranscriptionsTableE617CB71": {
+   "Type": "AWS::DynamoDB::Table",
+   "Properties": {
+    "AttributeDefinitions": [
+     {
+      "AttributeName": "PK",
+      "AttributeType": "S"
+     },
+     {
+      "AttributeName": "SK",
+      "AttributeType": "S"
+     },
+     {
+      "AttributeName": "GSI1PK",
+      "AttributeType": "S"
+     },
+     {
+      "AttributeName": "GSI1SK",
+      "AttributeType": "S"
+     }
+    ],
+    "BillingMode": "PAY_PER_REQUEST",
+    "GlobalSecondaryIndexes": [
+     {
+      "IndexName": "GSI1",
+      "KeySchema": [
+       {
+        "AttributeName": "GSI1PK",
+        "KeyType": "HASH"
+       },
+       {
+        "AttributeName": "GSI1SK",
+        "KeyType": "RANGE"
+       }
+      ],
+      "Projection": {
+       "ProjectionType": "ALL"
+      }
+     }
+    ],
+    "KeySchema": [
+     {
+      "AttributeName": "PK",
+      "KeyType": "HASH"
+     },
+     {
+      "AttributeName": "SK",
+      "KeyType": "RANGE"
+     }
+    ],
+    "PointInTimeRecoverySpecification": {
+     "PointInTimeRecoveryEnabled": true
+    },
+    "SSESpecification": {
+     "SSEEnabled": false
+    },
+    "StreamSpecification": {
+     "StreamViewType": "NEW_AND_OLD_IMAGES"
+    },
+    "TableName": "sca-transcriptions"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "ScaBackendStack/TranscriptionsTable/Resource"
+   }
+  },
+  "AnalyticsTable3F84C304": {
+   "Type": "AWS::DynamoDB::Table",
+   "Properties": {
+    "AttributeDefinitions": [
+     {
+      "AttributeName": "PK",
+      "AttributeType": "S"
+     },
+     {
+      "AttributeName": "SK",
+      "AttributeType": "S"
+     }
+    ],
+    "BillingMode": "PAY_PER_REQUEST",
+    "KeySchema": [
+     {
+      "AttributeName": "PK",
+      "KeyType": "HASH"
+     },
+     {
+      "AttributeName": "SK",
+      "KeyType": "RANGE"
+     }
+    ],
+    "PointInTimeRecoverySpecification": {
+     "PointInTimeRecoveryEnabled": true
+    },
+    "SSESpecification": {
+     "SSEEnabled": false
+    },
+    "TableName": "sca-analytics"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "ScaBackendStack/AnalyticsTable/Resource"
+   }
+  },
+  "TranscriptionProcessorServiceRoleF833FEA0": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaBackendStack/TranscriptionProcessor/ServiceRole/Resource",
+    "cdk_nag": {
+     "rules_to_suppress": [
+      {
+       "reason": "AWSLambdaBasicExecutionRole is the AWS recommended managed policy for Lambda functions. It provides minimal permissions for CloudWatch Logs access. See: https://docs.aws.amazon.com/lambda/latest/dg/lambda-intro-execution-role.html",
+       "id": "AwsSolutions-IAM4",
+       "applies_to": [
+        "Policy::arn:<AWS::Partition>:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      }
+     ]
+    }
+   }
+  },
+  "TranscriptionProcessorServiceRoleDefaultPolicy94DE3BCF": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "xray:PutTelemetryRecords",
+        "xray:PutTraceSegments"
+       ],
+       "Effect": "Allow",
+       "Resource": "*"
+      },
+      {
+       "Action": [
+        "dynamodb:BatchGetItem",
+        "dynamodb:BatchWriteItem",
+        "dynamodb:ConditionCheckItem",
+        "dynamodb:DeleteItem",
+        "dynamodb:DescribeTable",
+        "dynamodb:GetItem",
+        "dynamodb:GetRecords",
+        "dynamodb:GetShardIterator",
+        "dynamodb:PutItem",
+        "dynamodb:Query",
+        "dynamodb:Scan",
+        "dynamodb:UpdateItem"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "TranscriptionsTableE617CB71",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "TranscriptionsTableE617CB71",
+             "Arn"
+            ]
+           },
+           "/index/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": [
+        "sqs:GetQueueAttributes",
+        "sqs:GetQueueUrl",
+        "sqs:SendMessage"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "DeadLetterQueue9F481546",
+         "Arn"
+        ]
+       }
+      },
+      {
+       "Action": [
+        "kinesis:DescribeStream",
+        "kinesis:DescribeStreamConsumer",
+        "kinesis:DescribeStreamSummary",
+        "kinesis:GetRecords",
+        "kinesis:GetShardIterator",
+        "kinesis:ListShards",
+        "kinesis:ListStreams",
+        "kinesis:SubscribeToShard"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "TranscriptionStream1497D4C4",
+         "Arn"
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "TranscriptionProcessorServiceRoleDefaultPolicy94DE3BCF",
+    "Roles": [
+     {
+      "Ref": "TranscriptionProcessorServiceRoleF833FEA0"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaBackendStack/TranscriptionProcessor/ServiceRole/DefaultPolicy/Resource",
+    "cdk_nag": {
+     "rules_to_suppress": [
+      {
+       "reason": "Lambda functions require wildcard permissions for CloudWatch Logs. The logs:CreateLogGroup, logs:CreateLogStream, and logs:PutLogEvents actions require Resource: \"*\" as log group names are generated at runtime. See: https://docs.aws.amazon.com/lambda/latest/dg/monitoring-cloudwatchlogs.html",
+       "id": "AwsSolutions-IAM5",
+       "applies_to": [
+        "Resource::*"
+       ]
+      },
+      {
+       "reason": "SendDurableExecutionCallbackSuccess requires wildcard resource because the eligibility-checker function name is dynamically generated by CDK and lives in a different stack. See: https://docs.aws.amazon.com/lambda/latest/dg/invocation-durable.html",
+       "id": "AwsSolutions-IAM5",
+       "applies_to": [
+        {
+         "regex": "/^Resource::arn:aws:lambda:.+:\\d{12}:function:\\*$/"
+        }
+       ]
+      },
+      {
+       "reason": "DynamoDB table access requires wildcard for Global Secondary Index (GSI) operations. The pattern <TableArn>/index/* is required to access all GSIs on the table. See: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/iam-policy-specific-table-indexes.html",
+       "id": "AwsSolutions-IAM5",
+       "applies_to": [
+        "Resource::<TranscriptionsTableE617CB71.Arn>/index/*",
+        "Resource::<AnalyticsTable0B3C8B0C.Arn>/index/*"
+       ]
+      }
+     ]
+    }
+   }
+  },
+  "TranscriptionProcessor12E1D9F9": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": "cdk-hnb659fds-assets-317067115698-us-east-1",
+     "S3Key": "726a7c0d53346bb3ce88dd48c9521779d756d9037b26565a8c4b8d87fc17f291.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "TRANSCRIPTIONS_TABLE": {
+       "Ref": "TranscriptionsTableE617CB71"
+      },
+      "DLQ_URL": {
+       "Ref": "DeadLetterQueue9F481546"
+      },
+      "POWERTOOLS_SERVICE_NAME": "transcription-processor",
+      "POWERTOOLS_METRICS_NAMESPACE": "SCA",
+      "LOG_LEVEL": "INFO"
+     }
+    },
+    "Handler": "handler.lambda_handler",
+    "Layers": [
+     "arn:aws:lambda:us-east-1:017000801446:layer:AWSLambdaPowertoolsPythonV3-python313-x86_64:27"
+    ],
+    "MemorySize": 512,
+    "Role": {
+     "Fn::GetAtt": [
+      "TranscriptionProcessorServiceRoleF833FEA0",
+      "Arn"
+     ]
+    },
+    "Runtime": "python3.13",
+    "Timeout": 300,
+    "TracingConfig": {
+     "Mode": "Active"
+    }
+   },
+   "DependsOn": [
+    "TranscriptionProcessorServiceRoleDefaultPolicy94DE3BCF",
+    "TranscriptionProcessorServiceRoleF833FEA0"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "ScaBackendStack/TranscriptionProcessor/Resource",
+    "aws:asset:path": "asset.726a7c0d53346bb3ce88dd48c9521779d756d9037b26565a8c4b8d87fc17f291",
+    "aws:asset:is-bundled": false,
+    "aws:asset:property": "Code",
+    "cdk_nag": {
+     "rules_to_suppress": [
+      {
+       "reason": "Lambda functions are using Python 3.13, which is the latest available runtime version. See: https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html",
+       "id": "AwsSolutions-L1"
+      }
+     ]
+    }
+   }
+  },
+  "TranscriptionProcessorKinesisEventSourceScaBackendStackTranscriptionStream835EA03EC503127F": {
+   "Type": "AWS::Lambda::EventSourceMapping",
+   "Properties": {
+    "BatchSize": 100,
+    "BisectBatchOnFunctionError": true,
+    "EventSourceArn": {
+     "Fn::GetAtt": [
+      "TranscriptionStream1497D4C4",
+      "Arn"
+     ]
+    },
+    "FunctionName": {
+     "Ref": "TranscriptionProcessor12E1D9F9"
+    },
+    "FunctionResponseTypes": [
+     "ReportBatchItemFailures"
+    ],
+    "MaximumBatchingWindowInSeconds": 10,
+    "MaximumRetryAttempts": 3,
+    "StartingPosition": "LATEST"
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaBackendStack/TranscriptionProcessor/KinesisEventSource:ScaBackendStackTranscriptionStream835EA03E/Resource"
+   }
+  },
+  "UserPool6BA7E5F2": {
+   "Type": "AWS::Cognito::UserPool",
+   "Properties": {
+    "AccountRecoverySetting": {
+     "RecoveryMechanisms": [
+      {
+       "Name": "verified_email",
+       "Priority": 1
+      }
+     ]
+    },
+    "AdminCreateUserConfig": {
+     "AllowAdminCreateUserOnly": false
+    },
+    "AutoVerifiedAttributes": [
+     "email"
+    ],
+    "EmailVerificationMessage": "The verification code to your new account is {####}",
+    "EmailVerificationSubject": "Verify your new account",
+    "Policies": {
+     "PasswordPolicy": {
+      "MinimumLength": 8,
+      "RequireLowercase": true,
+      "RequireNumbers": true,
+      "RequireSymbols": true,
+      "RequireUppercase": true
+     }
+    },
+    "SmsVerificationMessage": "The verification code to your new account is {####}",
+    "UserPoolName": "sca-user-pool",
+    "UsernameAttributes": [
+     "email"
+    ],
+    "VerificationMessageTemplate": {
+     "DefaultEmailOption": "CONFIRM_WITH_CODE",
+     "EmailMessage": "The verification code to your new account is {####}",
+     "EmailSubject": "Verify your new account",
+     "SmsMessage": "The verification code to your new account is {####}"
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "ScaBackendStack/UserPool/Resource",
+    "cdk_nag": {
+     "rules_to_suppress": [
+      {
+       "reason": "Plus tier not required",
+       "id": "AwsSolutions-COG8"
+      },
+      {
+       "reason": "MFA is not required for this solution to simplify user experience. For production deployments with sensitive data, enable MFA for additional security.",
+       "id": "AwsSolutions-COG2"
+      },
+      {
+       "reason": "Advanced Security Mode is not enabled to reduce costs for this solution. For production deployments, enable ENFORCED mode for malicious sign-in detection.",
+       "id": "AwsSolutions-COG3"
+      }
+     ]
+    }
+   }
+  },
+  "UserPoolWebAppClientCD2D5CB1": {
+   "Type": "AWS::Cognito::UserPoolClient",
+   "Properties": {
+    "AllowedOAuthFlows": [
+     "code"
+    ],
+    "AllowedOAuthFlowsUserPoolClient": true,
+    "AllowedOAuthScopes": [
+     "openid",
+     "email",
+     "profile"
+    ],
+    "CallbackURLs": [
+     "https://example.com"
+    ],
+    "ClientName": "sca-web-app-client",
+    "ExplicitAuthFlows": [
+     "ALLOW_USER_PASSWORD_AUTH",
+     "ALLOW_USER_SRP_AUTH",
+     "ALLOW_REFRESH_TOKEN_AUTH"
+    ],
+    "GenerateSecret": false,
+    "SupportedIdentityProviders": [
+     "COGNITO"
+    ],
+    "UserPoolId": {
+     "Ref": "UserPool6BA7E5F2"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaBackendStack/UserPool/WebAppClient/Resource"
+   }
+  },
+  "AnalystGroup": {
+   "Type": "AWS::Cognito::UserPoolGroup",
+   "Properties": {
+    "Description": "Contact center analysts who can view and analyze conversations",
+    "GroupName": "Analysts",
+    "Precedence": 1,
+    "UserPoolId": {
+     "Ref": "UserPool6BA7E5F2"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaBackendStack/AnalystGroup"
+   }
+  },
+  "AdminGroup": {
+   "Type": "AWS::Cognito::UserPoolGroup",
+   "Properties": {
+    "Description": "System administrators with full access",
+    "GroupName": "Administrators",
+    "Precedence": 0,
+    "UserPoolId": {
+     "Ref": "UserPool6BA7E5F2"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaBackendStack/AdminGroup"
+   }
+  },
+  "AnalyticsProcessorServiceRoleCA410516": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicDurableExecutionRolePolicy"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaBackendStack/AnalyticsProcessor/ServiceRole/Resource",
+    "cdk_nag": {
+     "rules_to_suppress": [
+      {
+       "reason": "AWSLambdaBasicDurableExecutionRolePolicy is required for Lambda Durable Execution. This AWS managed policy provides necessary permissions for durable state management. See: https://docs.aws.amazon.com/lambda/latest/dg/durable-functions.html",
+       "id": "AwsSolutions-IAM4",
+       "applies_to": [
+        "Policy::arn:<AWS::Partition>:iam::aws:policy/service-role/AWSLambdaBasicDurableExecutionRolePolicy"
+       ]
+      }
+     ]
+    }
+   }
+  },
+  "AnalyticsProcessorServiceRoleDefaultPolicy3C47B8A8": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "aws-marketplace:Subscribe",
+        "aws-marketplace:ViewSubscriptions",
+        "bedrock:InvokeModel",
+        "bedrock:InvokeModelWithResponseStream",
+        "dynamodb:ListStreams",
+        "xray:PutTelemetryRecords",
+        "xray:PutTraceSegments"
+       ],
+       "Effect": "Allow",
+       "Resource": "*"
+      },
+      {
+       "Action": [
+        "dynamodb:BatchGetItem",
+        "dynamodb:ConditionCheckItem",
+        "dynamodb:DescribeTable",
+        "dynamodb:GetItem",
+        "dynamodb:GetRecords",
+        "dynamodb:GetShardIterator",
+        "dynamodb:Query",
+        "dynamodb:Scan"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "TranscriptionsTableE617CB71",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "TranscriptionsTableE617CB71",
+             "Arn"
+            ]
+           },
+           "/index/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": [
+        "dynamodb:BatchGetItem",
+        "dynamodb:BatchWriteItem",
+        "dynamodb:ConditionCheckItem",
+        "dynamodb:DeleteItem",
+        "dynamodb:DescribeTable",
+        "dynamodb:GetItem",
+        "dynamodb:GetRecords",
+        "dynamodb:GetShardIterator",
+        "dynamodb:PutItem",
+        "dynamodb:Query",
+        "dynamodb:Scan",
+        "dynamodb:UpdateItem"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "AnalyticsTable3F84C304",
+         "Arn"
+        ]
+       }
+      },
+      {
+       "Action": [
+        "dynamodb:DescribeStream",
+        "dynamodb:GetRecords",
+        "dynamodb:GetShardIterator"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "TranscriptionsTableE617CB71",
+         "StreamArn"
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "AnalyticsProcessorServiceRoleDefaultPolicy3C47B8A8",
+    "Roles": [
+     {
+      "Ref": "AnalyticsProcessorServiceRoleCA410516"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaBackendStack/AnalyticsProcessor/ServiceRole/DefaultPolicy/Resource",
+    "cdk_nag": {
+     "rules_to_suppress": [
+      {
+       "reason": "Lambda functions require wildcard permissions for CloudWatch Logs. The logs:CreateLogGroup, logs:CreateLogStream, and logs:PutLogEvents actions require Resource: \"*\" as log group names are generated at runtime. See: https://docs.aws.amazon.com/lambda/latest/dg/monitoring-cloudwatchlogs.html",
+       "id": "AwsSolutions-IAM5",
+       "applies_to": [
+        "Resource::*"
+       ]
+      },
+      {
+       "reason": "SendDurableExecutionCallbackSuccess requires wildcard resource because the eligibility-checker function name is dynamically generated by CDK and lives in a different stack. See: https://docs.aws.amazon.com/lambda/latest/dg/invocation-durable.html",
+       "id": "AwsSolutions-IAM5",
+       "applies_to": [
+        {
+         "regex": "/^Resource::arn:aws:lambda:.+:\\d{12}:function:\\*$/"
+        }
+       ]
+      },
+      {
+       "reason": "DynamoDB table access requires wildcard for Global Secondary Index (GSI) operations. The pattern <TableArn>/index/* is required to access all GSIs on the table. See: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/iam-policy-specific-table-indexes.html",
+       "id": "AwsSolutions-IAM5",
+       "applies_to": [
+        "Resource::<TranscriptionsTableE617CB71.Arn>/index/*",
+        "Resource::<AnalyticsTable0B3C8B0C.Arn>/index/*"
+       ]
+      }
+     ]
+    }
+   }
+  },
+  "AnalyticsProcessor3FF027E0": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": "cdk-hnb659fds-assets-317067115698-us-east-1",
+     "S3Key": "531e4bbe952e18eb31d3b62bbda263ad555d97bccf5c467a134bc651e393a503.zip"
+    },
+    "Description": "Analytics processor - deployed at 2026-10-09T08:58:20.194Z",
+    "DurableConfig": {
+     "ExecutionTimeout": 900,
+     "RetentionPeriodInDays": 7
+    },
+    "Environment": {
+     "Variables": {
+      "ANALYTICS_TABLE": {
+       "Ref": "AnalyticsTable3F84C304"
+      },
+      "LOG_LEVEL": "INFO",
+      "POWERTOOLS_METRICS_NAMESPACE": "SCA",
+      "POWERTOOLS_SERVICE_NAME": "analytics-processor",
+      "TRANSCRIPTIONS_TABLE": {
+       "Ref": "TranscriptionsTableE617CB71"
+      }
+     }
+    },
+    "Handler": "handler.lambda_handler",
+    "Layers": [
+     "arn:aws:lambda:us-east-1:017000801446:layer:AWSLambdaPowertoolsPythonV3-python313-x86_64:27"
+    ],
+    "MemorySize": 1024,
+    "Role": {
+     "Fn::GetAtt": [
+      "AnalyticsProcessorServiceRoleCA410516",
+      "Arn"
+     ]
+    },
+    "Runtime": "python3.13",
+    "Timeout": 900,
+    "TracingConfig": {
+     "Mode": "Active"
+    }
+   },
+   "DependsOn": [
+    "AnalyticsProcessorServiceRoleDefaultPolicy3C47B8A8",
+    "AnalyticsProcessorServiceRoleCA410516"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "ScaBackendStack/AnalyticsProcessor/Resource",
+    "aws:asset:path": "asset.531e4bbe952e18eb31d3b62bbda263ad555d97bccf5c467a134bc651e393a503",
+    "aws:asset:is-bundled": false,
+    "aws:asset:property": "Code",
+    "cdk_nag": {
+     "rules_to_suppress": [
+      {
+       "reason": "Lambda functions are using Python 3.13, which is the latest available runtime version. See: https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html",
+       "id": "AwsSolutions-L1"
+      }
+     ]
+    }
+   }
+  },
+  "AnalyticsProcessorCurrentVersionCEDCCF6151014472695b11d38fdb93d4c78e796b": {
+   "Type": "AWS::Lambda::Version",
+   "Properties": {
+    "FunctionName": {
+     "Ref": "AnalyticsProcessor3FF027E0"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaBackendStack/AnalyticsProcessor/CurrentVersion/Resource",
+    "aws:cdk:do-not-refactor": true
+   }
+  },
+  "AnalyticsProcessorAlias26AFE160": {
+   "Type": "AWS::Lambda::Alias",
+   "Properties": {
+    "FunctionName": {
+     "Ref": "AnalyticsProcessor3FF027E0"
+    },
+    "FunctionVersion": {
+     "Fn::GetAtt": [
+      "AnalyticsProcessorCurrentVersionCEDCCF6151014472695b11d38fdb93d4c78e796b",
+      "Version"
+     ]
+    },
+    "Name": "live"
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaBackendStack/AnalyticsProcessorAlias/Resource"
+   }
+  },
+  "AnalyticsProcessorAliasDynamoDBEventSourceScaBackendStackTranscriptionsTable51E1B54B3EB54407": {
+   "Type": "AWS::Lambda::EventSourceMapping",
+   "Properties": {
+    "BatchSize": 10,
+    "BisectBatchOnFunctionError": true,
+    "EventSourceArn": {
+     "Fn::GetAtt": [
+      "TranscriptionsTableE617CB71",
+      "StreamArn"
+     ]
+    },
+    "FilterCriteria": {
+     "Filters": [
+      {
+       "Pattern": "{\"eventName\":[\"INSERT\"]}"
+      },
+      {
+       "Pattern": "{\"eventName\":[\"MODIFY\"]}"
+      }
+     ]
+    },
+    "FunctionName": {
+     "Fn::Join": [
+      "",
+      [
+       {
+        "Fn::Select": [
+         6,
+         {
+          "Fn::Split": [
+           ":",
+           {
+            "Ref": "AnalyticsProcessorAlias26AFE160"
+           }
+          ]
+         }
+        ]
+       },
+       ":live"
+      ]
+     ]
+    },
+    "FunctionResponseTypes": [
+     "ReportBatchItemFailures"
+    ],
+    "MaximumBatchingWindowInSeconds": 5,
+    "MaximumRetryAttempts": 3,
+    "StartingPosition": "LATEST"
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaBackendStack/AnalyticsProcessorAlias/DynamoDBEventSource:ScaBackendStackTranscriptionsTable51E1B54B/Resource"
+   }
+  },
+  "DataRetrievalServiceRole8ED2F6BB": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaBackendStack/DataRetrieval/ServiceRole/Resource",
+    "cdk_nag": {
+     "rules_to_suppress": [
+      {
+       "reason": "AWSLambdaBasicExecutionRole is the AWS recommended managed policy for Lambda functions. It provides minimal permissions for CloudWatch Logs access. See: https://docs.aws.amazon.com/lambda/latest/dg/lambda-intro-execution-role.html",
+       "id": "AwsSolutions-IAM4",
+       "applies_to": [
+        "Policy::arn:<AWS::Partition>:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      }
+     ]
+    }
+   }
+  },
+  "DataRetrievalServiceRoleDefaultPolicy214CE40B": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "xray:PutTelemetryRecords",
+        "xray:PutTraceSegments"
+       ],
+       "Effect": "Allow",
+       "Resource": "*"
+      },
+      {
+       "Action": [
+        "dynamodb:BatchGetItem",
+        "dynamodb:ConditionCheckItem",
+        "dynamodb:DescribeTable",
+        "dynamodb:GetItem",
+        "dynamodb:GetRecords",
+        "dynamodb:GetShardIterator",
+        "dynamodb:Query",
+        "dynamodb:Scan"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "AnalyticsTable3F84C304",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::GetAtt": [
+          "TranscriptionsTableE617CB71",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "TranscriptionsTableE617CB71",
+             "Arn"
+            ]
+           },
+           "/index/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": "lambda:SendDurableExecutionCallbackSuccess",
+       "Effect": "Allow",
+       "Resource": "arn:aws:lambda:us-east-1:317067115698:function:*"
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "DataRetrievalServiceRoleDefaultPolicy214CE40B",
+    "Roles": [
+     {
+      "Ref": "DataRetrievalServiceRole8ED2F6BB"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaBackendStack/DataRetrieval/ServiceRole/DefaultPolicy/Resource",
+    "cdk_nag": {
+     "rules_to_suppress": [
+      {
+       "reason": "Lambda functions require wildcard permissions for CloudWatch Logs. The logs:CreateLogGroup, logs:CreateLogStream, and logs:PutLogEvents actions require Resource: \"*\" as log group names are generated at runtime. See: https://docs.aws.amazon.com/lambda/latest/dg/monitoring-cloudwatchlogs.html",
+       "id": "AwsSolutions-IAM5",
+       "applies_to": [
+        "Resource::*"
+       ]
+      },
+      {
+       "reason": "SendDurableExecutionCallbackSuccess requires wildcard resource because the eligibility-checker function name is dynamically generated by CDK and lives in a different stack. See: https://docs.aws.amazon.com/lambda/latest/dg/invocation-durable.html",
+       "id": "AwsSolutions-IAM5",
+       "applies_to": [
+        {
+         "regex": "/^Resource::arn:aws:lambda:.+:\\d{12}:function:\\*$/"
+        }
+       ]
+      },
+      {
+       "reason": "DynamoDB table access requires wildcard for Global Secondary Index (GSI) operations. The pattern <TableArn>/index/* is required to access all GSIs on the table. See: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/iam-policy-specific-table-indexes.html",
+       "id": "AwsSolutions-IAM5",
+       "applies_to": [
+        "Resource::<TranscriptionsTableE617CB71.Arn>/index/*",
+        "Resource::<AnalyticsTable0B3C8B0C.Arn>/index/*"
+       ]
+      }
+     ]
+    }
+   }
+  },
+  "DataRetrieval47192070": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": "cdk-hnb659fds-assets-317067115698-us-east-1",
+     "S3Key": "c197d8ae7ef0b59b613d3330edbf5451d4dd6b7ae66dce56781377856e78c875.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "TRANSCRIPTIONS_TABLE": {
+       "Ref": "TranscriptionsTableE617CB71"
+      },
+      "ANALYTICS_TABLE": {
+       "Ref": "AnalyticsTable3F84C304"
+      },
+      "POWERTOOLS_SERVICE_NAME": "data-retrieval",
+      "POWERTOOLS_METRICS_NAMESPACE": "SCA",
+      "LOG_LEVEL": "INFO"
+     }
+    },
+    "Handler": "handler.lambda_handler",
+    "Layers": [
+     "arn:aws:lambda:us-east-1:017000801446:layer:AWSLambdaPowertoolsPythonV3-python313-x86_64:27"
+    ],
+    "MemorySize": 512,
+    "Role": {
+     "Fn::GetAtt": [
+      "DataRetrievalServiceRole8ED2F6BB",
+      "Arn"
+     ]
+    },
+    "Runtime": "python3.13",
+    "Timeout": 30,
+    "TracingConfig": {
+     "Mode": "Active"
+    }
+   },
+   "DependsOn": [
+    "DataRetrievalServiceRoleDefaultPolicy214CE40B",
+    "DataRetrievalServiceRole8ED2F6BB"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "ScaBackendStack/DataRetrieval/Resource",
+    "aws:asset:path": "asset.c197d8ae7ef0b59b613d3330edbf5451d4dd6b7ae66dce56781377856e78c875",
+    "aws:asset:is-bundled": true,
+    "aws:asset:property": "Code",
+    "cdk_nag": {
+     "rules_to_suppress": [
+      {
+       "reason": "Lambda functions are using Python 3.13, which is the latest available runtime version. See: https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html",
+       "id": "AwsSolutions-L1"
+      }
+     ]
+    }
+   }
+  },
+  "DataRetrievalApiD3894D3B": {
+   "Type": "AWS::ApiGateway::RestApi",
+   "Properties": {
+    "Description": "Private API for querying contact transcriptions and analytics",
+    "EndpointConfiguration": {
+     "Types": [
+      "PRIVATE"
+     ],
+     "VpcEndpointIds": [
+      {
+       "Fn::ImportValue": "ScaNetworkStack:ExportsOutputRefApiGatewayVpcEndpoint5729EBD22A528B0F"
+      }
+     ]
+    },
+    "Name": "sca-data-retrieval-api",
+    "Policy": {
+     "Statement": [
+      {
+       "Action": "execute-api:Invoke",
+       "Condition": {
+        "StringEquals": {
+         "aws:SourceVpce": {
+          "Fn::ImportValue": "ScaNetworkStack:ExportsOutputRefApiGatewayVpcEndpoint5729EBD22A528B0F"
+         }
+        }
+       },
+       "Effect": "Allow",
+       "Principal": {
+        "AWS": "*"
+       },
+       "Resource": "execute-api:/*"
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaBackendStack/DataRetrievalApi/Resource",
+    "cdk_nag": {
+     "rules_to_suppress": [
+      {
+       "reason": "Request validation is performed by the Lambda function backend. The Lambda function validates all inputs before processing.",
+       "id": "AwsSolutions-APIG2"
+      }
+     ]
+    }
+   }
+  },
+  "DataRetrievalApiDeployment9B4155BC8e17145e5a2bff474ae3efa69cd92f21": {
+   "Type": "AWS::ApiGateway::Deployment",
+   "Properties": {
+    "Description": "Private API for querying contact transcriptions and analytics",
+    "RestApiId": {
+     "Ref": "DataRetrievalApiD3894D3B"
+    }
+   },
+   "DependsOn": [
+    "ChatApiAuthorizer9D03B0E8",
+    "DataRetrievalApiproxyANY6717505F",
+    "DataRetrievalApiproxy02615914",
+    "DataRetrievalApiANY2A580325",
+    "DataRetrievalApicall14AF119D",
+    "DataRetrievalApicallstartPOSTCB5A94B9",
+    "DataRetrievalApicallstartF8A56595",
+    "DataRetrievalApichat4F25DCCC",
+    "DataRetrievalApichatstartPOST689469BF",
+    "DataRetrievalApichatstartA9972838"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "ScaBackendStack/DataRetrievalApi/Deployment/Resource",
+    "aws:cdk:do-not-refactor": true
+   }
+  },
+  "DataRetrievalApiDeploymentStageprod6FC95F55": {
+   "Type": "AWS::ApiGateway::Stage",
+   "Properties": {
+    "DeploymentId": {
+     "Ref": "DataRetrievalApiDeployment9B4155BC8e17145e5a2bff474ae3efa69cd92f21"
+    },
+    "MethodSettings": [
+     {
+      "DataTraceEnabled": true,
+      "HttpMethod": "*",
+      "LoggingLevel": "INFO",
+      "MetricsEnabled": true,
+      "ResourcePath": "/*"
+     }
+    ],
+    "RestApiId": {
+     "Ref": "DataRetrievalApiD3894D3B"
+    },
+    "StageName": "prod",
+    "TracingEnabled": true,
+    "Variables": {
+     "startChatFn": "sca-start-chat-contact",
+     "startWebRtcFn": "sca-start-webrtc-contact"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaBackendStack/DataRetrievalApi/DeploymentStage.prod/Resource",
+    "cdk_nag": {
+     "rules_to_suppress": [
+      {
+       "reason": "Access logging is not enabled for this private API to reduce operational overhead. For production deployments, enable access logs for audit and troubleshooting.",
+       "id": "AwsSolutions-APIG1"
+      },
+      {
+       "reason": "AWS WAF is not required for this private API. The API is only accessible from within the VPC via VPC endpoint, not from the internet. Network-level security is enforced through security groups and VPC endpoint policies.",
+       "id": "AwsSolutions-APIG3"
+      }
+     ]
+    }
+   }
+  },
+  "DataRetrievalApiANYApiPermissionScaBackendStackDataRetrievalApi3984B0A9ANY144EEFD0": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "DataRetrieval47192070",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:317067115698:",
+       {
+        "Ref": "DataRetrievalApiD3894D3B"
+       },
+       "/",
+       {
+        "Ref": "DataRetrievalApiDeploymentStageprod6FC95F55"
+       },
+       "/*/"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaBackendStack/DataRetrievalApi/Default/ANY/ApiPermission.ScaBackendStackDataRetrievalApi3984B0A9.ANY.."
+   }
+  },
+  "DataRetrievalApiANYApiPermissionTestScaBackendStackDataRetrievalApi3984B0A9ANYCC50DCF4": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "DataRetrieval47192070",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:317067115698:",
+       {
+        "Ref": "DataRetrievalApiD3894D3B"
+       },
+       "/test-invoke-stage/*/"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaBackendStack/DataRetrievalApi/Default/ANY/ApiPermission.Test.ScaBackendStackDataRetrievalApi3984B0A9.ANY.."
+   }
+  },
+  "DataRetrievalApiANY2A580325": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "NONE",
+    "HttpMethod": "ANY",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+        {
+         "Fn::GetAtt": [
+          "DataRetrieval47192070",
+          "Arn"
+         ]
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "ResourceId": {
+     "Fn::GetAtt": [
+      "DataRetrievalApiD3894D3B",
+      "RootResourceId"
+     ]
+    },
+    "RestApiId": {
+     "Ref": "DataRetrievalApiD3894D3B"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaBackendStack/DataRetrievalApi/Default/ANY/Resource",
+    "cdk_nag": {
+     "rules_to_suppress": [
+      {
+       "reason": "This is a private API accessible only from within the VPC via VPC endpoint. Access is controlled by VPC endpoint policy that restricts to specific VPC endpoint. Additional authorization can be added using Cognito or IAM if needed.",
+       "id": "AwsSolutions-APIG4"
+      },
+      {
+       "reason": "This is a private API accessible only from within the VPC via VPC endpoint. Access is controlled by VPC endpoint policy. Cognito authorization is handled at the web application layer.",
+       "id": "AwsSolutions-COG4"
+      }
+     ]
+    }
+   }
+  },
+  "DataRetrievalApiproxy02615914": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Fn::GetAtt": [
+      "DataRetrievalApiD3894D3B",
+      "RootResourceId"
+     ]
+    },
+    "PathPart": "{proxy+}",
+    "RestApiId": {
+     "Ref": "DataRetrievalApiD3894D3B"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaBackendStack/DataRetrievalApi/Default/{proxy+}/Resource"
+   }
+  },
+  "DataRetrievalApiproxyANYApiPermissionScaBackendStackDataRetrievalApi3984B0A9ANYproxy171134B6": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "DataRetrieval47192070",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:317067115698:",
+       {
+        "Ref": "DataRetrievalApiD3894D3B"
+       },
+       "/",
+       {
+        "Ref": "DataRetrievalApiDeploymentStageprod6FC95F55"
+       },
+       "/*/*"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaBackendStack/DataRetrievalApi/Default/{proxy+}/ANY/ApiPermission.ScaBackendStackDataRetrievalApi3984B0A9.ANY..{proxy+}"
+   }
+  },
+  "DataRetrievalApiproxyANYApiPermissionTestScaBackendStackDataRetrievalApi3984B0A9ANYproxyEE72425C": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "DataRetrieval47192070",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:317067115698:",
+       {
+        "Ref": "DataRetrievalApiD3894D3B"
+       },
+       "/test-invoke-stage/*/*"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaBackendStack/DataRetrievalApi/Default/{proxy+}/ANY/ApiPermission.Test.ScaBackendStackDataRetrievalApi3984B0A9.ANY..{proxy+}"
+   }
+  },
+  "DataRetrievalApiproxyANY6717505F": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "NONE",
+    "HttpMethod": "ANY",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+        {
+         "Fn::GetAtt": [
+          "DataRetrieval47192070",
+          "Arn"
+         ]
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "ResourceId": {
+     "Ref": "DataRetrievalApiproxy02615914"
+    },
+    "RestApiId": {
+     "Ref": "DataRetrievalApiD3894D3B"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaBackendStack/DataRetrievalApi/Default/{proxy+}/ANY/Resource",
+    "cdk_nag": {
+     "rules_to_suppress": [
+      {
+       "reason": "This is a private API accessible only from within the VPC via VPC endpoint. Access is controlled by VPC endpoint policy that restricts to specific VPC endpoint. Additional authorization can be added using Cognito or IAM if needed.",
+       "id": "AwsSolutions-APIG4"
+      },
+      {
+       "reason": "This is a private API accessible only from within the VPC via VPC endpoint. Access is controlled by VPC endpoint policy. Cognito authorization is handled at the web application layer.",
+       "id": "AwsSolutions-COG4"
+      }
+     ]
+    }
+   }
+  },
+  "DataRetrievalApichat4F25DCCC": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Fn::GetAtt": [
+      "DataRetrievalApiD3894D3B",
+      "RootResourceId"
+     ]
+    },
+    "PathPart": "chat",
+    "RestApiId": {
+     "Ref": "DataRetrievalApiD3894D3B"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaBackendStack/DataRetrievalApi/Default/chat/Resource"
+   }
+  },
+  "DataRetrievalApichatstartA9972838": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Ref": "DataRetrievalApichat4F25DCCC"
+    },
+    "PathPart": "start",
+    "RestApiId": {
+     "Ref": "DataRetrievalApiD3894D3B"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaBackendStack/DataRetrievalApi/Default/chat/start/Resource"
+   }
+  },
+  "DataRetrievalApichatstartPOST689469BF": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "COGNITO_USER_POOLS",
+    "AuthorizerId": {
+     "Ref": "ChatApiAuthorizer9D03B0E8"
+    },
+    "HttpMethod": "POST",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:317067115698:function:${stageVariables.startChatFn}/invocations"
+    },
+    "ResourceId": {
+     "Ref": "DataRetrievalApichatstartA9972838"
+    },
+    "RestApiId": {
+     "Ref": "DataRetrievalApiD3894D3B"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaBackendStack/DataRetrievalApi/Default/chat/start/POST/Resource",
+    "cdk_nag": {
+     "rules_to_suppress": [
+      {
+       "reason": "This endpoint uses a Cognito User Pool authorizer for authentication.",
+       "id": "AwsSolutions-COG4"
+      }
+     ]
+    }
+   }
+  },
+  "DataRetrievalApicall14AF119D": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Fn::GetAtt": [
+      "DataRetrievalApiD3894D3B",
+      "RootResourceId"
+     ]
+    },
+    "PathPart": "call",
+    "RestApiId": {
+     "Ref": "DataRetrievalApiD3894D3B"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaBackendStack/DataRetrievalApi/Default/call/Resource"
+   }
+  },
+  "DataRetrievalApicallstartF8A56595": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Ref": "DataRetrievalApicall14AF119D"
+    },
+    "PathPart": "start",
+    "RestApiId": {
+     "Ref": "DataRetrievalApiD3894D3B"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaBackendStack/DataRetrievalApi/Default/call/start/Resource"
+   }
+  },
+  "DataRetrievalApicallstartPOSTCB5A94B9": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "COGNITO_USER_POOLS",
+    "AuthorizerId": {
+     "Ref": "ChatApiAuthorizer9D03B0E8"
+    },
+    "HttpMethod": "POST",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:317067115698:function:${stageVariables.startWebRtcFn}/invocations"
+    },
+    "ResourceId": {
+     "Ref": "DataRetrievalApicallstartF8A56595"
+    },
+    "RestApiId": {
+     "Ref": "DataRetrievalApiD3894D3B"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaBackendStack/DataRetrievalApi/Default/call/start/POST/Resource",
+    "cdk_nag": {
+     "rules_to_suppress": [
+      {
+       "reason": "This endpoint uses a Cognito User Pool authorizer for authentication.",
+       "id": "AwsSolutions-COG4"
+      }
+     ]
+    }
+   }
+  },
+  "ChatApiAuthorizer9D03B0E8": {
+   "Type": "AWS::ApiGateway::Authorizer",
+   "Properties": {
+    "IdentitySource": "method.request.header.Authorization",
+    "Name": "sca-chat-authorizer",
+    "ProviderARNs": [
+     {
+      "Fn::GetAtt": [
+       "UserPool6BA7E5F2",
+       "Arn"
+      ]
+     }
+    ],
+    "RestApiId": {
+     "Ref": "DataRetrievalApiD3894D3B"
+    },
+    "Type": "COGNITO_USER_POOLS"
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaBackendStack/ChatApiAuthorizer/Resource"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/3WRTU/DMAyGfwv3LKDtwLkbHyfE2IAr8lKzmbVxiZONUuW/o6TtxgGkqn78Oo5je6qn1zN9dQFHmZhyP6loo7u1B7NXcJS3jqDW3YorVIt3m+2SKzJtcnuKChragscjtLpbvNvCGA7WqxWKLxrKiQPeYFNxW6P1Sf3lrT1sc4keVigcnME5CKoH9DsuU3CgpeOvdjwyXN/zWeStJc8vgm7JXEkR/I4dfaNL589eVHuyKCSpaYdQ929IFJV8iu6eAoZcpIf8P4/glxtV2Vqoudzo7hk2/cQyRFVBvSlBd3fBGk9sU+jEtwe0fp3f/QBNQ3abwn+or+hkSB6xqAgktzTCEl1NkoJRyewNRNCLLpJRMtPzYPbo81xNPyPdjVNK6SceYVHRsK7/lXvHoYkxSQu2JeW2TrvItdNeh84eg2+Cj8pyifpDLg/TK52+iw8hmrhgPdWoV739AcUi0OSgAgAA"
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaBackendStack/CDKMetadata/Default"
+   }
+  }
+ },
+ "Conditions": {
+  "AwsCdkKinesisEncryptedStreamsUnsupportedRegions": {
+   "Fn::Or": [
+    {
+     "Fn::Equals": [
+      {
+       "Ref": "AWS::Region"
+      },
+      "cn-north-1"
+     ]
+    },
+    {
+     "Fn::Equals": [
+      {
+       "Ref": "AWS::Region"
+      },
+      "cn-northwest-1"
+     ]
+    }
+   ]
+  }
+ },
+ "Outputs": {
+  "DataRetrievalApiEndpoint65433DD2": {
+   "Value": {
+    "Fn::Join": [
+     "",
+     [
+      "https://",
+      {
+       "Ref": "DataRetrievalApiD3894D3B"
+      },
+      ".execute-api.us-east-1.",
+      {
+       "Ref": "AWS::URLSuffix"
+      },
+      "/",
+      {
+       "Ref": "DataRetrievalApiDeploymentStageprod6FC95F55"
+      },
+      "/"
+     ]
+    ]
+   }
+  },
+  "TranscriptionStreamName": {
+   "Description": "Kinesis Stream name for transcription ingestion",
+   "Value": {
+    "Ref": "TranscriptionStream1497D4C4"
+   }
+  },
+  "TranscriptionStreamArn": {
+   "Description": "Kinesis Stream ARN for transcription ingestion",
+   "Value": {
+    "Fn::GetAtt": [
+     "TranscriptionStream1497D4C4",
+     "Arn"
+    ]
+   }
+  },
+  "TranscriptionsTableName": {
+   "Description": "DynamoDB table name for transcriptions",
+   "Value": {
+    "Ref": "TranscriptionsTableE617CB71"
+   }
+  },
+  "AnalyticsTableName": {
+   "Description": "DynamoDB table name for analytics",
+   "Value": {
+    "Ref": "AnalyticsTable3F84C304"
+   }
+  },
+  "DeadLetterQueueUrl": {
+   "Description": "SQS Dead Letter Queue URL",
+   "Value": {
+    "Ref": "DeadLetterQueue9F481546"
+   }
+  },
+  "UserPoolId": {
+   "Description": "Cognito User Pool ID",
+   "Value": {
+    "Ref": "UserPool6BA7E5F2"
+   }
+  },
+  "UserPoolClientId": {
+   "Description": "Cognito User Pool Client ID",
+   "Value": {
+    "Ref": "UserPoolWebAppClientCD2D5CB1"
+   }
+  },
+  "DataRetrievalApiId": {
+   "Description": "Private API Gateway ID for data retrieval",
+   "Value": {
+    "Ref": "DataRetrievalApiD3894D3B"
+   }
+  },
+  "DataRetrievalApiEndpoint": {
+   "Description": "Private API Gateway endpoint for data retrieval",
+   "Value": {
+    "Fn::Join": [
+     "",
+     [
+      "https://",
+      {
+       "Ref": "DataRetrievalApiD3894D3B"
+      },
+      ".execute-api.us-east-1.",
+      {
+       "Ref": "AWS::URLSuffix"
+      },
+      "/",
+      {
+       "Ref": "DataRetrievalApiDeploymentStageprod6FC95F55"
+      },
+      "/"
+     ]
+    ]
+   }
+  },
+  "DataRetrievalApiVpcEndpoint": {
+   "Description": "Private API Gateway endpoint with VPC endpoint ID (use this for nginx proxy)",
+   "Value": {
+    "Fn::Join": [
+     "",
+     [
+      "https://",
+      {
+       "Ref": "DataRetrievalApiD3894D3B"
+      },
+      "-",
+      {
+       "Fn::ImportValue": "ScaNetworkStack:ExportsOutputRefApiGatewayVpcEndpoint5729EBD22A528B0F"
+      },
+      ".execute-api.us-east-1.amazonaws.com/prod/"
+     ]
+    ]
+   }
+  },
+  "CreateUserCommand": {
+   "Description": "Command to create a new Cognito user",
+   "Value": "./scripts/setup-test-user.sh <email> Analysts"
+  },
+  "ExportsOutputRefUserPool6BA7E5F296FD7236": {
+   "Value": {
+    "Ref": "UserPool6BA7E5F2"
+   },
+   "Export": {
+    "Name": "ScaBackendStack:ExportsOutputRefUserPool6BA7E5F296FD7236"
+   }
+  },
+  "ExportsOutputRefUserPoolWebAppClientCD2D5CB13BAB4F14": {
+   "Value": {
+    "Ref": "UserPoolWebAppClientCD2D5CB1"
+   },
+   "Export": {
+    "Name": "ScaBackendStack:ExportsOutputRefUserPoolWebAppClientCD2D5CB13BAB4F14"
+   }
+  },
+  "ExportsOutputRefDataRetrievalApiD3894D3B76AB2197": {
+   "Value": {
+    "Ref": "DataRetrievalApiD3894D3B"
+   },
+   "Export": {
+    "Name": "ScaBackendStack:ExportsOutputRefDataRetrievalApiD3894D3B76AB2197"
+   }
+  }
+ },
+ "Parameters": {
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
+  }
+ }
+}

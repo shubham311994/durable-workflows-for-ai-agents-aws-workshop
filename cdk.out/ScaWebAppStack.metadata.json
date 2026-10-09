@@ -1,0 +1,385 @@
+{
+  "/ScaWebAppStack": [
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:38:21)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaWebAppStack/AlbDnsName": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "AlbDnsName"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new ScaWebAppStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-webapp-stack.ts:224:5)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:38:21)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaWebAppStack/AlbSecurityGroupId": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "AlbSecurityGroupId"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new ScaWebAppStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-webapp-stack.ts:229:5)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:38:21)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaWebAppStack/EcsClusterName": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "EcsClusterName"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new ScaWebAppStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-webapp-stack.ts:234:5)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:38:21)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaWebAppStack/BootstrapVersion": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "BootstrapVersion"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/ScaWebAppStack/CheckBootstrapVersion": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CheckBootstrapVersion"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/ScaWebAppStack/EcsCluster/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "EcsCluster97242B84"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Cluster2 in aws-cdk-lib...",
+        "new ScaWebAppStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-webapp-stack.ts:45:23)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:38:21)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaWebAppStack/AlbSecurityGroup/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "AlbSecurityGroup86A59E99"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new SecurityGroup2 in aws-cdk-lib...",
+        "new ScaWebAppStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-webapp-stack.ts:52:29)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:38:21)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaWebAppStack/AlbSecurityGroup/from pl-3b927c52:80": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "AlbSecurityGroupfrompl3b927c528011991E03"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...PropertyInjectable.<anonymous> in aws-cdk-lib...",
+        "/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-cloudfront-access-stack.ts:187: (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-cloudfront-access-stack.ts:187:1)",
+        "Array.forEach (:)",
+        "new ScaCloudFrontAccessStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-cloudfront-access-stack.ts:186:23)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:56:33)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/ScaWebAppStack/PrivateAlb/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "PrivateAlbF07A94D5"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new ApplicationLoadBalancer2 in aws-cdk-lib...",
+        "new ScaWebAppStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-webapp-stack.ts:59:16)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:38:21)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaWebAppStack/EcsSecurityGroup/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "EcsSecurityGroup44008BF1"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new SecurityGroup2 in aws-cdk-lib...",
+        "new ScaWebAppStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-webapp-stack.ts:72:30)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:38:21)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaWebAppStack/EcsSecurityGroup/from ScaWebAppStackAlbSecurityGroup3E67AC69:3000": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "EcsSecurityGroupfromScaWebAppStackAlbSecurityGroup3E67AC6930003203A088"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...PropertyInjectable.<anonymous> in aws-cdk-lib...",
+        "new ScaWebAppStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-webapp-stack.ts:79:22)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:38:21)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaWebAppStack/EcsTaskExecutionRole/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "EcsTaskExecutionRoleC0B6A84D"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Role2 in aws-cdk-lib...",
+        "new ScaWebAppStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-webapp-stack.ts:86:31)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:38:21)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaWebAppStack/EcsTaskRole/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "EcsTaskRole8DFA0181"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Role2 in aws-cdk-lib...",
+        "new ScaWebAppStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-webapp-stack.ts:97:22)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:38:21)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaWebAppStack/WebAppTaskDefinition/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "WebAppTaskDefinitionF49F1BA9"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new FargateTaskDefinition2 in aws-cdk-lib...",
+        "new ScaWebAppStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-webapp-stack.ts:104:28)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:38:21)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaWebAppStack/WebAppService/Service": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "WebAppService8815C759"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new FargateService2 in aws-cdk-lib...",
+        "new ScaWebAppStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-webapp-stack.ts:155:24)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:38:21)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaWebAppStack/WebAppTargetGroup/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "WebAppTargetGroup8E9DEC21"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new ApplicationTargetGroup2 in aws-cdk-lib...",
+        "new ScaWebAppStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-webapp-stack.ts:173:25)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:38:21)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaWebAppStack/CDKMetadata/Default": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CDKMetadata"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/ScaWebAppStack/Exports/Output{\"Ref\":\"PrivateAlbF07A94D5\"}": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ExportsOutputRefPrivateAlbF07A94D5685931C9"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/ScaWebAppStack/Exports/Output{\"Fn::GetAtt\":[\"PrivateAlbF07A94D5\",\"DNSName\"]}": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ExportsOutputFnGetAttPrivateAlbF07A94D5DNSName246C46B4"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/ScaWebAppStack/PrivateAlb/HttpListener/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "PrivateAlbHttpListener9F7826E9"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...PropertyInjectable.<anonymous> in aws-cdk-lib...",
+        "new ScaWebAppStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-webapp-stack.ts:193:14)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:38:21)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/ScaWebAppStack/EcsTaskExecutionRole/DefaultPolicy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "EcsTaskExecutionRoleDefaultPolicyDCEEFDC3"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...PropertyInjectable.grantPull in aws-cdk-lib...",
+        "new ScaWebAppStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-webapp-stack.ts:94:25)"
+      ]
+    }
+  ],
+  "/ScaWebAppStack/EcsTaskRole/DefaultPolicy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "EcsTaskRoleDefaultPolicy50882C77"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/ScaWebAppStack/WebAppTaskDefinition/WebAppContainer/LogGroup/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "WebAppTaskDefinitionWebAppContainerLogGroup48C2DB1B"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...PropertyInjectable.<anonymous> in aws-cdk-lib...",
+        "new ScaWebAppStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-webapp-stack.ts:119:38)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:38:21)"
+      ]
+    }
+  ],
+  "/ScaWebAppStack/WebAppService/TaskCount/Target/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "WebAppServiceTaskCountTargetC59D87E6"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...PropertyInjectable.autoScaleTaskCount in aws-cdk-lib...",
+        "new ScaWebAppStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-webapp-stack.ts:201:32)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:38:21)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/ScaWebAppStack/WebAppService/TaskCount/Target/CpuScaling/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "WebAppServiceTaskCountTargetCpuScalingE1292B98"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...ScalableTaskCount.scaleOnCpuUtilization in aws-cdk-lib...",
+        "new ScaWebAppStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-webapp-stack.ts:207:13)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:38:21)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/ScaWebAppStack/WebAppService/TaskCount/Target/MemoryScaling/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "WebAppServiceTaskCountTargetMemoryScalingD2925588"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...ScalableTaskCount.scaleOnMemoryUtilization in aws-cdk-lib...",
+        "new ScaWebAppStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-webapp-stack.ts:214:13)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:38:21)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ]
+}

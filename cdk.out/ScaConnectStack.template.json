@@ -1,0 +1,1883 @@
+{
+ "Metadata": {
+  "cdk_nag": {
+   "rules_to_suppress": [
+    {
+     "reason": "AWS managed policy AWSLambdaBasicExecutionRole is appropriate for Lambda functions. This includes CDK custom resource Lambdas that are managed by the CDK framework.",
+     "id": "AwsSolutions-IAM4",
+     "applies_to": [
+      "Policy::arn:<AWS::Partition>:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+      "Policy::arn:<AWS::Partition>:iam::aws:policy/service-role/AWSLambdaBasicDurableExecutionRolePolicy"
+     ]
+    },
+    {
+     "reason": "CDK custom resource Lambdas use runtimes managed by the CDK framework. These are internal implementation details and will be updated when CDK updates.",
+     "id": "AwsSolutions-L1"
+    },
+    {
+     "reason": "Call recording bucket does not require access logging for this solution.",
+     "id": "AwsSolutions-S1"
+    },
+    {
+     "reason": "Wildcard permissions are required for CDK custom resource Lambdas to invoke target functions. These are internal CDK framework resources with appropriate scoping.",
+     "id": "AwsSolutions-IAM5",
+     "applies_to": [
+      "Resource::<LookupProfilesFunctionc83dbc340393e4495653838aee5a6e8debf840dec6.Arn>:*",
+      "Resource::<ConfigureContactLensFunctionc8a128e2b20af760d10e207ea873376ca11a7ea0b7.Arn>:*",
+      "Resource::arn:aws:iam::*:role/aws-service-role/connect.amazonaws.com/AWSServiceRoleForAmazonConnect*",
+      "Resource::*"
+     ]
+    }
+   ]
+  }
+ },
+ "Resources": {
+  "ConnectInstance": {
+   "Type": "AWS::Connect::Instance",
+   "Properties": {
+    "Attributes": {
+     "AutoResolveBestVoices": true,
+     "ContactLens": true,
+     "ContactflowLogs": true,
+     "InboundCalls": true,
+     "OutboundCalls": true
+    },
+    "IdentityManagementType": "CONNECT_MANAGED",
+    "InstanceAlias": "sca-connect-317067115698"
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaConnectStack/ConnectInstance"
+   }
+  },
+  "EnableBOTMANAGEMENTF151B77F": {
+   "Type": "Custom::AWS",
+   "Properties": {
+    "ServiceToken": {
+     "Fn::GetAtt": [
+      "AWS679f53fac002430cb0da5b7982bd22872D164C4C",
+      "Arn"
+     ]
+    },
+    "Create": {
+     "Fn::Join": [
+      "",
+      [
+       "{\"service\":\"Connect\",\"action\":\"updateInstanceAttribute\",\"parameters\":{\"InstanceId\":\"",
+       {
+        "Fn::GetAtt": [
+         "ConnectInstance",
+         "Id"
+        ]
+       },
+       "\",\"AttributeType\":\"BOT_MANAGEMENT\",\"Value\":\"true\"},\"physicalResourceId\":{\"id\":\"BOT_MANAGEMENT-enabled\"}}"
+      ]
+     ]
+    },
+    "InstallLatestAwsSdk": false
+   },
+   "DependsOn": [
+    "ConnectInstance",
+    "EnableBOTMANAGEMENTCustomResourcePolicy45A9D64B"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "ScaConnectStack/EnableBOT_MANAGEMENT/Resource/Default"
+   }
+  },
+  "EnableBOTMANAGEMENTCustomResourcePolicy45A9D64B": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "connect:UpdateInstanceAttribute",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "ConnectInstance",
+         "Arn"
+        ]
+       }
+      },
+      {
+       "Action": [
+        "ds:DescribeDirectories",
+        "iam:PutRolePolicy"
+       ],
+       "Effect": "Allow",
+       "Resource": "*"
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "EnableBOTMANAGEMENTCustomResourcePolicy45A9D64B",
+    "Roles": [
+     {
+      "Ref": "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleC1EA0FF2"
+     }
+    ]
+   },
+   "DependsOn": [
+    "ConnectInstance"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "ScaConnectStack/EnableBOT_MANAGEMENT/CustomResourcePolicy/Resource"
+   }
+  },
+  "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleC1EA0FF2": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaConnectStack/AWS679f53fac002430cb0da5b7982bd2287/ServiceRole/Resource"
+   }
+  },
+  "AWS679f53fac002430cb0da5b7982bd22872D164C4C": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": "cdk-hnb659fds-assets-317067115698-us-east-1",
+     "S3Key": "9b8fce7ae7f25ef82fdbaf6b72523b99d0875c0c9c826642819fb51f11d9b125.zip"
+    },
+    "Handler": "index.handler",
+    "Role": {
+     "Fn::GetAtt": [
+      "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleC1EA0FF2",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs24.x",
+    "Timeout": 120
+   },
+   "DependsOn": [
+    "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleC1EA0FF2"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "ScaConnectStack/AWS679f53fac002430cb0da5b7982bd2287/Resource",
+    "aws:asset:path": "asset.9b8fce7ae7f25ef82fdbaf6b72523b99d0875c0c9c826642819fb51f11d9b125",
+    "aws:asset:is-bundled": false,
+    "aws:asset:property": "Code"
+   }
+  },
+  "EnableENABLEBOTANALYTICSANDTRANSCRIPTSBA5D8E5A": {
+   "Type": "Custom::AWS",
+   "Properties": {
+    "ServiceToken": {
+     "Fn::GetAtt": [
+      "AWS679f53fac002430cb0da5b7982bd22872D164C4C",
+      "Arn"
+     ]
+    },
+    "Create": {
+     "Fn::Join": [
+      "",
+      [
+       "{\"service\":\"Connect\",\"action\":\"updateInstanceAttribute\",\"parameters\":{\"InstanceId\":\"",
+       {
+        "Fn::GetAtt": [
+         "ConnectInstance",
+         "Id"
+        ]
+       },
+       "\",\"AttributeType\":\"ENABLE_BOT_ANALYTICS_AND_TRANSCRIPTS\",\"Value\":\"true\"},\"physicalResourceId\":{\"id\":\"ENABLE_BOT_ANALYTICS_AND_TRANSCRIPTS-enabled\"}}"
+      ]
+     ]
+    },
+    "InstallLatestAwsSdk": false
+   },
+   "DependsOn": [
+    "ConnectInstance",
+    "EnableENABLEBOTANALYTICSANDTRANSCRIPTSCustomResourcePolicy829D3996"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "ScaConnectStack/EnableENABLE_BOT_ANALYTICS_AND_TRANSCRIPTS/Resource/Default"
+   }
+  },
+  "EnableENABLEBOTANALYTICSANDTRANSCRIPTSCustomResourcePolicy829D3996": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "connect:UpdateInstanceAttribute",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "ConnectInstance",
+         "Arn"
+        ]
+       }
+      },
+      {
+       "Action": [
+        "ds:DescribeDirectories",
+        "iam:PutRolePolicy"
+       ],
+       "Effect": "Allow",
+       "Resource": "*"
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "EnableENABLEBOTANALYTICSANDTRANSCRIPTSCustomResourcePolicy829D3996",
+    "Roles": [
+     {
+      "Ref": "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleC1EA0FF2"
+     }
+    ]
+   },
+   "DependsOn": [
+    "ConnectInstance"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "ScaConnectStack/EnableENABLE_BOT_ANALYTICS_AND_TRANSCRIPTS/CustomResourcePolicy/Resource"
+   }
+  },
+  "EnableAUTOMATEDINTERACTIONLOGC371DA48": {
+   "Type": "Custom::AWS",
+   "Properties": {
+    "ServiceToken": {
+     "Fn::GetAtt": [
+      "AWS679f53fac002430cb0da5b7982bd22872D164C4C",
+      "Arn"
+     ]
+    },
+    "Create": {
+     "Fn::Join": [
+      "",
+      [
+       "{\"service\":\"Connect\",\"action\":\"updateInstanceAttribute\",\"parameters\":{\"InstanceId\":\"",
+       {
+        "Fn::GetAtt": [
+         "ConnectInstance",
+         "Id"
+        ]
+       },
+       "\",\"AttributeType\":\"AUTOMATED_INTERACTION_LOG\",\"Value\":\"true\"},\"physicalResourceId\":{\"id\":\"AUTOMATED_INTERACTION_LOG-enabled\"}}"
+      ]
+     ]
+    },
+    "InstallLatestAwsSdk": false
+   },
+   "DependsOn": [
+    "ConnectInstance",
+    "EnableAUTOMATEDINTERACTIONLOGCustomResourcePolicyEFF9D815"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "ScaConnectStack/EnableAUTOMATED_INTERACTION_LOG/Resource/Default"
+   }
+  },
+  "EnableAUTOMATEDINTERACTIONLOGCustomResourcePolicyEFF9D815": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "connect:UpdateInstanceAttribute",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "ConnectInstance",
+         "Arn"
+        ]
+       }
+      },
+      {
+       "Action": [
+        "ds:DescribeDirectories",
+        "iam:PutRolePolicy"
+       ],
+       "Effect": "Allow",
+       "Resource": "*"
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "EnableAUTOMATEDINTERACTIONLOGCustomResourcePolicyEFF9D815",
+    "Roles": [
+     {
+      "Ref": "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleC1EA0FF2"
+     }
+    ]
+   },
+   "DependsOn": [
+    "ConnectInstance"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "ScaConnectStack/EnableAUTOMATED_INTERACTION_LOG/CustomResourcePolicy/Resource"
+   }
+  },
+  "HoursOfOperationLookupAF925575": {
+   "Type": "Custom::AWS",
+   "Properties": {
+    "ServiceToken": {
+     "Fn::GetAtt": [
+      "AWS679f53fac002430cb0da5b7982bd22872D164C4C",
+      "Arn"
+     ]
+    },
+    "Create": {
+     "Fn::Join": [
+      "",
+      [
+       "{\"service\":\"Connect\",\"action\":\"listHoursOfOperations\",\"parameters\":{\"InstanceId\":\"",
+       {
+        "Fn::GetAtt": [
+         "ConnectInstance",
+         "Id"
+        ]
+       },
+       "\"},\"physicalResourceId\":{\"id\":\"HoursOfOperationLookup\"}}"
+      ]
+     ]
+    },
+    "InstallLatestAwsSdk": false
+   },
+   "DependsOn": [
+    "HoursOfOperationLookupCustomResourcePolicyA3A96B5F"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "ScaConnectStack/HoursOfOperationLookup/Resource/Default"
+   }
+  },
+  "HoursOfOperationLookupCustomResourcePolicyA3A96B5F": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "connect:ListHoursOfOperations",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "ConnectInstance",
+         "Arn"
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "HoursOfOperationLookupCustomResourcePolicyA3A96B5F",
+    "Roles": [
+     {
+      "Ref": "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleC1EA0FF2"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaConnectStack/HoursOfOperationLookup/CustomResourcePolicy/Resource"
+   }
+  },
+  "AgentQueue": {
+   "Type": "AWS::Connect::Queue",
+   "Properties": {
+    "Description": "Queue for routing calls to agents",
+    "HoursOfOperationArn": {
+     "Fn::GetAtt": [
+      "HoursOfOperationLookupAF925575",
+      "HoursOfOperationSummaryList.0.Arn"
+     ]
+    },
+    "InstanceArn": {
+     "Fn::GetAtt": [
+      "ConnectInstance",
+      "Arn"
+     ]
+    },
+    "Name": "SCA-Agent-Queue"
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaConnectStack/AgentQueue"
+   }
+  },
+  "AgentRoutingProfile": {
+   "Type": "AWS::Connect::RoutingProfile",
+   "Properties": {
+    "DefaultOutboundQueueArn": {
+     "Fn::GetAtt": [
+      "AgentQueue",
+      "QueueArn"
+     ]
+    },
+    "Description": "Routing profile for agents to receive calls from SCA-Agent-Queue",
+    "InstanceArn": {
+     "Fn::GetAtt": [
+      "ConnectInstance",
+      "Arn"
+     ]
+    },
+    "MediaConcurrencies": [
+     {
+      "Channel": "VOICE",
+      "Concurrency": 1
+     }
+    ],
+    "Name": "SCA-Agent-Routing-Profile",
+    "QueueConfigs": [
+     {
+      "Delay": 0,
+      "Priority": 1,
+      "QueueReference": {
+       "Channel": "VOICE",
+       "QueueArn": {
+        "Fn::GetAtt": [
+         "AgentQueue",
+         "QueueArn"
+        ]
+       }
+      }
+     }
+    ]
+   },
+   "DependsOn": [
+    "AgentQueue"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "ScaConnectStack/AgentRoutingProfile"
+   }
+  },
+  "InboundPhoneNumber": {
+   "Type": "AWS::Connect::PhoneNumber",
+   "Properties": {
+    "CountryCode": "US",
+    "Description": "Phone number for SCA testing",
+    "TargetArn": {
+     "Fn::GetAtt": [
+      "ConnectInstance",
+      "Arn"
+     ]
+    },
+    "Type": "TOLL_FREE"
+   },
+   "DependsOn": [
+    "ConnectInstance"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "ScaConnectStack/InboundPhoneNumber"
+   }
+  },
+  "AdminPassword4DD767F0": {
+   "Type": "AWS::SecretsManager::Secret",
+   "Properties": {
+    "Description": "Amazon Connect admin user password",
+    "GenerateSecretString": {
+     "ExcludePunctuation": true,
+     "ExcludeUppercase": false,
+     "IncludeSpace": false,
+     "PasswordLength": 16,
+     "RequireEachIncludedType": true
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "ScaConnectStack/AdminPassword/Resource",
+    "cdk_nag": {
+     "rules_to_suppress": [
+      {
+       "reason": "Admin password is a temporary credential for initial Amazon Connect setup. It should be changed immediately after first login and is not used in production.",
+       "id": "AwsSolutions-SMG4"
+      }
+     ]
+    }
+   }
+  },
+  "LookupProfilesFunctionServiceRole20D90F81": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaConnectStack/LookupProfilesFunction/ServiceRole/Resource"
+   }
+  },
+  "LookupProfilesFunctionServiceRoleDefaultPolicy835F712B": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "connect:ListSecurityProfiles",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "ConnectInstance",
+         "Arn"
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "LookupProfilesFunctionServiceRoleDefaultPolicy835F712B",
+    "Roles": [
+     {
+      "Ref": "LookupProfilesFunctionServiceRole20D90F81"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaConnectStack/LookupProfilesFunction/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "LookupProfilesFunction41F7F870": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "ZipFile": "\nimport json\nimport boto3\n\nconnect = boto3.client('connect')\n\ndef handler(event, context):\n    print(f\"Event: {json.dumps(event)}\")\n    \n    request_type = event['RequestType']\n    instance_id = event['ResourceProperties']['InstanceId']\n    \n    if request_type == 'Delete':\n        return {\n            'PhysicalResourceId': f'profiles-lookup-{instance_id}',\n            'Data': {}\n        }\n    \n    try:\n        security_profiles = connect.list_security_profiles(InstanceId=instance_id, MaxResults=50)\n        admin_profile_arn = next(\n            p['Arn'] for p in security_profiles['SecurityProfileSummaryList'] \n            if p['Name'] == 'Admin'\n        )\n        agent_profile_arn = next(\n            p['Arn'] for p in security_profiles['SecurityProfileSummaryList'] \n            if p['Name'] == 'Agent'\n        )\n        \n        return {\n            'PhysicalResourceId': f'profiles-lookup-{instance_id}',\n            'Data': {\n                'AdminSecurityProfileArn': admin_profile_arn,\n                'AgentSecurityProfileArn': agent_profile_arn\n            }\n        }\n            \n    except Exception as e:\n        print(f\"Error: {str(e)}\")\n        raise\n"
+    },
+    "Handler": "index.handler",
+    "Role": {
+     "Fn::GetAtt": [
+      "LookupProfilesFunctionServiceRole20D90F81",
+      "Arn"
+     ]
+    },
+    "Runtime": "python3.12",
+    "Timeout": 120
+   },
+   "DependsOn": [
+    "LookupProfilesFunctionServiceRoleDefaultPolicy835F712B",
+    "LookupProfilesFunctionServiceRole20D90F81"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "ScaConnectStack/LookupProfilesFunction/Resource"
+   }
+  },
+  "LookupProfilesProviderframeworkonEventServiceRole07061FFD": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaConnectStack/LookupProfilesProvider/framework-onEvent/ServiceRole/Resource"
+   }
+  },
+  "LookupProfilesProviderframeworkonEventServiceRoleDefaultPolicy14D250CE": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "lambda:InvokeFunction",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "LookupProfilesFunction41F7F870",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "LookupProfilesFunction41F7F870",
+             "Arn"
+            ]
+           },
+           ":*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": "lambda:GetFunction",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "LookupProfilesFunction41F7F870",
+         "Arn"
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "LookupProfilesProviderframeworkonEventServiceRoleDefaultPolicy14D250CE",
+    "Roles": [
+     {
+      "Ref": "LookupProfilesProviderframeworkonEventServiceRole07061FFD"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaConnectStack/LookupProfilesProvider/framework-onEvent/ServiceRole/DefaultPolicy/Resource",
+    "cdk_nag": {
+     "rules_to_suppress": [
+      {
+       "reason": "Wildcard permission required by CDK Provider framework to invoke the custom resource handler function with versioning support.",
+       "id": "AwsSolutions-IAM5",
+       "applies_to": [
+        "Resource::<LookupProfilesFunction41F7F870.Arn>:*"
+       ]
+      }
+     ]
+    }
+   }
+  },
+  "LookupProfilesProviderframeworkonEvent09A80301": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": "cdk-hnb659fds-assets-317067115698-us-east-1",
+     "S3Key": "e16ffb3b34af185b8b30c88fdb19faa13b6c42bb38580485c4e84b384ee48b63.zip"
+    },
+    "Description": "AWS CDK resource provider framework - onEvent (ScaConnectStack/LookupProfilesProvider)",
+    "Environment": {
+     "Variables": {
+      "USER_ON_EVENT_FUNCTION_ARN": {
+       "Fn::GetAtt": [
+        "LookupProfilesFunction41F7F870",
+        "Arn"
+       ]
+      }
+     }
+    },
+    "Handler": "framework.onEvent",
+    "LoggingConfig": {
+     "ApplicationLogLevel": "FATAL",
+     "LogFormat": "JSON"
+    },
+    "Role": {
+     "Fn::GetAtt": [
+      "LookupProfilesProviderframeworkonEventServiceRole07061FFD",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs24.x",
+    "Timeout": 900
+   },
+   "DependsOn": [
+    "LookupProfilesProviderframeworkonEventServiceRoleDefaultPolicy14D250CE",
+    "LookupProfilesProviderframeworkonEventServiceRole07061FFD"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "ScaConnectStack/LookupProfilesProvider/framework-onEvent/Resource",
+    "aws:asset:path": "asset.e16ffb3b34af185b8b30c88fdb19faa13b6c42bb38580485c4e84b384ee48b63",
+    "aws:asset:is-bundled": false,
+    "aws:asset:property": "Code"
+   }
+  },
+  "ProfilesLookup": {
+   "Type": "AWS::CloudFormation::CustomResource",
+   "Properties": {
+    "ServiceToken": {
+     "Fn::GetAtt": [
+      "LookupProfilesProviderframeworkonEvent09A80301",
+      "Arn"
+     ]
+    },
+    "InstanceId": {
+     "Fn::GetAtt": [
+      "ConnectInstance",
+      "Id"
+     ]
+    },
+    "Version": "2"
+   },
+   "DependsOn": [
+    "ConnectInstance"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "ScaConnectStack/ProfilesLookup/Default"
+   }
+  },
+  "ConnectAdminUser": {
+   "Type": "AWS::Connect::User",
+   "Properties": {
+    "IdentityInfo": {
+     "Email": "admin@example.com",
+     "FirstName": "SCA",
+     "LastName": "Admin"
+    },
+    "InstanceArn": {
+     "Fn::GetAtt": [
+      "ConnectInstance",
+      "Arn"
+     ]
+    },
+    "Password": {
+     "Fn::Join": [
+      "",
+      [
+       "{{resolve:secretsmanager:",
+       {
+        "Ref": "AdminPassword4DD767F0"
+       },
+       ":SecretString:::}}"
+      ]
+     ]
+    },
+    "PhoneConfig": {
+     "AfterContactWorkTimeLimit": 0,
+     "AutoAccept": false,
+     "PhoneType": "SOFT_PHONE"
+    },
+    "RoutingProfileArn": {
+     "Fn::GetAtt": [
+      "AgentRoutingProfile",
+      "RoutingProfileArn"
+     ]
+    },
+    "SecurityProfileArns": [
+     {
+      "Fn::GetAtt": [
+       "ProfilesLookup",
+       "AdminSecurityProfileArn"
+      ]
+     },
+     {
+      "Fn::GetAtt": [
+       "ProfilesLookup",
+       "AgentSecurityProfileArn"
+      ]
+     }
+    ],
+    "Username": "admin"
+   },
+   "DependsOn": [
+    "AgentRoutingProfile",
+    "ConnectInstance",
+    "ProfilesLookup"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "ScaConnectStack/ConnectAdminUser"
+   }
+  },
+  "ConfigureContactLensFunctionServiceRoleCC3D02D1": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaConnectStack/ConfigureContactLensFunction/ServiceRole/Resource"
+   }
+  },
+  "ConfigureContactLensFunctionServiceRoleDefaultPolicyF552AAE1": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "connect:AssociateInstanceStorageConfig",
+        "connect:DisassociateInstanceStorageConfig",
+        "connect:ListInstanceStorageConfigs"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "ConnectInstance",
+         "Arn"
+        ]
+       }
+      },
+      {
+       "Action": "kinesis:DescribeStream",
+       "Effect": "Allow",
+       "Resource": "arn:aws:kinesis:us-east-1:317067115698:stream/sca-transcription-stream"
+      },
+      {
+       "Action": "iam:PutRolePolicy",
+       "Effect": "Allow",
+       "Resource": "arn:aws:iam::*:role/aws-service-role/connect.amazonaws.com/AWSServiceRoleForAmazonConnect*"
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "ConfigureContactLensFunctionServiceRoleDefaultPolicyF552AAE1",
+    "Roles": [
+     {
+      "Ref": "ConfigureContactLensFunctionServiceRoleCC3D02D1"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaConnectStack/ConfigureContactLensFunction/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "ConfigureContactLensFunction7BDE4DF9": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "ZipFile": "\nimport json\nimport boto3\n\nconnect = boto3.client('connect')\n\ndef handler(event, context):\n    print(f\"Event: {json.dumps(event)}\")\n    \n    request_type = event['RequestType']\n    instance_id = event['ResourceProperties']['InstanceId']\n    stream_arn = event['ResourceProperties']['StreamArn']\n    \n    physical_id = f'contact-lens-config-{instance_id}'\n    \n    try:\n        if request_type == 'Create' or request_type == 'Update':\n            try:\n                configs = connect.list_instance_storage_configs(\n                    InstanceId=instance_id,\n                    ResourceType='REAL_TIME_CONTACT_ANALYSIS_VOICE_SEGMENTS'\n                )\n                \n                if configs.get('StorageConfigs'):\n                    print(f\"Contact Lens already configured\")\n                    return {\n                        'PhysicalResourceId': physical_id,\n                        'Data': {'Status': 'AlreadyConfigured'}\n                    }\n            except Exception as e:\n                print(f\"No existing config: {e}\")\n            \n            response = connect.associate_instance_storage_config(\n                InstanceId=instance_id,\n                ResourceType='REAL_TIME_CONTACT_ANALYSIS_VOICE_SEGMENTS',\n                StorageConfig={\n                    'StorageType': 'KINESIS_STREAM',\n                    'KinesisStreamConfig': {\n                        'StreamArn': stream_arn\n                    }\n                }\n            )\n            \n            print(f\"Contact Lens configured: {response}\")\n            \n            return {\n                'PhysicalResourceId': physical_id,\n                'Data': {\n                    'Status': 'Configured',\n                    'AssociationId': response.get('AssociationId', '')\n                }\n            }\n            \n        elif request_type == 'Delete':\n            try:\n                configs = connect.list_instance_storage_configs(\n                    InstanceId=instance_id,\n                    ResourceType='REAL_TIME_CONTACT_ANALYSIS_VOICE_SEGMENTS'\n                )\n                \n                for config in configs.get('StorageConfigs', []):\n                    connect.disassociate_instance_storage_config(\n                        InstanceId=instance_id,\n                        AssociationId=config['AssociationId'],\n                        ResourceType='REAL_TIME_CONTACT_ANALYSIS_VOICE_SEGMENTS'\n                    )\n            except Exception as e:\n                print(f\"Error during cleanup: {e}\")\n            \n            return {\n                'PhysicalResourceId': physical_id,\n                'Data': {'Status': 'Deleted'}\n            }\n            \n    except Exception as e:\n        print(f\"Error: {str(e)}\")\n        raise\n"
+    },
+    "Handler": "index.handler",
+    "Role": {
+     "Fn::GetAtt": [
+      "ConfigureContactLensFunctionServiceRoleCC3D02D1",
+      "Arn"
+     ]
+    },
+    "Runtime": "python3.12",
+    "Timeout": 120
+   },
+   "DependsOn": [
+    "ConfigureContactLensFunctionServiceRoleDefaultPolicyF552AAE1",
+    "ConfigureContactLensFunctionServiceRoleCC3D02D1"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "ScaConnectStack/ConfigureContactLensFunction/Resource"
+   }
+  },
+  "ConfigureContactLensProviderframeworkonEventServiceRoleA3F2CA3A": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaConnectStack/ConfigureContactLensProvider/framework-onEvent/ServiceRole/Resource"
+   }
+  },
+  "ConfigureContactLensProviderframeworkonEventServiceRoleDefaultPolicyA4185729": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "lambda:InvokeFunction",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "ConfigureContactLensFunction7BDE4DF9",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "ConfigureContactLensFunction7BDE4DF9",
+             "Arn"
+            ]
+           },
+           ":*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": "lambda:GetFunction",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "ConfigureContactLensFunction7BDE4DF9",
+         "Arn"
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "ConfigureContactLensProviderframeworkonEventServiceRoleDefaultPolicyA4185729",
+    "Roles": [
+     {
+      "Ref": "ConfigureContactLensProviderframeworkonEventServiceRoleA3F2CA3A"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaConnectStack/ConfigureContactLensProvider/framework-onEvent/ServiceRole/DefaultPolicy/Resource",
+    "cdk_nag": {
+     "rules_to_suppress": [
+      {
+       "reason": "Wildcard permission required by CDK Provider framework to invoke the custom resource handler function with versioning support.",
+       "id": "AwsSolutions-IAM5",
+       "applies_to": [
+        "Resource::<ConfigureContactLensFunction7BDE4DF9.Arn>:*"
+       ]
+      }
+     ]
+    }
+   }
+  },
+  "ConfigureContactLensProviderframeworkonEvent45FFD71C": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": "cdk-hnb659fds-assets-317067115698-us-east-1",
+     "S3Key": "e16ffb3b34af185b8b30c88fdb19faa13b6c42bb38580485c4e84b384ee48b63.zip"
+    },
+    "Description": "AWS CDK resource provider framework - onEvent (ScaConnectStack/ConfigureContactLensProvider)",
+    "Environment": {
+     "Variables": {
+      "USER_ON_EVENT_FUNCTION_ARN": {
+       "Fn::GetAtt": [
+        "ConfigureContactLensFunction7BDE4DF9",
+        "Arn"
+       ]
+      }
+     }
+    },
+    "Handler": "framework.onEvent",
+    "LoggingConfig": {
+     "ApplicationLogLevel": "FATAL",
+     "LogFormat": "JSON"
+    },
+    "Role": {
+     "Fn::GetAtt": [
+      "ConfigureContactLensProviderframeworkonEventServiceRoleA3F2CA3A",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs24.x",
+    "Timeout": 900
+   },
+   "DependsOn": [
+    "ConfigureContactLensProviderframeworkonEventServiceRoleDefaultPolicyA4185729",
+    "ConfigureContactLensProviderframeworkonEventServiceRoleA3F2CA3A"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "ScaConnectStack/ConfigureContactLensProvider/framework-onEvent/Resource",
+    "aws:asset:path": "asset.e16ffb3b34af185b8b30c88fdb19faa13b6c42bb38580485c4e84b384ee48b63",
+    "aws:asset:is-bundled": false,
+    "aws:asset:property": "Code"
+   }
+  },
+  "ContactLensConfig": {
+   "Type": "AWS::CloudFormation::CustomResource",
+   "Properties": {
+    "ServiceToken": {
+     "Fn::GetAtt": [
+      "ConfigureContactLensProviderframeworkonEvent45FFD71C",
+      "Arn"
+     ]
+    },
+    "InstanceId": {
+     "Fn::GetAtt": [
+      "ConnectInstance",
+      "Id"
+     ]
+    },
+    "StreamArn": "arn:aws:kinesis:us-east-1:317067115698:stream/sca-transcription-stream"
+   },
+   "DependsOn": [
+    "ConnectInstance"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "ScaConnectStack/ContactLensConfig/Default"
+   }
+  },
+  "CallRecordingBucketC145AC7F": {
+   "Type": "AWS::S3::Bucket",
+   "Properties": {
+    "BucketEncryption": {
+     "ServerSideEncryptionConfiguration": [
+      {
+       "ServerSideEncryptionByDefault": {
+        "SSEAlgorithm": "AES256"
+       }
+      }
+     ]
+    },
+    "PublicAccessBlockConfiguration": {
+     "BlockPublicAcls": true,
+     "BlockPublicPolicy": true,
+     "IgnorePublicAcls": true,
+     "RestrictPublicBuckets": true
+    },
+    "Tags": [
+     {
+      "Key": "aws-cdk:auto-delete-objects",
+      "Value": "true"
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "ScaConnectStack/CallRecordingBucket/Resource"
+   }
+  },
+  "CallRecordingBucketPolicy7152654F": {
+   "Type": "AWS::S3::BucketPolicy",
+   "Properties": {
+    "Bucket": {
+     "Ref": "CallRecordingBucketC145AC7F"
+    },
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "s3:*",
+       "Condition": {
+        "Bool": {
+         "aws:SecureTransport": "false"
+        }
+       },
+       "Effect": "Deny",
+       "Principal": {
+        "AWS": "*"
+       },
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "CallRecordingBucketC145AC7F",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "CallRecordingBucketC145AC7F",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": [
+        "s3:DeleteObject*",
+        "s3:GetBucket*",
+        "s3:List*",
+        "s3:PutBucketPolicy"
+       ],
+       "Effect": "Allow",
+       "Principal": {
+        "AWS": {
+         "Fn::GetAtt": [
+          "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
+          "Arn"
+         ]
+        }
+       },
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "CallRecordingBucketC145AC7F",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "CallRecordingBucketC145AC7F",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaConnectStack/CallRecordingBucket/Policy/Resource"
+   }
+  },
+  "CallRecordingBucketAutoDeleteObjectsCustomResourceB3240BA4": {
+   "Type": "Custom::S3AutoDeleteObjects",
+   "Properties": {
+    "ServiceToken": {
+     "Fn::GetAtt": [
+      "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F",
+      "Arn"
+     ]
+    },
+    "BucketName": {
+     "Ref": "CallRecordingBucketC145AC7F"
+    }
+   },
+   "DependsOn": [
+    "CallRecordingBucketPolicy7152654F"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "ScaConnectStack/CallRecordingBucket/AutoDeleteObjectsCustomResource/Default"
+   }
+  },
+  "CallRecordingBucketNotificationsHandlerPolicyE4DA9EDD": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "s3:PutBucketNotification",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "CallRecordingBucketC145AC7F",
+         "Arn"
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "CallRecordingBucketNotificationsHandlerPolicyE4DA9EDD",
+    "Roles": [
+     {
+      "Ref": "BucketNotificationsHandler050a0587b7544547bf325f094a3db834RoleB6FB88EC"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaConnectStack/CallRecordingBucket/Notifications/HandlerPolicy/Resource"
+   }
+  },
+  "CallRecordingBucketNotifications8CDF7F20": {
+   "Type": "Custom::S3BucketNotifications",
+   "Properties": {
+    "ServiceToken": {
+     "Fn::GetAtt": [
+      "BucketNotificationsHandler050a0587b7544547bf325f094a3db8347ECC3691",
+      "Arn"
+     ]
+    },
+    "BucketName": {
+     "Ref": "CallRecordingBucketC145AC7F"
+    },
+    "NotificationConfiguration": {
+     "LambdaFunctionConfigurations": [
+      {
+       "Events": [
+        "s3:ObjectCreated:*"
+       ],
+       "Filter": {
+        "Key": {
+         "FilterRules": [
+          {
+           "Name": "suffix",
+           "Value": ".json"
+          },
+          {
+           "Name": "prefix",
+           "Value": "Analysis/"
+          }
+         ]
+        }
+       },
+       "LambdaFunctionArn": {
+        "Fn::GetAtt": [
+         "S3AnalyticsProcessorAF4C191A",
+         "Arn"
+        ]
+       }
+      }
+     ]
+    },
+    "Managed": true,
+    "SkipDestinationValidation": false
+   },
+   "DependsOn": [
+    "CallRecordingBucketAllowBucketNotificationsToScaConnectStackS3AnalyticsProcessor19138896638DA66A",
+    "CallRecordingBucketNotificationsHandlerPolicyE4DA9EDD",
+    "CallRecordingBucketPolicy7152654F"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "ScaConnectStack/CallRecordingBucket/Notifications/Resource"
+   }
+  },
+  "CallRecordingBucketAllowBucketNotificationsToScaConnectStackS3AnalyticsProcessor19138896638DA66A": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "S3AnalyticsProcessorAF4C191A",
+      "Arn"
+     ]
+    },
+    "Principal": "s3.amazonaws.com",
+    "SourceAccount": "317067115698",
+    "SourceArn": {
+     "Fn::GetAtt": [
+      "CallRecordingBucketC145AC7F",
+      "Arn"
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaConnectStack/CallRecordingBucket/AllowBucketNotificationsToScaConnectStackS3AnalyticsProcessor19138896"
+   }
+  },
+  "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Version": "2012-10-17",
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ]
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Sub": "arn:${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaConnectStack/Custom::S3AutoDeleteObjectsCustomResourceProvider/Role"
+   }
+  },
+  "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": "cdk-hnb659fds-assets-317067115698-us-east-1",
+     "S3Key": "faa95a81ae7d7373f3e1f242268f904eb748d8d0fdd306e8a6fe515a1905a7d6.zip"
+    },
+    "Timeout": 900,
+    "MemorySize": 128,
+    "Handler": "index.handler",
+    "Role": {
+     "Fn::GetAtt": [
+      "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs24.x",
+    "Description": {
+     "Fn::Join": [
+      "",
+      [
+       "Lambda function for auto-deleting objects in ",
+       {
+        "Ref": "CallRecordingBucketC145AC7F"
+       },
+       " S3 bucket."
+      ]
+     ]
+    }
+   },
+   "DependsOn": [
+    "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "ScaConnectStack/Custom::S3AutoDeleteObjectsCustomResourceProvider/Handler",
+    "aws:asset:path": "asset.faa95a81ae7d7373f3e1f242268f904eb748d8d0fdd306e8a6fe515a1905a7d6",
+    "aws:asset:property": "Code"
+   }
+  },
+  "CallRecordingConfig36FFFF7A": {
+   "Type": "Custom::AWS",
+   "Properties": {
+    "ServiceToken": {
+     "Fn::GetAtt": [
+      "AWS679f53fac002430cb0da5b7982bd22872D164C4C",
+      "Arn"
+     ]
+    },
+    "Create": {
+     "Fn::Join": [
+      "",
+      [
+       "{\"service\":\"Connect\",\"action\":\"associateInstanceStorageConfig\",\"parameters\":{\"InstanceId\":\"",
+       {
+        "Fn::GetAtt": [
+         "ConnectInstance",
+         "Id"
+        ]
+       },
+       "\",\"ResourceType\":\"CALL_RECORDINGS\",\"StorageConfig\":{\"StorageType\":\"S3\",\"S3Config\":{\"BucketName\":\"",
+       {
+        "Ref": "CallRecordingBucketC145AC7F"
+       },
+       "\",\"BucketPrefix\":\"call-recordings\"}}},\"physicalResourceId\":{\"responsePath\":\"AssociationId\"}}"
+      ]
+     ]
+    },
+    "Delete": {
+     "Fn::Join": [
+      "",
+      [
+       "{\"service\":\"Connect\",\"action\":\"disassociateInstanceStorageConfig\",\"parameters\":{\"InstanceId\":\"",
+       {
+        "Fn::GetAtt": [
+         "ConnectInstance",
+         "Id"
+        ]
+       },
+       "\",\"AssociationId\":\"PHYSICAL:RESOURCEID:\",\"ResourceType\":\"CALL_RECORDINGS\"}}"
+      ]
+     ]
+    },
+    "InstallLatestAwsSdk": false
+   },
+   "DependsOn": [
+    "CallRecordingBucketAllowBucketNotificationsToScaConnectStackS3AnalyticsProcessor19138896638DA66A",
+    "CallRecordingBucketAutoDeleteObjectsCustomResourceB3240BA4",
+    "CallRecordingBucketNotificationsHandlerPolicyE4DA9EDD",
+    "CallRecordingBucketNotifications8CDF7F20",
+    "CallRecordingBucketPolicy7152654F",
+    "CallRecordingBucketC145AC7F",
+    "CallRecordingConfigCustomResourcePolicyDC5D1202",
+    "ConnectInstance"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "ScaConnectStack/CallRecordingConfig/Resource/Default"
+   }
+  },
+  "CallRecordingConfigCustomResourcePolicyDC5D1202": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "connect:AssociateInstanceStorageConfig",
+        "connect:DisassociateInstanceStorageConfig"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "ConnectInstance",
+         "Arn"
+        ]
+       }
+      },
+      {
+       "Action": [
+        "s3:GetBucketAcl",
+        "s3:GetBucketLocation"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "CallRecordingBucketC145AC7F",
+         "Arn"
+        ]
+       }
+      },
+      {
+       "Action": [
+        "ds:DescribeDirectories",
+        "iam:PutRolePolicy"
+       ],
+       "Effect": "Allow",
+       "Resource": "*"
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "CallRecordingConfigCustomResourcePolicyDC5D1202",
+    "Roles": [
+     {
+      "Ref": "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleC1EA0FF2"
+     }
+    ]
+   },
+   "DependsOn": [
+    "CallRecordingBucketAllowBucketNotificationsToScaConnectStackS3AnalyticsProcessor19138896638DA66A",
+    "CallRecordingBucketAutoDeleteObjectsCustomResourceB3240BA4",
+    "CallRecordingBucketNotificationsHandlerPolicyE4DA9EDD",
+    "CallRecordingBucketNotifications8CDF7F20",
+    "CallRecordingBucketPolicy7152654F",
+    "CallRecordingBucketC145AC7F",
+    "ConnectInstance"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "ScaConnectStack/CallRecordingConfig/CustomResourcePolicy/Resource"
+   }
+  },
+  "S3AnalyticsProcessorServiceRoleD58983ED": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaConnectStack/S3AnalyticsProcessor/ServiceRole/Resource"
+   }
+  },
+  "S3AnalyticsProcessorServiceRoleDefaultPolicy6CDDCCFB": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "xray:PutTelemetryRecords",
+        "xray:PutTraceSegments"
+       ],
+       "Effect": "Allow",
+       "Resource": "*"
+      },
+      {
+       "Action": [
+        "dynamodb:BatchWriteItem",
+        "dynamodb:PutItem"
+       ],
+       "Effect": "Allow",
+       "Resource": "arn:aws:dynamodb:us-east-1:317067115698:table/sca-transcriptions"
+      },
+      {
+       "Action": [
+        "s3:GetBucket*",
+        "s3:GetObject*",
+        "s3:List*"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "CallRecordingBucketC145AC7F",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "CallRecordingBucketC145AC7F",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "S3AnalyticsProcessorServiceRoleDefaultPolicy6CDDCCFB",
+    "Roles": [
+     {
+      "Ref": "S3AnalyticsProcessorServiceRoleD58983ED"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaConnectStack/S3AnalyticsProcessor/ServiceRole/DefaultPolicy/Resource",
+    "cdk_nag": {
+     "rules_to_suppress": [
+      {
+       "reason": "S3 read permissions with wildcards are required by CDK grantRead() for reading analysis files from the call recording bucket.",
+       "id": "AwsSolutions-IAM5",
+       "applies_to": [
+        "Action::s3:GetBucket*",
+        "Action::s3:GetObject*",
+        "Action::s3:List*",
+        "Resource::<CallRecordingBucketC145AC7F.Arn>/*"
+       ]
+      }
+     ]
+    }
+   }
+  },
+  "S3AnalyticsProcessorAF4C191A": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": "cdk-hnb659fds-assets-317067115698-us-east-1",
+     "S3Key": "80824bad6da9bbb7ff37ef594f3465aa7523269fb9247d13f12c011eb473f52d.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "TRANSCRIPTIONS_TABLE": "sca-transcriptions",
+      "POWERTOOLS_SERVICE_NAME": "s3-analytics-processor",
+      "POWERTOOLS_METRICS_NAMESPACE": "SCA",
+      "LOG_LEVEL": "INFO"
+     }
+    },
+    "Handler": "handler.lambda_handler",
+    "Role": {
+     "Fn::GetAtt": [
+      "S3AnalyticsProcessorServiceRoleD58983ED",
+      "Arn"
+     ]
+    },
+    "Runtime": "python3.13",
+    "Timeout": 300,
+    "TracingConfig": {
+     "Mode": "Active"
+    }
+   },
+   "DependsOn": [
+    "S3AnalyticsProcessorServiceRoleDefaultPolicy6CDDCCFB",
+    "S3AnalyticsProcessorServiceRoleD58983ED"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "ScaConnectStack/S3AnalyticsProcessor/Resource",
+    "aws:asset:path": "asset.80824bad6da9bbb7ff37ef594f3465aa7523269fb9247d13f12c011eb473f52d",
+    "aws:asset:is-bundled": true,
+    "aws:asset:property": "Code"
+   }
+  },
+  "BucketNotificationsHandler050a0587b7544547bf325f094a3db834RoleB6FB88EC": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaConnectStack/BucketNotificationsHandler050a0587b7544547bf325f094a3db834/Role/Resource"
+   }
+  },
+  "BucketNotificationsHandler050a0587b7544547bf325f094a3db8347ECC3691": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Description": "AWS CloudFormation handler for \"Custom::S3BucketNotifications\" resources (@aws-cdk/aws-s3)",
+    "Code": {
+     "ZipFile": "import boto3  # type: ignore\nimport json\nimport logging\nimport urllib.request\n\ns3 = boto3.client(\"s3\")\n\nEVENTBRIDGE_CONFIGURATION = 'EventBridgeConfiguration'\nCONFIGURATION_TYPES = [\"TopicConfigurations\", \"QueueConfigurations\", \"LambdaFunctionConfigurations\"]\n\ndef handler(event: dict, context):\n  response_status = \"SUCCESS\"\n  error_message = \"\"\n  try:\n    props = event[\"ResourceProperties\"]\n    notification_configuration = props[\"NotificationConfiguration\"]\n    managed = props.get('Managed', 'true').lower() == 'true'\n    skipDestinationValidation = props.get('SkipDestinationValidation', 'false').lower() == 'true'\n    stack_id = event['StackId']\n    old = event.get(\"OldResourceProperties\", {}).get(\"NotificationConfiguration\", {})\n    if managed:\n      config = handle_managed(event[\"RequestType\"], notification_configuration)\n    else:\n      config = handle_unmanaged(props[\"BucketName\"], stack_id, event[\"RequestType\"], notification_configuration, old)\n    s3.put_bucket_notification_configuration(Bucket=props[\"BucketName\"], NotificationConfiguration=config, SkipDestinationValidation=skipDestinationValidation)\n  except Exception as e:\n    logging.exception(\"Failed to put bucket notification configuration\")\n    response_status = \"FAILED\"\n    error_message = f\"Error: {str(e)}. \"\n  finally:\n    submit_response(event, context, response_status, error_message)\n\ndef handle_managed(request_type, notification_configuration):\n  if request_type == 'Delete':\n    return {}\n  return notification_configuration\n\ndef handle_unmanaged(bucket, stack_id, request_type, notification_configuration, old):\n  def get_id(n):\n    n['Id'] = ''\n    sorted_notifications = sort_filter_rules(n)\n    strToHash=json.dumps(sorted_notifications, sort_keys=True).replace('\"Name\": \"prefix\"', '\"Name\": \"Prefix\"').replace('\"Name\": \"suffix\"', '\"Name\": \"Suffix\"')\n    return f\"{stack_id}-{hash(strToHash)}\"\n  def with_id(n):\n    n['Id'] = get_id(n)\n    return n\n\n  external_notifications = {}\n  existing_notifications = s3.get_bucket_notification_configuration(Bucket=bucket)\n  for t in CONFIGURATION_TYPES:\n    if request_type == 'Update':\n        old_incoming_ids = [get_id(n) for n in old.get(t, [])]\n        external_notifications[t] = [n for n in existing_notifications.get(t, []) if not get_id(n) in old_incoming_ids]      \n    elif request_type == 'Delete':\n        external_notifications[t] = [n for n in existing_notifications.get(t, []) if not n['Id'].startswith(f\"{stack_id}-\")]\n    elif request_type == 'Create':\n        external_notifications[t] = [n for n in existing_notifications.get(t, [])]\n  if EVENTBRIDGE_CONFIGURATION in existing_notifications:\n    external_notifications[EVENTBRIDGE_CONFIGURATION] = existing_notifications[EVENTBRIDGE_CONFIGURATION]\n\n  if request_type == 'Delete':\n    return external_notifications\n\n  notifications = {}\n  for t in CONFIGURATION_TYPES:\n    external = external_notifications.get(t, [])\n    incoming = [with_id(n) for n in notification_configuration.get(t, [])]\n    notifications[t] = external + incoming\n\n  if EVENTBRIDGE_CONFIGURATION in notification_configuration:\n    notifications[EVENTBRIDGE_CONFIGURATION] = notification_configuration[EVENTBRIDGE_CONFIGURATION]\n  elif EVENTBRIDGE_CONFIGURATION in external_notifications:\n    notifications[EVENTBRIDGE_CONFIGURATION] = external_notifications[EVENTBRIDGE_CONFIGURATION]\n\n  return notifications\n\ndef submit_response(event: dict, context, response_status: str, error_message: str):\n  response_body = json.dumps(\n    {\n      \"Status\": response_status,\n      \"Reason\": f\"{error_message}See the details in CloudWatch Log Stream: {context.log_stream_name}\",\n      \"PhysicalResourceId\": event.get(\"PhysicalResourceId\") or event[\"LogicalResourceId\"],\n      \"StackId\": event[\"StackId\"],\n      \"RequestId\": event[\"RequestId\"],\n      \"LogicalResourceId\": event[\"LogicalResourceId\"],\n      \"NoEcho\": False,\n    }\n  ).encode(\"utf-8\")\n  headers = {\"content-type\": \"\", \"content-length\": str(len(response_body))}\n  try:\n    req = urllib.request.Request(url=event[\"ResponseURL\"], headers=headers, data=response_body, method=\"PUT\")\n    with urllib.request.urlopen(req) as response:\n      print(response.read().decode(\"utf-8\"))\n    print(\"Status code: \" + response.reason)\n  except Exception as e:\n      print(\"send(..) failed executing request.urlopen(..): \" + str(e))\n\ndef sort_filter_rules(json_obj):\n  if not isinstance(json_obj, dict):\n      return json_obj\n  for key, value in json_obj.items():\n      if isinstance(value, dict):\n          json_obj[key] = sort_filter_rules(value)\n      elif isinstance(value, list):\n          json_obj[key] = [sort_filter_rules(item) for item in value]\n  if \"Filter\" in json_obj and \"Key\" in json_obj[\"Filter\"] and \"FilterRules\" in json_obj[\"Filter\"][\"Key\"]:\n      filter_rules = json_obj[\"Filter\"][\"Key\"][\"FilterRules\"]\n      sorted_filter_rules = sorted(filter_rules, key=lambda x: x[\"Name\"])\n      json_obj[\"Filter\"][\"Key\"][\"FilterRules\"] = sorted_filter_rules\n  return json_obj"
+    },
+    "Handler": "index.handler",
+    "Role": {
+     "Fn::GetAtt": [
+      "BucketNotificationsHandler050a0587b7544547bf325f094a3db834RoleB6FB88EC",
+      "Arn"
+     ]
+    },
+    "Runtime": "python3.13",
+    "Timeout": 300
+   },
+   "DependsOn": [
+    "BucketNotificationsHandler050a0587b7544547bf325f094a3db834RoleB6FB88EC"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "ScaConnectStack/BucketNotificationsHandler050a0587b7544547bf325f094a3db834/Resource"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/5WR32vCMBDH/xb7HDOxD4O9acdgL7Oz7GkMSeO1izaXkbvoRuj/PpqqE98Ggfvcz1y+mcv5fS5nE3Wkqd7up52pZaxY6b1YA7ngNQh1pE3UDhE0y1g0+IzECjWIosHXACHB2gU22JbeNaZLkfLTIbwEW4Mf3DcC34tO2XqrZKwMth2ww6eAmo1DcYGiwWsuwVtDZBz2wigrY+k6o39SaqS1604rdNALyjeKCJjkYjCCchmXQe+Bl4pAjDiUj/QeM2u+DWYP2bUIw6MplylFcixdBHaP0AHDqt6BZsr6j9O8v52u/X/MHhsqVgwWMI3uBYH2wGQVqha8jFXyh1tG6nuhA7GzG3/6LJJxcaQiBS8fWHp3MNtB/ZvEoNmZk1gVq9Zge1N37k/6FQ2uAn8F7gW6Lcgd3R3mMzmcyY6MmfqAbCzI9Wh/AQg36QdiAgAA"
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaConnectStack/CDKMetadata/Default"
+   }
+  }
+ },
+ "Outputs": {
+  "ConnectInstanceId": {
+   "Description": "Amazon Connect Instance ID",
+   "Value": {
+    "Fn::GetAtt": [
+     "ConnectInstance",
+     "Id"
+    ]
+   }
+  },
+  "ConnectInstanceArn": {
+   "Description": "Amazon Connect Instance ARN",
+   "Value": {
+    "Fn::GetAtt": [
+     "ConnectInstance",
+     "Arn"
+    ]
+   }
+  },
+  "QueueId": {
+   "Description": "Queue ID",
+   "Value": {
+    "Fn::GetAtt": [
+     "AgentQueue",
+     "QueueArn"
+    ]
+   }
+  },
+  "PhoneNumber": {
+   "Description": "Phone Number (E.164 format)",
+   "Value": {
+    "Fn::GetAtt": [
+     "InboundPhoneNumber",
+     "Address"
+    ]
+   }
+  },
+  "PhoneNumberArn": {
+   "Description": "Phone Number ARN",
+   "Value": {
+    "Fn::GetAtt": [
+     "InboundPhoneNumber",
+     "PhoneNumberArn"
+    ]
+   }
+  },
+  "ConnectLoginUrl": {
+   "Description": "Amazon Connect login URL",
+   "Value": "https://sca-connect-317067115698.my.connect.aws/connect/login"
+  },
+  "GetCredentialsCommand": {
+   "Description": "Command to retrieve admin credentials",
+   "Value": {
+    "Fn::Join": [
+     "",
+     [
+      "aws secretsmanager get-secret-value --secret-id ",
+      {
+       "Ref": "AdminPassword4DD767F0"
+      },
+      " --query SecretString --output text"
+     ]
+    ]
+   }
+  },
+  "ExportsOutputFnGetAttConnectInstanceArn7B75E943": {
+   "Value": {
+    "Fn::GetAtt": [
+     "ConnectInstance",
+     "Arn"
+    ]
+   },
+   "Export": {
+    "Name": "ScaConnectStack:ExportsOutputFnGetAttConnectInstanceArn7B75E943"
+   }
+  },
+  "ExportsOutputFnGetAttInboundPhoneNumberPhoneNumberArnF05471D3": {
+   "Value": {
+    "Fn::GetAtt": [
+     "InboundPhoneNumber",
+     "PhoneNumberArn"
+    ]
+   },
+   "Export": {
+    "Name": "ScaConnectStack:ExportsOutputFnGetAttInboundPhoneNumberPhoneNumberArnF05471D3"
+   }
+  }
+ },
+ "Parameters": {
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,840 @@
+{
+  "/ScaAiStack": [
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:80:19)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaAiStack/WisdomAssistant": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "WisdomAssistant"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new ScaAiStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-ai-stack.ts:55:23)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:80:19)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaAiStack/AWS679f53fac002430cb0da5b7982bd2287": [
+    {
+      "type": "aws:cdk:is-custom-resource-handler-singleton",
+      "data": true
+    },
+    {
+      "type": "aws:cdk:is-custom-resource-handler-runtime-family",
+      "data": 0
+    }
+  ],
+  "/ScaAiStack/WelcomeAgentPrompt": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "WelcomeAgentPrompt"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new ScaAiStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-ai-stack.ts:107:27)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:80:19)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaAiStack/InTakeAgentPrompt": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "InTakeAgentPrompt"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new ScaAiStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-ai-stack.ts:125:26)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:80:19)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaAiStack/WelcomeAIAgent": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "WelcomeAIAgent"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new ScaAiStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-ai-stack.ts:173:26)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:80:19)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaAiStack/InTakeAIAgent": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "InTakeAIAgent"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new ScaAiStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-ai-stack.ts:214:25)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:80:19)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaAiStack/HealthInsuranceBot": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "HealthInsuranceBot"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new ScaAiStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-ai-stack.ts:315:17)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:80:19)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaAiStack/BotVersion": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "BotVersion"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new ScaAiStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-ai-stack.ts:343:24)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:80:19)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaAiStack/BotAlias": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "BotAlias"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new ScaAiStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-ai-stack.ts:353:22)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:80:19)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaAiStack/LexBotAssociation": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LexBotAssociation"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new ScaAiStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-ai-stack.ts:371:31)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:80:19)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaAiStack/EligibilityChecker": [
+    {
+      "type": "aws:cdk:info",
+      "data": "Modifying an existing lambda to use durability will trigger a resource replacement [ack: aws-lambda:Function.DurableConfig]",
+      "trace": [
+        "Annotations.addMessage (/project/durable-workflows-for-ai-agents-aws-workshop/node_modules/aws-cdk-lib/core/lib/annotations.js:1:3506)",
+        "Annotations.addInfoV2 (/project/durable-workflows-for-ai-agents-aws-workshop/node_modules/aws-cdk-lib/core/lib/annotations.js:1:2550)",
+        "PropertyInjectable.renderDurableConfig (/project/durable-workflows-for-ai-agents-aws-workshop/node_modules/aws-cdk-lib/aws-lambda/lib/function.js:1:37214)",
+        "new Function2 (/project/durable-workflows-for-ai-agents-aws-workshop/node_modules/aws-cdk-lib/aws-lambda/lib/function.js:1:22028)",
+        "new Function2 (/project/durable-workflows-for-ai-agents-aws-workshop/node_modules/aws-cdk-lib/core/lib/prop-injectable.js:1:861)",
+        "new ScaAiStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-ai-stack.ts:378:40)",
+        "Object.<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:80:19)",
+        "Module._compile (node:internal/modules/cjs/loader:1521:14)",
+        "Module.m._compile (/home/participant/.npm/_npx/1bf7c3c15bf47d04/node_modules/ts-node/src/index.ts:1618:23)",
+        "Module._extensions..js (node:internal/modules/cjs/loader:1623:10)",
+        "Object.require.extensions.<computed> [as .ts] (/home/participant/.npm/_npx/1bf7c3c15bf47d04/node_modules/ts-node/src/index.ts:1621:12)",
+        "Module.load (node:internal/modules/cjs/loader:1266:32)",
+        "Function.Module._load (node:internal/modules/cjs/loader:1091:12)",
+        "Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)",
+        "phase4 (/home/participant/.npm/_npx/1bf7c3c15bf47d04/node_modules/ts-node/src/bin.ts:649:14)",
+        "bootstrap (/home/participant/.npm/_npx/1bf7c3c15bf47d04/node_modules/ts-node/src/bin.ts:95:10)",
+        "main (/home/participant/.npm/_npx/1bf7c3c15bf47d04/node_modules/ts-node/src/bin.ts:55:10)",
+        "Object.<anonymous> (/home/participant/.npm/_npx/1bf7c3c15bf47d04/node_modules/ts-node/src/bin.ts:800:3)",
+        "Module._compile (node:internal/modules/cjs/loader:1521:14)",
+        "Object.Module._extensions..js (node:internal/modules/cjs/loader:1623:10)",
+        "Module.load (node:internal/modules/cjs/loader:1266:32)",
+        "Function.Module._load (node:internal/modules/cjs/loader:1091:12)",
+        "Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)",
+        "node:internal/main/run_main_module:28:49"
+      ]
+    }
+  ],
+  "/ScaAiStack/UpdateSessionLambdaAssociation": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "UpdateSessionLambdaAssociation"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new ScaAiStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-ai-stack.ts:465:44)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:80:19)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaAiStack/EligibilityLambdaAssociation": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "EligibilityLambdaAssociation"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new ScaAiStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-ai-stack.ts:473:31)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:80:19)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaAiStack/InboundContactFlow": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "InboundContactFlow"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new ScaAiStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-ai-stack.ts:490:25)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:80:19)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaAiStack/StartChatContactFunctionName": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "StartChatContactFunctionName"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new ScaAiStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-ai-stack.ts:646:5)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:80:19)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaAiStack/StartWebRTCContactFunctionName": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "StartWebRTCContactFunctionName"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new ScaAiStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-ai-stack.ts:650:5)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:80:19)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaAiStack/ContactFlowId": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ContactFlowId"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new ScaAiStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-ai-stack.ts:654:5)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:80:19)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaAiStack/LexBotId": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LexBotId"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new ScaAiStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-ai-stack.ts:717:5)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:80:19)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaAiStack/LexBotAliasArn": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LexBotAliasArn"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new ScaAiStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-ai-stack.ts:718:5)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:80:19)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaAiStack/WisdomAssistantArn": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "WisdomAssistantArn"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new ScaAiStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-ai-stack.ts:719:5)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:80:19)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaAiStack/WelcomeAgentArn": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "WelcomeAgentArn"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new ScaAiStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-ai-stack.ts:720:5)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:80:19)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaAiStack/InTakeAgentArn": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "InTakeAgentArn"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new ScaAiStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-ai-stack.ts:721:5)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:80:19)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaAiStack/ContactFlowArn": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ContactFlowArn"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new ScaAiStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-ai-stack.ts:722:5)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:80:19)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaAiStack/BootstrapVersion": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "BootstrapVersion"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/ScaAiStack/CheckBootstrapVersion": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CheckBootstrapVersion"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/ScaAiStack/AWS679f53fac002430cb0da5b7982bd2287/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "AWS679f53fac002430cb0da5b7982bd22872D164C4C"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new AwsCustomResource2 in aws-cdk-lib...",
+        "new ScaAiStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-ai-stack.ts:64:31)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:80:19)"
+      ]
+    }
+  ],
+  "/ScaAiStack/LexBotRole/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LexBotRole0FBFF464"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Role2 in aws-cdk-lib...",
+        "new ScaAiStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-ai-stack.ts:266:21)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:80:19)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaAiStack/EligibilityChecker/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "EligibilityChecker6E5F20B7"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Function2 in aws-cdk-lib...",
+        "new ScaAiStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-ai-stack.ts:378:40)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:80:19)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaAiStack/EligibilityChecker/ConnectInvoke": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "EligibilityCheckerConnectInvokeFEBFEB1B"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...PropertyInjectable.addPermission in aws-cdk-lib...",
+        "new ScaAiStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-ai-stack.ts:418:32)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:80:19)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaAiStack/EligibilityCheckerAlias/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "EligibilityCheckerAlias5B3BB54D"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Alias2 in aws-cdk-lib...",
+        "new ScaAiStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-ai-stack.ts:423:37)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:80:19)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaAiStack/EligibilityCheckerAlias/ConnectInvokeAlias": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "EligibilityCheckerAliasConnectInvokeAliasDCF5A035"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...PropertyInjectable.addPermission in aws-cdk-lib...",
+        "new ScaAiStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-ai-stack.ts:428:29)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:80:19)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaAiStack/UpdateSessionDataFunction/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "UpdateSessionDataFunction64BDCB52"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Function2 in aws-cdk-lib...",
+        "new ScaAiStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-ai-stack.ts:436:39)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:80:19)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaAiStack/UpdateSessionDataFunction/ConnectInvoke": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "UpdateSessionDataFunctionConnectInvoke0FD8F5F5"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...PropertyInjectable.addPermission in aws-cdk-lib...",
+        "new ScaAiStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-ai-stack.ts:460:31)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:80:19)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaAiStack/StartChatContact/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "StartChatContact7A4912B7"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Function2 in aws-cdk-lib...",
+        "new ScaAiStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-ai-stack.ts:536:38)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:80:19)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaAiStack/StartChatContact/AllowApiGatewayInvokeChat": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "StartChatContactAllowApiGatewayInvokeChatA7C49A80"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...PropertyInjectable.addPermission in aws-cdk-lib...",
+        "new ScaAiStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-ai-stack.ts:565:30)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:80:19)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaAiStack/StartWebRTCContact/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "StartWebRTCContact87959A5E"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Function2 in aws-cdk-lib...",
+        "new ScaAiStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-ai-stack.ts:572:40)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:80:19)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaAiStack/StartWebRTCContact/AllowApiGatewayInvokeCall": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "StartWebRTCContactAllowApiGatewayInvokeCall88DA3D13"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...PropertyInjectable.addPermission in aws-cdk-lib...",
+        "new ScaAiStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-ai-stack.ts:600:32)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:80:19)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaAiStack/AssociatePhoneNumberFunction/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "AssociatePhoneNumberFunctionA35F515B"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Function2 in aws-cdk-lib...",
+        "new ScaAiStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-ai-stack.ts:660:42)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:80:19)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaAiStack/PhoneNumberAssociation/Default": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "PhoneNumberAssociation"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new CustomResource2 in aws-cdk-lib...",
+        "new ScaAiStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-ai-stack.ts:703:36)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:80:19)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaAiStack/CDKMetadata/Default": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CDKMetadata"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/ScaAiStack/WisdomConnectAssociation/Resource/Default": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "WisdomConnectAssociation33B0A3FA"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new AwsCustomResource2 in aws-cdk-lib...",
+        "new ScaAiStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-ai-stack.ts:64:31)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:80:19)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/ScaAiStack/WisdomConnectAssociation/CustomResourcePolicy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "WisdomConnectAssociationCustomResourcePolicy158B33F3"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new AwsCustomResource2 in aws-cdk-lib...",
+        "new ScaAiStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-ai-stack.ts:64:31)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:80:19)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/ScaAiStack/AWS679f53fac002430cb0da5b7982bd2287/ServiceRole/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleC1EA0FF2"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/ScaAiStack/LexBotRole/DefaultPolicy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LexBotRoleDefaultPolicyE0530F06"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...PropertyInjectable.<anonymous> in aws-cdk-lib...",
+        "new ScaAiStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-ai-stack.ts:271:13)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:80:19)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/ScaAiStack/EligibilityChecker/ServiceRole/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "EligibilityCheckerServiceRole476D9BAD"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Function2 in aws-cdk-lib...",
+        "new ScaAiStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-ai-stack.ts:378:40)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:80:19)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaAiStack/UpdateSessionDataFunction/ServiceRole/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "UpdateSessionDataFunctionServiceRoleBEFA8B92"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Function2 in aws-cdk-lib...",
+        "new ScaAiStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-ai-stack.ts:436:39)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:80:19)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaAiStack/StartChatContact/ServiceRole/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "StartChatContactServiceRoleDB46CC84"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Function2 in aws-cdk-lib...",
+        "new ScaAiStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-ai-stack.ts:536:38)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:80:19)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaAiStack/StartWebRTCContact/ServiceRole/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "StartWebRTCContactServiceRoleC62D9FF5"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Function2 in aws-cdk-lib...",
+        "new ScaAiStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-ai-stack.ts:572:40)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:80:19)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaAiStack/AssociatePhoneNumberFunction/ServiceRole/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "AssociatePhoneNumberFunctionServiceRole12EA524D"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Function2 in aws-cdk-lib...",
+        "new ScaAiStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-ai-stack.ts:660:42)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:80:19)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaAiStack/AssociatePhoneNumberProvider/framework-onEvent/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "AssociatePhoneNumberProviderframeworkonEvent00522EF7"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Provider2 in aws-cdk-lib...",
+        "new ScaAiStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-ai-stack.ts:699:42)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:80:19)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/ScaAiStack/EligibilityChecker/ServiceRole/DefaultPolicy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "EligibilityCheckerServiceRoleDefaultPolicy24D2E69F"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Function2 in aws-cdk-lib...",
+        "new ScaAiStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-ai-stack.ts:378:40)"
+      ]
+    }
+  ],
+  "/ScaAiStack/UpdateSessionDataFunction/ServiceRole/DefaultPolicy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "UpdateSessionDataFunctionServiceRoleDefaultPolicyA67681A8"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...PropertyInjectable.addToRolePolicy in aws-cdk-lib...",
+        "new ScaAiStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-ai-stack.ts:448:31)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:80:19)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/ScaAiStack/StartChatContact/ServiceRole/DefaultPolicy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "StartChatContactServiceRoleDefaultPolicyECBD1939"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Function2 in aws-cdk-lib...",
+        "new ScaAiStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-ai-stack.ts:536:38)"
+      ]
+    }
+  ],
+  "/ScaAiStack/StartWebRTCContact/ServiceRole/DefaultPolicy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "StartWebRTCContactServiceRoleDefaultPolicy6851DC82"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Function2 in aws-cdk-lib...",
+        "new ScaAiStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-ai-stack.ts:572:40)"
+      ]
+    }
+  ],
+  "/ScaAiStack/AssociatePhoneNumberFunction/ServiceRole/DefaultPolicy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "AssociatePhoneNumberFunctionServiceRoleDefaultPolicyF3139243"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...PropertyInjectable.addToRolePolicy in aws-cdk-lib...",
+        "new ScaAiStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-ai-stack.ts:694:34)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:80:19)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/ScaAiStack/AssociatePhoneNumberProvider/framework-onEvent/ServiceRole/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "AssociatePhoneNumberProviderframeworkonEventServiceRole65CD6204"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Provider2 in aws-cdk-lib...",
+        "new ScaAiStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-ai-stack.ts:699:42)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:80:19)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/ScaAiStack/AssociatePhoneNumberProvider/framework-onEvent/ServiceRole/DefaultPolicy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "AssociatePhoneNumberProviderframeworkonEventServiceRoleDefaultPolicy13450BA8"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ]
+}

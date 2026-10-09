@@ -1,0 +1,726 @@
+{
+ "Resources": {
+  "ScaVpcF197898D": {
+   "Type": "AWS::EC2::VPC",
+   "Properties": {
+    "CidrBlock": "10.0.0.0/16",
+    "EnableDnsHostnames": true,
+    "EnableDnsSupport": true,
+    "InstanceTenancy": "default",
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "ScaNetworkStack/ScaVpc"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaNetworkStack/ScaVpc/Resource",
+    "cdk_nag": {
+     "rules_to_suppress": [
+      {
+       "reason": "VPC Flow Logs are not enabled to reduce operational overhead and costs for this solution. For production deployments, enable Flow Logs for network troubleshooting and security analysis.",
+       "id": "AwsSolutions-VPC7"
+      }
+     ]
+    }
+   }
+  },
+  "ScaVpcPrivateSubnet1SubnetA0278F74": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": "us-east-1a",
+    "CidrBlock": "10.0.0.0/24",
+    "MapPublicIpOnLaunch": false,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "Private"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Isolated"
+     },
+     {
+      "Key": "Name",
+      "Value": "ScaNetworkStack/ScaVpc/PrivateSubnet1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "ScaVpcF197898D"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaNetworkStack/ScaVpc/PrivateSubnet1/Subnet"
+   }
+  },
+  "ScaVpcPrivateSubnet1RouteTable744C9545": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "ScaNetworkStack/ScaVpc/PrivateSubnet1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "ScaVpcF197898D"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaNetworkStack/ScaVpc/PrivateSubnet1/RouteTable"
+   }
+  },
+  "ScaVpcPrivateSubnet1RouteTableAssociationF02248AF": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "ScaVpcPrivateSubnet1RouteTable744C9545"
+    },
+    "SubnetId": {
+     "Ref": "ScaVpcPrivateSubnet1SubnetA0278F74"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaNetworkStack/ScaVpc/PrivateSubnet1/RouteTableAssociation"
+   }
+  },
+  "ScaVpcPrivateSubnet2SubnetB60ED9DF": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": "us-east-1b",
+    "CidrBlock": "10.0.1.0/24",
+    "MapPublicIpOnLaunch": false,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "Private"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Isolated"
+     },
+     {
+      "Key": "Name",
+      "Value": "ScaNetworkStack/ScaVpc/PrivateSubnet2"
+     }
+    ],
+    "VpcId": {
+     "Ref": "ScaVpcF197898D"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaNetworkStack/ScaVpc/PrivateSubnet2/Subnet"
+   }
+  },
+  "ScaVpcPrivateSubnet2RouteTable6E78B683": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "ScaNetworkStack/ScaVpc/PrivateSubnet2"
+     }
+    ],
+    "VpcId": {
+     "Ref": "ScaVpcF197898D"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaNetworkStack/ScaVpc/PrivateSubnet2/RouteTable"
+   }
+  },
+  "ScaVpcPrivateSubnet2RouteTableAssociation8BAE4EE7": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "ScaVpcPrivateSubnet2RouteTable6E78B683"
+    },
+    "SubnetId": {
+     "Ref": "ScaVpcPrivateSubnet2SubnetB60ED9DF"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaNetworkStack/ScaVpc/PrivateSubnet2/RouteTableAssociation"
+   }
+  },
+  "ScaVpcRestrictDefaultSecurityGroupCustomResource16E45204": {
+   "Type": "Custom::VpcRestrictDefaultSG",
+   "Properties": {
+    "ServiceToken": {
+     "Fn::GetAtt": [
+      "CustomVpcRestrictDefaultSGCustomResourceProviderHandlerDC833E5E",
+      "Arn"
+     ]
+    },
+    "DefaultSecurityGroupId": {
+     "Fn::GetAtt": [
+      "ScaVpcF197898D",
+      "DefaultSecurityGroup"
+     ]
+    },
+    "Account": "317067115698"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "ScaNetworkStack/ScaVpc/RestrictDefaultSecurityGroupCustomResource/Default"
+   }
+  },
+  "ScaVpcS3GatewayEndpointB8B25491": {
+   "Type": "AWS::EC2::VPCEndpoint",
+   "Properties": {
+    "RouteTableIds": [
+     {
+      "Ref": "ScaVpcPrivateSubnet1RouteTable744C9545"
+     },
+     {
+      "Ref": "ScaVpcPrivateSubnet2RouteTable6E78B683"
+     }
+    ],
+    "ServiceName": {
+     "Fn::Join": [
+      "",
+      [
+       "com.amazonaws.",
+       {
+        "Ref": "AWS::Region"
+       },
+       ".s3"
+      ]
+     ]
+    },
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "ScaNetworkStack/ScaVpc"
+     }
+    ],
+    "VpcEndpointType": "Gateway",
+    "VpcId": {
+     "Ref": "ScaVpcF197898D"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaNetworkStack/ScaVpc/S3GatewayEndpoint/Resource"
+   }
+  },
+  "CustomVpcRestrictDefaultSGCustomResourceProviderRole26592FE0": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Version": "2012-10-17",
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ]
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Sub": "arn:${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+     }
+    ],
+    "Policies": [
+     {
+      "PolicyName": "Inline",
+      "PolicyDocument": {
+       "Version": "2012-10-17",
+       "Statement": [
+        {
+         "Effect": "Allow",
+         "Action": [
+          "ec2:AuthorizeSecurityGroupIngress",
+          "ec2:AuthorizeSecurityGroupEgress",
+          "ec2:RevokeSecurityGroupIngress",
+          "ec2:RevokeSecurityGroupEgress"
+         ],
+         "Resource": [
+          {
+           "Fn::Join": [
+            "",
+            [
+             "arn:aws:ec2:us-east-1:317067115698:security-group/",
+             {
+              "Fn::GetAtt": [
+               "ScaVpcF197898D",
+               "DefaultSecurityGroup"
+              ]
+             }
+            ]
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaNetworkStack/Custom::VpcRestrictDefaultSGCustomResourceProvider/Role"
+   }
+  },
+  "CustomVpcRestrictDefaultSGCustomResourceProviderHandlerDC833E5E": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": "cdk-hnb659fds-assets-317067115698-us-east-1",
+     "S3Key": "02b51ab524e7bcf8f477de3e71e5f9a72e448301b26ba62e9e75a14f9c55a093.zip"
+    },
+    "Timeout": 900,
+    "MemorySize": 128,
+    "Handler": "__entrypoint__.handler",
+    "Role": {
+     "Fn::GetAtt": [
+      "CustomVpcRestrictDefaultSGCustomResourceProviderRole26592FE0",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs24.x",
+    "Description": "Lambda function for removing all inbound/outbound rules from the VPC default security group"
+   },
+   "DependsOn": [
+    "CustomVpcRestrictDefaultSGCustomResourceProviderRole26592FE0"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "ScaNetworkStack/Custom::VpcRestrictDefaultSGCustomResourceProvider/Handler",
+    "aws:asset:path": "asset.02b51ab524e7bcf8f477de3e71e5f9a72e448301b26ba62e9e75a14f9c55a093",
+    "aws:asset:property": "Code"
+   }
+  },
+  "EcrApiVpcEndpointSecurityGroupEB48D348": {
+   "Type": "AWS::EC2::SecurityGroup",
+   "Properties": {
+    "GroupDescription": "ScaNetworkStack/EcrApiVpcEndpoint/SecurityGroup",
+    "SecurityGroupEgress": [
+     {
+      "CidrIp": "0.0.0.0/0",
+      "Description": "Allow all outbound traffic by default",
+      "IpProtocol": "-1"
+     }
+    ],
+    "SecurityGroupIngress": [
+     {
+      "CidrIp": {
+       "Fn::GetAtt": [
+        "ScaVpcF197898D",
+        "CidrBlock"
+       ]
+      },
+      "Description": {
+       "Fn::Join": [
+        "",
+        [
+         "from ",
+         {
+          "Fn::GetAtt": [
+           "ScaVpcF197898D",
+           "CidrBlock"
+          ]
+         },
+         ":443"
+        ]
+       ]
+      },
+      "FromPort": 443,
+      "IpProtocol": "tcp",
+      "ToPort": 443
+     }
+    ],
+    "VpcId": {
+     "Ref": "ScaVpcF197898D"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaNetworkStack/EcrApiVpcEndpoint/SecurityGroup/Resource",
+    "cdk_nag": {
+     "rules_to_suppress": [
+      {
+       "reason": "Security group rules reference VPC CIDR block using Fn::GetAtt intrinsic function. CDK Nag cannot validate rules with intrinsic functions at synthesis time. The security groups correctly restrict access to VPC CIDR range.",
+       "id": "CdkNagValidationFailure"
+      }
+     ]
+    }
+   }
+  },
+  "EcrApiVpcEndpointFCB424DC": {
+   "Type": "AWS::EC2::VPCEndpoint",
+   "Properties": {
+    "PrivateDnsEnabled": true,
+    "SecurityGroupIds": [
+     {
+      "Fn::GetAtt": [
+       "EcrApiVpcEndpointSecurityGroupEB48D348",
+       "GroupId"
+      ]
+     }
+    ],
+    "ServiceName": "com.amazonaws.us-east-1.ecr.api",
+    "SubnetIds": [
+     {
+      "Ref": "ScaVpcPrivateSubnet1SubnetA0278F74"
+     },
+     {
+      "Ref": "ScaVpcPrivateSubnet2SubnetB60ED9DF"
+     }
+    ],
+    "VpcEndpointType": "Interface",
+    "VpcId": {
+     "Ref": "ScaVpcF197898D"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaNetworkStack/EcrApiVpcEndpoint/Resource"
+   }
+  },
+  "EcrDkrVpcEndpointSecurityGroup791AB3ED": {
+   "Type": "AWS::EC2::SecurityGroup",
+   "Properties": {
+    "GroupDescription": "ScaNetworkStack/EcrDkrVpcEndpoint/SecurityGroup",
+    "SecurityGroupEgress": [
+     {
+      "CidrIp": "0.0.0.0/0",
+      "Description": "Allow all outbound traffic by default",
+      "IpProtocol": "-1"
+     }
+    ],
+    "SecurityGroupIngress": [
+     {
+      "CidrIp": {
+       "Fn::GetAtt": [
+        "ScaVpcF197898D",
+        "CidrBlock"
+       ]
+      },
+      "Description": {
+       "Fn::Join": [
+        "",
+        [
+         "from ",
+         {
+          "Fn::GetAtt": [
+           "ScaVpcF197898D",
+           "CidrBlock"
+          ]
+         },
+         ":443"
+        ]
+       ]
+      },
+      "FromPort": 443,
+      "IpProtocol": "tcp",
+      "ToPort": 443
+     }
+    ],
+    "VpcId": {
+     "Ref": "ScaVpcF197898D"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaNetworkStack/EcrDkrVpcEndpoint/SecurityGroup/Resource",
+    "cdk_nag": {
+     "rules_to_suppress": [
+      {
+       "reason": "Security group rules reference VPC CIDR block using Fn::GetAtt intrinsic function. CDK Nag cannot validate rules with intrinsic functions at synthesis time. The security groups correctly restrict access to VPC CIDR range.",
+       "id": "CdkNagValidationFailure"
+      }
+     ]
+    }
+   }
+  },
+  "EcrDkrVpcEndpoint68071A14": {
+   "Type": "AWS::EC2::VPCEndpoint",
+   "Properties": {
+    "PrivateDnsEnabled": true,
+    "SecurityGroupIds": [
+     {
+      "Fn::GetAtt": [
+       "EcrDkrVpcEndpointSecurityGroup791AB3ED",
+       "GroupId"
+      ]
+     }
+    ],
+    "ServiceName": "com.amazonaws.us-east-1.ecr.dkr",
+    "SubnetIds": [
+     {
+      "Ref": "ScaVpcPrivateSubnet1SubnetA0278F74"
+     },
+     {
+      "Ref": "ScaVpcPrivateSubnet2SubnetB60ED9DF"
+     }
+    ],
+    "VpcEndpointType": "Interface",
+    "VpcId": {
+     "Ref": "ScaVpcF197898D"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaNetworkStack/EcrDkrVpcEndpoint/Resource"
+   }
+  },
+  "CloudWatchLogsVpcEndpointSecurityGroup1CFEBDA4": {
+   "Type": "AWS::EC2::SecurityGroup",
+   "Properties": {
+    "GroupDescription": "ScaNetworkStack/CloudWatchLogsVpcEndpoint/SecurityGroup",
+    "SecurityGroupEgress": [
+     {
+      "CidrIp": "0.0.0.0/0",
+      "Description": "Allow all outbound traffic by default",
+      "IpProtocol": "-1"
+     }
+    ],
+    "SecurityGroupIngress": [
+     {
+      "CidrIp": {
+       "Fn::GetAtt": [
+        "ScaVpcF197898D",
+        "CidrBlock"
+       ]
+      },
+      "Description": {
+       "Fn::Join": [
+        "",
+        [
+         "from ",
+         {
+          "Fn::GetAtt": [
+           "ScaVpcF197898D",
+           "CidrBlock"
+          ]
+         },
+         ":443"
+        ]
+       ]
+      },
+      "FromPort": 443,
+      "IpProtocol": "tcp",
+      "ToPort": 443
+     }
+    ],
+    "VpcId": {
+     "Ref": "ScaVpcF197898D"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaNetworkStack/CloudWatchLogsVpcEndpoint/SecurityGroup/Resource",
+    "cdk_nag": {
+     "rules_to_suppress": [
+      {
+       "reason": "Security group rules reference VPC CIDR block using Fn::GetAtt intrinsic function. CDK Nag cannot validate rules with intrinsic functions at synthesis time. The security groups correctly restrict access to VPC CIDR range.",
+       "id": "CdkNagValidationFailure"
+      }
+     ]
+    }
+   }
+  },
+  "CloudWatchLogsVpcEndpoint3BA8E444": {
+   "Type": "AWS::EC2::VPCEndpoint",
+   "Properties": {
+    "PrivateDnsEnabled": true,
+    "SecurityGroupIds": [
+     {
+      "Fn::GetAtt": [
+       "CloudWatchLogsVpcEndpointSecurityGroup1CFEBDA4",
+       "GroupId"
+      ]
+     }
+    ],
+    "ServiceName": "com.amazonaws.us-east-1.logs",
+    "SubnetIds": [
+     {
+      "Ref": "ScaVpcPrivateSubnet1SubnetA0278F74"
+     },
+     {
+      "Ref": "ScaVpcPrivateSubnet2SubnetB60ED9DF"
+     }
+    ],
+    "VpcEndpointType": "Interface",
+    "VpcId": {
+     "Ref": "ScaVpcF197898D"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaNetworkStack/CloudWatchLogsVpcEndpoint/Resource"
+   }
+  },
+  "ApiGatewayVpcEndpointSecurityGroupF8E62BB2": {
+   "Type": "AWS::EC2::SecurityGroup",
+   "Properties": {
+    "GroupDescription": "ScaNetworkStack/ApiGatewayVpcEndpoint/SecurityGroup",
+    "SecurityGroupEgress": [
+     {
+      "CidrIp": "0.0.0.0/0",
+      "Description": "Allow all outbound traffic by default",
+      "IpProtocol": "-1"
+     }
+    ],
+    "SecurityGroupIngress": [
+     {
+      "CidrIp": {
+       "Fn::GetAtt": [
+        "ScaVpcF197898D",
+        "CidrBlock"
+       ]
+      },
+      "Description": {
+       "Fn::Join": [
+        "",
+        [
+         "from ",
+         {
+          "Fn::GetAtt": [
+           "ScaVpcF197898D",
+           "CidrBlock"
+          ]
+         },
+         ":443"
+        ]
+       ]
+      },
+      "FromPort": 443,
+      "IpProtocol": "tcp",
+      "ToPort": 443
+     }
+    ],
+    "VpcId": {
+     "Ref": "ScaVpcF197898D"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaNetworkStack/ApiGatewayVpcEndpoint/SecurityGroup/Resource",
+    "cdk_nag": {
+     "rules_to_suppress": [
+      {
+       "reason": "Security group rules reference VPC CIDR block using Fn::GetAtt intrinsic function. CDK Nag cannot validate rules with intrinsic functions at synthesis time. The security groups correctly restrict access to VPC CIDR range.",
+       "id": "CdkNagValidationFailure"
+      }
+     ]
+    }
+   }
+  },
+  "ApiGatewayVpcEndpoint5729EBD2": {
+   "Type": "AWS::EC2::VPCEndpoint",
+   "Properties": {
+    "PrivateDnsEnabled": true,
+    "SecurityGroupIds": [
+     {
+      "Fn::GetAtt": [
+       "ApiGatewayVpcEndpointSecurityGroupF8E62BB2",
+       "GroupId"
+      ]
+     }
+    ],
+    "ServiceName": "com.amazonaws.us-east-1.execute-api",
+    "SubnetIds": [
+     {
+      "Ref": "ScaVpcPrivateSubnet1SubnetA0278F74"
+     },
+     {
+      "Ref": "ScaVpcPrivateSubnet2SubnetB60ED9DF"
+     }
+    ],
+    "VpcEndpointType": "Interface",
+    "VpcId": {
+     "Ref": "ScaVpcF197898D"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaNetworkStack/ApiGatewayVpcEndpoint/Resource"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/3WNT4vCQAzFP4v36Sj14Nkti+zJ0kqvkk5TiX8ywyTTIuJ3X+ouWy8LgZf3S16S23yztqsFjJK57pJdqbWPWsFdDIxyRJfbRxOcKXpuysKUkQZQrFPLqBOcu8onxQO0V5z5zLYi3hEoeTY7UBzh3gT3yV3wxPp7/s9+sWLsweH7To0uRdL7LvoUXj/ewdNUKD5Fh6ZIov42257/GZXRD9Rh/ABBsxVBrRVOxKcps08akj4N+w7tWZZDvrJTLc5ClMXESje01Y9+Aw6VnulHAQAA"
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaNetworkStack/CDKMetadata/Default"
+   }
+  }
+ },
+ "Outputs": {
+  "VpcId": {
+   "Description": "VPC ID for the SCA solution",
+   "Value": {
+    "Ref": "ScaVpcF197898D"
+   }
+  },
+  "ApiGatewayVpcEndpointId": {
+   "Description": "VPC Endpoint ID for API Gateway",
+   "Value": {
+    "Ref": "ApiGatewayVpcEndpoint5729EBD2"
+   }
+  },
+  "ExportsOutputRefApiGatewayVpcEndpoint5729EBD22A528B0F": {
+   "Value": {
+    "Ref": "ApiGatewayVpcEndpoint5729EBD2"
+   },
+   "Export": {
+    "Name": "ScaNetworkStack:ExportsOutputRefApiGatewayVpcEndpoint5729EBD22A528B0F"
+   }
+  },
+  "ExportsOutputRefScaVpcF197898D655E5863": {
+   "Value": {
+    "Ref": "ScaVpcF197898D"
+   },
+   "Export": {
+    "Name": "ScaNetworkStack:ExportsOutputRefScaVpcF197898D655E5863"
+   }
+  },
+  "ExportsOutputRefScaVpcPrivateSubnet1SubnetA0278F745FB5EB65": {
+   "Value": {
+    "Ref": "ScaVpcPrivateSubnet1SubnetA0278F74"
+   },
+   "Export": {
+    "Name": "ScaNetworkStack:ExportsOutputRefScaVpcPrivateSubnet1SubnetA0278F745FB5EB65"
+   }
+  },
+  "ExportsOutputRefScaVpcPrivateSubnet2SubnetB60ED9DFED91CF84": {
+   "Value": {
+    "Ref": "ScaVpcPrivateSubnet2SubnetB60ED9DF"
+   },
+   "Export": {
+    "Name": "ScaNetworkStack:ExportsOutputRefScaVpcPrivateSubnet2SubnetB60ED9DFED91CF84"
+   }
+  }
+ },
+ "Parameters": {
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
+  }
+ }
+}

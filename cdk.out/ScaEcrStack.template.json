@@ -1,0 +1,144 @@
+{
+ "Resources": {
+  "WebAppRepositoryE1B58524": {
+   "Type": "AWS::ECR::Repository",
+   "Properties": {
+    "EmptyOnDelete": true,
+    "ImageScanningConfiguration": {
+     "ScanOnPush": true
+    },
+    "RepositoryName": "sca-web-app"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "ScaEcrStack/WebAppRepository/Resource"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/zPSMzI31jNQTCwv1k1OydbNyUzSqw4uSUzO1kksL45PTS7Sqw5KLcgvzizJL6rUcU7LQ/BqQVz/0pKC0pJanbz8lFS9rGL9MiMDPRBSzCrOzNQtKs0rycxN1QuC0ABxdTCzbgAAAA=="
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaEcrStack/CDKMetadata/Default"
+   }
+  }
+ },
+ "Outputs": {
+  "EcrRepositoryUri": {
+   "Description": "ECR repository URI for web application images",
+   "Value": {
+    "Fn::Join": [
+     "",
+     [
+      {
+       "Fn::Select": [
+        4,
+        {
+         "Fn::Split": [
+          ":",
+          {
+           "Fn::GetAtt": [
+            "WebAppRepositoryE1B58524",
+            "Arn"
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      ".dkr.ecr.",
+      {
+       "Fn::Select": [
+        3,
+        {
+         "Fn::Split": [
+          ":",
+          {
+           "Fn::GetAtt": [
+            "WebAppRepositoryE1B58524",
+            "Arn"
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      ".",
+      {
+       "Ref": "AWS::URLSuffix"
+      },
+      "/",
+      {
+       "Ref": "WebAppRepositoryE1B58524"
+      }
+     ]
+    ]
+   }
+  },
+  "EcrRepositoryName": {
+   "Description": "ECR repository name",
+   "Value": {
+    "Ref": "WebAppRepositoryE1B58524"
+   }
+  },
+  "BuildAndPushCommand": {
+   "Description": "Command to build and push Docker image to ECR",
+   "Value": "./scripts/deploy-container.sh"
+  },
+  "ExportsOutputFnGetAttWebAppRepositoryE1B58524ArnCCB02788": {
+   "Value": {
+    "Fn::GetAtt": [
+     "WebAppRepositoryE1B58524",
+     "Arn"
+    ]
+   },
+   "Export": {
+    "Name": "ScaEcrStack:ExportsOutputFnGetAttWebAppRepositoryE1B58524ArnCCB02788"
+   }
+  },
+  "ExportsOutputRefWebAppRepositoryE1B5852408BD7E67": {
+   "Value": {
+    "Ref": "WebAppRepositoryE1B58524"
+   },
+   "Export": {
+    "Name": "ScaEcrStack:ExportsOutputRefWebAppRepositoryE1B5852408BD7E67"
+   }
+  }
+ },
+ "Parameters": {
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
+  }
+ }
+}

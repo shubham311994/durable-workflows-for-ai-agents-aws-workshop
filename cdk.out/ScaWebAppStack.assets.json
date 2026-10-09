@@ -1,0 +1,21 @@
+{
+  "version": "54.0.0",
+  "files": {
+    "53d0ab19cf12977e79d12f373b6f16d2ba873f797cd817b542bed793982f343f": {
+      "displayName": "ScaWebAppStack Template",
+      "source": {
+        "path": "ScaWebAppStack.template.json",
+        "packaging": "file"
+      },
+      "destinations": {
+        "317067115698-us-east-1-8ff45feb": {
+          "bucketName": "cdk-hnb659fds-assets-317067115698-us-east-1",
+          "objectKey": "53d0ab19cf12977e79d12f373b6f16d2ba873f797cd817b542bed793982f343f.json",
+          "region": "us-east-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::317067115698:role/cdk-hnb659fds-file-publishing-role-317067115698-us-east-1"
+        }
+      }
+    }
+  },
+  "dockerImages": {}
+}

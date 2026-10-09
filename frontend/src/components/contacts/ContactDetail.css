@@ -487,4 +487,65 @@
   color: #6b7280;
 }
 
-/* [PLACEHOLDER_LAB5_REVIEW_CSS] Lab 5: Add Supervisor Review Panel styles here */
+/* Supervisor Review Panel */
+.review-panel {
+  border: 2px solid #f59e0b;
+  background: #fffbeb;
+}
+
+.review-description {
+  font-size: 13px;
+  color: #92400e;
+  margin: 0 0 16px;
+}
+
+.review-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.btn-approve {
+  padding: 10px 24px;
+  background: #16a34a;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.btn-approve:hover {
+  background: #15803d;
+}
+
+.btn-deny {
+  padding: 10px 24px;
+  background: #dc2626;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.btn-deny:hover {
+  background: #b91c1c;
+}
+
+.btn-approve:disabled,
+.btn-deny:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.review-approved {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+.review-denied {
+  background: #fee2e2;
+  color: #dc2626;
+}

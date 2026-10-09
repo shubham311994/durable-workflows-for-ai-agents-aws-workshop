@@ -1,0 +1,449 @@
+{
+  "/ScaCloudFrontAccessStack": [
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:56:33)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaCloudFrontAccessStack/InternetGateway": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "InternetGateway"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new ScaCloudFrontAccessStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-cloudfront-access-stack.ts:26:28)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:56:33)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaCloudFrontAccessStack/VpcGatewayAttachment": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "VpcGatewayAttachment"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new ScaCloudFrontAccessStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-cloudfront-access-stack.ts:36:34)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:56:33)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaCloudFrontAccessStack/PublicSubnet1": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "PublicSubnet1"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-cloudfront-access-stack.ts:46: (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-cloudfront-access-stack.ts:46:2)",
+        "Array.forEach (:)",
+        "new ScaCloudFrontAccessStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-cloudfront-access-stack.ts:45:23)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:56:33)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaCloudFrontAccessStack/PublicRouteTable1": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "PublicRouteTable1"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-cloudfront-access-stack.ts:60: (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-cloudfront-access-stack.ts:60:2)",
+        "Array.forEach (:)",
+        "new ScaCloudFrontAccessStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-cloudfront-access-stack.ts:45:23)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:56:33)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaCloudFrontAccessStack/PublicSubnetRouteTableAssociation1": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "PublicSubnetRouteTableAssociation1"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-cloudfront-access-stack.ts:71 (:)",
+        "Array.forEach (:)",
+        "new ScaCloudFrontAccessStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-cloudfront-access-stack.ts:45:23)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:56:33)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaCloudFrontAccessStack/PublicRoute1": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "PublicRoute1"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-cloudfront-access-stack.ts:77: (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-cloudfront-access-stack.ts:77:2)",
+        "Array.forEach (:)",
+        "new ScaCloudFrontAccessStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-cloudfront-access-stack.ts:45:23)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:56:33)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaCloudFrontAccessStack/PublicSubnet2": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "PublicSubnet2"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-cloudfront-access-stack.ts:46: (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-cloudfront-access-stack.ts:46:2)",
+        "Array.forEach (:)",
+        "new ScaCloudFrontAccessStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-cloudfront-access-stack.ts:45:23)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:56:33)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaCloudFrontAccessStack/PublicRouteTable2": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "PublicRouteTable2"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-cloudfront-access-stack.ts:60: (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-cloudfront-access-stack.ts:60:2)",
+        "Array.forEach (:)",
+        "new ScaCloudFrontAccessStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-cloudfront-access-stack.ts:45:23)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:56:33)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaCloudFrontAccessStack/PublicSubnetRouteTableAssociation2": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "PublicSubnetRouteTableAssociation2"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-cloudfront-access-stack.ts:71 (:)",
+        "Array.forEach (:)",
+        "new ScaCloudFrontAccessStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-cloudfront-access-stack.ts:45:23)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:56:33)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaCloudFrontAccessStack/PublicRoute2": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "PublicRoute2"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-cloudfront-access-stack.ts:77: (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-cloudfront-access-stack.ts:77:2)",
+        "Array.forEach (:)",
+        "new ScaCloudFrontAccessStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-cloudfront-access-stack.ts:45:23)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:56:33)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaCloudFrontAccessStack/NatGatewayEip": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "NatGatewayEip"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new ScaCloudFrontAccessStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-cloudfront-access-stack.ts:98:20)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:56:33)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaCloudFrontAccessStack/NatGateway": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "NatGateway"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new ScaCloudFrontAccessStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-cloudfront-access-stack.ts:109:23)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:56:33)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaCloudFrontAccessStack/Custom::S3AutoDeleteObjectsCustomResourceProvider": [
+    {
+      "type": "aws:cdk:is-custom-resource-handler-customResourceProvider",
+      "data": true
+    }
+  ],
+  "/ScaCloudFrontAccessStack/CloudFrontDistributionId": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CloudFrontDistributionId"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new ScaCloudFrontAccessStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-cloudfront-access-stack.ts:224:5)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:56:33)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaCloudFrontAccessStack/CloudFrontDomainName": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CloudFrontDomainName"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new ScaCloudFrontAccessStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-cloudfront-access-stack.ts:229:5)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:56:33)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaCloudFrontAccessStack/CloudFrontUrl": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CloudFrontUrl"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new ScaCloudFrontAccessStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-cloudfront-access-stack.ts:234:5)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:56:33)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaCloudFrontAccessStack/InternetGatewayId": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "InternetGatewayId"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new ScaCloudFrontAccessStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-cloudfront-access-stack.ts:239:5)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:56:33)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaCloudFrontAccessStack/NatGatewayId": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "NatGatewayId"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new ScaCloudFrontAccessStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-cloudfront-access-stack.ts:244:5)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:56:33)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaCloudFrontAccessStack/PublicSubnetIds": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "PublicSubnetIds"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new ScaCloudFrontAccessStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-cloudfront-access-stack.ts:249:5)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:56:33)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaCloudFrontAccessStack/BootstrapVersion": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "BootstrapVersion"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/ScaCloudFrontAccessStack/CheckBootstrapVersion": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CheckBootstrapVersion"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/ScaCloudFrontAccessStack/CloudFrontAccessLogs/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CloudFrontAccessLogs3109BA4C"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Bucket2 in aws-cdk-lib...",
+        "new ScaCloudFrontAccessStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-cloudfront-access-stack.ts:132:30)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:56:33)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    },
+    {
+      "type": "aws:cdk:analytics:mixin",
+      "data": {
+        "mixin": "aws-cdk-lib.aws_s3.mixins.BucketAutoDeleteObjects"
+      }
+    }
+  ],
+  "/ScaCloudFrontAccessStack/Custom::S3AutoDeleteObjectsCustomResourceProvider/Role": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/ScaCloudFrontAccessStack/Custom::S3AutoDeleteObjectsCustomResourceProvider/Handler": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/ScaCloudFrontAccessStack/CloudFrontDistribution/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CloudFrontDistributionBA64CE3A"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Distribution2 in aws-cdk-lib...",
+        "new ScaCloudFrontAccessStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-cloudfront-access-stack.ts:148:35)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:56:33)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaCloudFrontAccessStack/SecurityHeadersPolicy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "SecurityHeadersPolicyE1741D63"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new ResponseHeadersPolicy2 in aws-cdk-lib...",
+        "new ScaCloudFrontAccessStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-cloudfront-access-stack.ts:195:35)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:56:33)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaCloudFrontAccessStack/CDKMetadata/Default": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CDKMetadata"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/ScaCloudFrontAccessStack/CloudFrontAccessLogs/Policy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CloudFrontAccessLogsPolicyC68E22C4"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Bucket2 in aws-cdk-lib...",
+        "new ScaCloudFrontAccessStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-cloudfront-access-stack.ts:132:30)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:56:33)"
+      ]
+    },
+    {
+      "type": "aws:cdk:analytics:mixin",
+      "data": {
+        "mixin": "aws-cdk-lib.aws_s3.mixins.BucketPolicyStatements"
+      }
+    }
+  ],
+  "/ScaCloudFrontAccessStack/CloudFrontAccessLogs/AutoDeleteObjectsCustomResource/Default": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CloudFrontAccessLogsAutoDeleteObjectsCustomResource5A931F2D"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/ScaCloudFrontAccessStack/CloudFrontDistribution/Origin1/VpcOrigin/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CloudFrontDistributionOrigin1VpcOrigin8B47AD7E"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Distribution2 in aws-cdk-lib...",
+        "new ScaCloudFrontAccessStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-cloudfront-access-stack.ts:148:35)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:56:33)",
+        "...node internals..."
+      ]
+    }
+  ]
+}

@@ -222,8 +222,16 @@ def lambda_handler(event: Dict[str, Any], context: DurableContext) -> Dict[str, 
                         continue
                     
                     # [PLACEHOLDER_LAB2_SENTIMENT] Add sentiment analysis step
+                    sentiment = context.step(
+                        analyze_sentiment_step(transcriptions),
+                        name=f'analyze_sentiment_{contact_id}'
+                    )
 
                     # [PLACEHOLDER_LAB2_TOPICS] Add topic extraction step
+                    topics = context.step(
+                        extract_topics_step(transcriptions),
+                        name=f'extract_topics_{contact_id}'
+                    )
 
                     # Generate summary (checkpointed - will retry on throttling)
                     summary = context.step(
@@ -234,6 +242,8 @@ def lambda_handler(event: Dict[str, Any], context: DurableContext) -> Dict[str, 
                     # [UPDATE_ANALYTICS_DICT] Add sentiment and topics to analytics
                     analytics = {
                         'contactId': contact_id,
+                        'sentiment': sentiment,
+                        'topics': topics,
                         'summary': summary,
                         'generatedAt': datetime.utcnow().isoformat()
                     }

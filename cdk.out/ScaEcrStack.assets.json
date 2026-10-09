@@ -1,0 +1,21 @@
+{
+  "version": "54.0.0",
+  "files": {
+    "0ada8ad17204176b42262b9ef94d8f2acd4fcb013cb4d18d2e07cfec202c2949": {
+      "displayName": "ScaEcrStack Template",
+      "source": {
+        "path": "ScaEcrStack.template.json",
+        "packaging": "file"
+      },
+      "destinations": {
+        "317067115698-us-east-1-c800a7a0": {
+          "bucketName": "cdk-hnb659fds-assets-317067115698-us-east-1",
+          "objectKey": "0ada8ad17204176b42262b9ef94d8f2acd4fcb013cb4d18d2e07cfec202c2949.json",
+          "region": "us-east-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::317067115698:role/cdk-hnb659fds-file-publishing-role-317067115698-us-east-1"
+        }
+      }
+    }
+  },
+  "dockerImages": {}
+}

@@ -120,7 +120,8 @@ def get_contact(contact_id: str) -> Dict[str, Any]:
             contact['eligibility'] = item.get('eligibility')
             contact['fraudAssessment'] = item.get('fraudAssessment')
             contact['addressVerification'] = item.get('addressVerification')
-            # [PLACEHOLDER_LAB5_CONTACT_RESPONSE] Lab 5: Add reviewStatus and callbackId fields here
+            contact['reviewStatus'] = item.get('reviewStatus')
+            contact['callbackId'] = item.get('callbackId')
             continue
 
         analytics_type = item.get('analyticsType')
@@ -457,7 +458,62 @@ def get_analytics(contact_id: str) -> Dict[str, Any]:
     }
 
 
-# [PLACEHOLDER_LAB5_REVIEW_ROUTE] Lab 5: Add POST /contacts/<contact_id>/review route here
+# Lab 5: Supervisor review route
+@app.post("/contacts/<contact_id>/review")
+@tracer.capture_method
+def submit_review(contact_id: str) -> Dict[str, Any]:
+    """
+    Submit a supervisor review decision for a HIGH-risk contact.
+    Sends the decision to the suspended eligibility-checker durable function via callback.
+    """
+    body = app.current_event.json_body
+    callback_id = body.get('callbackId')
+    decision = body.get('decision')  # "APPROVED" or "DENIED"
+    reason = body.get('reason', '')
+
+    if not callback_id or not decision:
+        return {
+            "statusCode": 400,
+            "headers": {"Content-Type": "application/json", "Access-Control-Allow-Origin": "*"},
+            "body": json.dumps({"error": "callbackId and decision are required"}),
+        }
+
+    if decision not in ('APPROVED', 'DENIED'):
+        return {
+            "statusCode": 400,
+            "headers": {"Content-Type": "application/json", "Access-Control-Allow-Origin": "*"},
+            "body": json.dumps({"error": "decision must be APPROVED or DENIED"}),
+        }
+
+    # Get reviewer identity from the authorizer context
+    reviewer = app.current_event.request_context.authorizer.get('claims', {}).get('email', 'unknown')
+
+    # Send the decision to the suspended durable function
+    lambda_client = boto3.client('lambda')
+    try:
+        lambda_client.send_durable_execution_callback_success(
+            CallbackId=callback_id,
+            Result=json.dumps({
+                'action': decision,
+                'reviewer': reviewer,
+                'reason': reason,
+            }),
+        )
+    except Exception as e:
+        logger.error(f"Failed to send callback: {e}")
+        return {
+            "statusCode": 500,
+            "headers": {"Content-Type": "application/json", "Access-Control-Allow-Origin": "*"},
+            "body": json.dumps({"error": f"Failed to send callback: {str(e)}"}),
+        }
+
+    logger.info("Callback sent successfully", extra={"contactId": contact_id, "decision": decision, "callbackId": callback_id})
+
+    return {
+        "statusCode": 200,
+        "headers": {"Content-Type": "application/json", "Access-Control-Allow-Origin": "*"},
+        "body": json.dumps({"status": "decision_submitted", "contactId": contact_id, "decision": decision}),
+    }
 
 
 @app.get("/health")

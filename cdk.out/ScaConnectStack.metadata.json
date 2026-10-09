@@ -1,0 +1,881 @@
+{
+  "/ScaConnectStack": [
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:73:24)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaConnectStack/ConnectInstance": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ConnectInstance"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new ScaConnectStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-connect-stack.ts:46:28)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:73:24)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaConnectStack/AWS679f53fac002430cb0da5b7982bd2287": [
+    {
+      "type": "aws:cdk:is-custom-resource-handler-singleton",
+      "data": true
+    },
+    {
+      "type": "aws:cdk:is-custom-resource-handler-runtime-family",
+      "data": 0
+    },
+    {
+      "type": "aws:cdk:is-custom-resource-handler-singleton",
+      "data": true
+    },
+    {
+      "type": "aws:cdk:is-custom-resource-handler-runtime-family",
+      "data": 0
+    },
+    {
+      "type": "aws:cdk:is-custom-resource-handler-singleton",
+      "data": true
+    },
+    {
+      "type": "aws:cdk:is-custom-resource-handler-runtime-family",
+      "data": 0
+    },
+    {
+      "type": "aws:cdk:is-custom-resource-handler-singleton",
+      "data": true
+    },
+    {
+      "type": "aws:cdk:is-custom-resource-handler-runtime-family",
+      "data": 0
+    },
+    {
+      "type": "aws:cdk:is-custom-resource-handler-singleton",
+      "data": true
+    },
+    {
+      "type": "aws:cdk:is-custom-resource-handler-runtime-family",
+      "data": 0
+    }
+  ],
+  "/ScaConnectStack/AgentQueue": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "AgentQueue"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new ScaConnectStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-connect-stack.ts:107:19)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:73:24)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaConnectStack/AgentRoutingProfile": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "AgentRoutingProfile"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new ScaConnectStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-connect-stack.ts:115:33)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:73:24)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaConnectStack/InboundPhoneNumber": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "InboundPhoneNumber"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new ScaConnectStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-connect-stack.ts:141:24)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:73:24)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaConnectStack/ConnectAdminUser": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ConnectAdminUser"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new ScaConnectStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-connect-stack.ts:230:23)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:73:24)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaConnectStack/Custom::S3AutoDeleteObjectsCustomResourceProvider": [
+    {
+      "type": "aws:cdk:is-custom-resource-handler-customResourceProvider",
+      "data": true
+    }
+  ],
+  "/ScaConnectStack/ConnectInstanceId": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ConnectInstanceId"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new ScaConnectStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-connect-stack.ts:470:5)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:73:24)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaConnectStack/ConnectInstanceArn": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ConnectInstanceArn"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new ScaConnectStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-connect-stack.ts:475:5)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:73:24)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaConnectStack/QueueId": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "QueueId"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new ScaConnectStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-connect-stack.ts:480:5)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:73:24)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaConnectStack/PhoneNumber": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "PhoneNumber"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new ScaConnectStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-connect-stack.ts:485:5)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:73:24)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaConnectStack/PhoneNumberArn": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "PhoneNumberArn"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new ScaConnectStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-connect-stack.ts:490:5)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:73:24)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaConnectStack/ConnectLoginUrl": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ConnectLoginUrl"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new ScaConnectStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-connect-stack.ts:495:5)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:73:24)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaConnectStack/GetCredentialsCommand": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "GetCredentialsCommand"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new ScaConnectStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-connect-stack.ts:500:5)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:73:24)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaConnectStack/BootstrapVersion": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "BootstrapVersion"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/ScaConnectStack/CheckBootstrapVersion": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CheckBootstrapVersion"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/ScaConnectStack/AWS679f53fac002430cb0da5b7982bd2287/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "AWS679f53fac002430cb0da5b7982bd22872D164C4C"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new AwsCustomResource2 in aws-cdk-lib...",
+        "new ScaConnectStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-connect-stack.ts:60:19)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:73:24)"
+      ]
+    }
+  ],
+  "/ScaConnectStack/AdminPassword/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "AdminPassword4DD767F0"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Secret2 in aws-cdk-lib...",
+        "new ScaConnectStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-connect-stack.ts:151:27)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:73:24)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaConnectStack/LookupProfilesFunction/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LookupProfilesFunction41F7F870"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Function2 in aws-cdk-lib...",
+        "new ScaConnectStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-connect-stack.ts:163:36)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:73:24)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaConnectStack/ProfilesLookup/Default": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ProfilesLookup"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new CustomResource2 in aws-cdk-lib...",
+        "new ScaConnectStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-connect-stack.ts:219:28)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:73:24)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaConnectStack/ConfigureContactLensFunction/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ConfigureContactLensFunction7BDE4DF9"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Function2 in aws-cdk-lib...",
+        "new ScaConnectStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-connect-stack.ts:258:42)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:73:24)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaConnectStack/ContactLensConfig/Default": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ContactLensConfig"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new CustomResource2 in aws-cdk-lib...",
+        "new ScaConnectStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-connect-stack.ts:365:31)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:73:24)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaConnectStack/CallRecordingBucket/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CallRecordingBucketC145AC7F"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Bucket2 in aws-cdk-lib...",
+        "new ScaConnectStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-connect-stack.ts:377:33)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:73:24)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    },
+    {
+      "type": "aws:cdk:analytics:mixin",
+      "data": {
+        "mixin": "aws-cdk-lib.aws_s3.mixins.BucketAutoDeleteObjects"
+      }
+    }
+  ],
+  "/ScaConnectStack/CallRecordingBucket/AllowBucketNotificationsToScaConnectStackS3AnalyticsProcessor19138896": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CallRecordingBucketAllowBucketNotificationsToScaConnectStackS3AnalyticsProcessor19138896638DA66A"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...PropertyInjectable.addEventSource in aws-cdk-lib...",
+        "new ScaConnectStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-connect-stack.ts:468:26)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:73:24)"
+      ]
+    }
+  ],
+  "/ScaConnectStack/Custom::S3AutoDeleteObjectsCustomResourceProvider/Role": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/ScaConnectStack/Custom::S3AutoDeleteObjectsCustomResourceProvider/Handler": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/ScaConnectStack/S3AnalyticsProcessor/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "S3AnalyticsProcessorAF4C191A"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Function2 in aws-cdk-lib...",
+        "new ScaConnectStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-connect-stack.ts:435:34)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:73:24)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaConnectStack/BucketNotificationsHandler050a0587b7544547bf325f094a3db834/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "BucketNotificationsHandler050a0587b7544547bf325f094a3db8347ECC3691"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...PropertyInjectable.addEventSource in aws-cdk-lib...",
+        "new ScaConnectStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-connect-stack.ts:468:26)"
+      ]
+    }
+  ],
+  "/ScaConnectStack/CDKMetadata/Default": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CDKMetadata"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/ScaConnectStack/Exports/Output{\"Fn::GetAtt\":[\"ConnectInstance\",\"Arn\"]}": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ExportsOutputFnGetAttConnectInstanceArn7B75E943"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/ScaConnectStack/Exports/Output{\"Fn::GetAtt\":[\"InboundPhoneNumber\",\"PhoneNumberArn\"]}": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ExportsOutputFnGetAttInboundPhoneNumberPhoneNumberArnF05471D3"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/ScaConnectStack/EnableBOT_MANAGEMENT/Resource/Default": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "EnableBOTMANAGEMENTF151B77F"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new AwsCustomResource2 in aws-cdk-lib...",
+        "new ScaConnectStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-connect-stack.ts:60:19)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:73:24)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/ScaConnectStack/EnableBOT_MANAGEMENT/CustomResourcePolicy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "EnableBOTMANAGEMENTCustomResourcePolicy45A9D64B"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new AwsCustomResource2 in aws-cdk-lib...",
+        "new ScaConnectStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-connect-stack.ts:60:19)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:73:24)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/ScaConnectStack/AWS679f53fac002430cb0da5b7982bd2287/ServiceRole/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleC1EA0FF2"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/ScaConnectStack/EnableENABLE_BOT_ANALYTICS_AND_TRANSCRIPTS/Resource/Default": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "EnableENABLEBOTANALYTICSANDTRANSCRIPTSBA5D8E5A"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new AwsCustomResource2 in aws-cdk-lib...",
+        "new ScaConnectStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-connect-stack.ts:60:19)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:73:24)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/ScaConnectStack/EnableENABLE_BOT_ANALYTICS_AND_TRANSCRIPTS/CustomResourcePolicy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "EnableENABLEBOTANALYTICSANDTRANSCRIPTSCustomResourcePolicy829D3996"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new AwsCustomResource2 in aws-cdk-lib...",
+        "new ScaConnectStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-connect-stack.ts:60:19)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:73:24)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/ScaConnectStack/EnableAUTOMATED_INTERACTION_LOG/Resource/Default": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "EnableAUTOMATEDINTERACTIONLOGC371DA48"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new AwsCustomResource2 in aws-cdk-lib...",
+        "new ScaConnectStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-connect-stack.ts:60:19)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:73:24)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/ScaConnectStack/EnableAUTOMATED_INTERACTION_LOG/CustomResourcePolicy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "EnableAUTOMATEDINTERACTIONLOGCustomResourcePolicyEFF9D815"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new AwsCustomResource2 in aws-cdk-lib...",
+        "new ScaConnectStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-connect-stack.ts:60:19)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:73:24)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/ScaConnectStack/HoursOfOperationLookup/Resource/Default": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "HoursOfOperationLookupAF925575"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new AwsCustomResource2 in aws-cdk-lib...",
+        "new ScaConnectStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-connect-stack.ts:90:36)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:73:24)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/ScaConnectStack/HoursOfOperationLookup/CustomResourcePolicy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "HoursOfOperationLookupCustomResourcePolicyA3A96B5F"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new AwsCustomResource2 in aws-cdk-lib...",
+        "new ScaConnectStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-connect-stack.ts:90:36)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:73:24)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/ScaConnectStack/LookupProfilesFunction/ServiceRole/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LookupProfilesFunctionServiceRole20D90F81"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Function2 in aws-cdk-lib...",
+        "new ScaConnectStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-connect-stack.ts:163:36)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:73:24)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaConnectStack/LookupProfilesProvider/framework-onEvent/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LookupProfilesProviderframeworkonEvent09A80301"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Provider2 in aws-cdk-lib...",
+        "new ScaConnectStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-connect-stack.ts:215:36)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:73:24)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/ScaConnectStack/ConfigureContactLensFunction/ServiceRole/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ConfigureContactLensFunctionServiceRoleCC3D02D1"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Function2 in aws-cdk-lib...",
+        "new ScaConnectStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-connect-stack.ts:258:42)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:73:24)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaConnectStack/ConfigureContactLensProvider/framework-onEvent/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ConfigureContactLensProviderframeworkonEvent45FFD71C"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Provider2 in aws-cdk-lib...",
+        "new ScaConnectStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-connect-stack.ts:361:42)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:73:24)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/ScaConnectStack/CallRecordingBucket/Policy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CallRecordingBucketPolicy7152654F"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Bucket2 in aws-cdk-lib...",
+        "new ScaConnectStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-connect-stack.ts:377:33)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:73:24)"
+      ]
+    },
+    {
+      "type": "aws:cdk:analytics:mixin",
+      "data": {
+        "mixin": "aws-cdk-lib.aws_s3.mixins.BucketPolicyStatements"
+      }
+    }
+  ],
+  "/ScaConnectStack/CallRecordingBucket/AutoDeleteObjectsCustomResource/Default": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CallRecordingBucketAutoDeleteObjectsCustomResourceB3240BA4"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/ScaConnectStack/CallRecordingBucket/Notifications/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CallRecordingBucketNotifications8CDF7F20"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...PropertyInjectable.addEventSource in aws-cdk-lib...",
+        "new ScaConnectStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-connect-stack.ts:468:26)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:73:24)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/ScaConnectStack/CallRecordingConfig/Resource/Default": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CallRecordingConfig36FFFF7A"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new AwsCustomResource2 in aws-cdk-lib...",
+        "new ScaConnectStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-connect-stack.ts:385:33)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:73:24)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/ScaConnectStack/CallRecordingConfig/CustomResourcePolicy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CallRecordingConfigCustomResourcePolicyDC5D1202"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new AwsCustomResource2 in aws-cdk-lib...",
+        "new ScaConnectStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-connect-stack.ts:385:33)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:73:24)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/ScaConnectStack/S3AnalyticsProcessor/ServiceRole/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "S3AnalyticsProcessorServiceRoleD58983ED"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Function2 in aws-cdk-lib...",
+        "new ScaConnectStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-connect-stack.ts:435:34)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:73:24)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaConnectStack/BucketNotificationsHandler050a0587b7544547bf325f094a3db834/Role/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "BucketNotificationsHandler050a0587b7544547bf325f094a3db834RoleB6FB88EC"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/ScaConnectStack/LookupProfilesFunction/ServiceRole/DefaultPolicy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LookupProfilesFunctionServiceRoleDefaultPolicy835F712B"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...PropertyInjectable.addToRolePolicy in aws-cdk-lib...",
+        "new ScaConnectStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-connect-stack.ts:210:28)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:73:24)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/ScaConnectStack/LookupProfilesProvider/framework-onEvent/ServiceRole/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LookupProfilesProviderframeworkonEventServiceRole07061FFD"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Provider2 in aws-cdk-lib...",
+        "new ScaConnectStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-connect-stack.ts:215:36)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:73:24)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/ScaConnectStack/ConfigureContactLensFunction/ServiceRole/DefaultPolicy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ConfigureContactLensFunctionServiceRoleDefaultPolicyF552AAE1"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...PropertyInjectable.addToRolePolicy in aws-cdk-lib...",
+        "new ScaConnectStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-connect-stack.ts:342:34)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:73:24)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/ScaConnectStack/ConfigureContactLensProvider/framework-onEvent/ServiceRole/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ConfigureContactLensProviderframeworkonEventServiceRoleA3F2CA3A"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Provider2 in aws-cdk-lib...",
+        "new ScaConnectStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-connect-stack.ts:361:42)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:73:24)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/ScaConnectStack/CallRecordingBucket/Notifications/HandlerPolicy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CallRecordingBucketNotificationsHandlerPolicyE4DA9EDD"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/ScaConnectStack/S3AnalyticsProcessor/ServiceRole/DefaultPolicy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "S3AnalyticsProcessorServiceRoleDefaultPolicy6CDDCCFB"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Function2 in aws-cdk-lib...",
+        "new ScaConnectStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-connect-stack.ts:435:34)"
+      ]
+    }
+  ],
+  "/ScaConnectStack/LookupProfilesProvider/framework-onEvent/ServiceRole/DefaultPolicy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LookupProfilesProviderframeworkonEventServiceRoleDefaultPolicy14D250CE"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/ScaConnectStack/ConfigureContactLensProvider/framework-onEvent/ServiceRole/DefaultPolicy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ConfigureContactLensProviderframeworkonEventServiceRoleDefaultPolicyA4185729"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ]
+}

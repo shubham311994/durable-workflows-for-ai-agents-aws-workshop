@@ -76,7 +76,8 @@ export interface Contact {
   eligibility?: Eligibility;
   addressVerification?: AddressVerification;
   fraudAssessment?: FraudAssessment;
-  // [PLACEHOLDER_LAB5_CONTACT_FIELDS] Lab 5: Add reviewStatus and callbackId fields here
+  reviewStatus?: 'AUTO_APPROVED' | 'PENDING_REVIEW' | 'APPROVED' | 'DENIED';
+  callbackId?: string;
   metadata: {
     totalDuration?: number;
     participantCount?: number;

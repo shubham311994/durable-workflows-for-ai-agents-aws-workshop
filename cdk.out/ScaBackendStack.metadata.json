@@ -1,0 +1,941 @@
+{
+  "/ScaBackendStack": [
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:27:22)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    },
+    {
+      "type": "aws:cdk:warning",
+      "data": "No cross-stack-reference strength configured, defaulting to \"strong\". We recommend you set feature flag \"@aws-cdk/core:defaultCrossStackReferences\" to \"both\", then deploy everywhere, then set it to \"weak\". Alternatively, set it to \"strong\" explicitly to lock in the current producer-protecting behavior. (See: https://github.com/aws/aws-cdk/blob/main/packages/aws-cdk-lib/README.md#reference-strength) [ack: @aws-cdk/core:crossStackReferencesDefaultStrong]",
+      "trace": [
+        "Annotations.addMessage (/project/durable-workflows-for-ai-agents-aws-workshop/node_modules/aws-cdk-lib/core/lib/annotations.js:1:3506)",
+        "Annotations.addWarningV2 (/project/durable-workflows-for-ai-agents-aws-workshop/node_modules/aws-cdk-lib/core/lib/annotations.js:1:2194)",
+        "resolveValue (/project/durable-workflows-for-ai-agents-aws-workshop/node_modules/aws-cdk-lib/core/lib/private/refs.js:1:7177)",
+        "resolveReferencesInElements (/project/durable-workflows-for-ai-agents-aws-workshop/node_modules/aws-cdk-lib/core/lib/private/refs.js:1:5045)",
+        "resolveReferences (/project/durable-workflows-for-ai-agents-aws-workshop/node_modules/aws-cdk-lib/core/lib/private/refs.js:1:4718)",
+        "prepareApp (/project/durable-workflows-for-ai-agents-aws-workshop/node_modules/aws-cdk-lib/core/lib/private/prepare-app.js:1:1240)",
+        "synthesize (/project/durable-workflows-for-ai-agents-aws-workshop/node_modules/aws-cdk-lib/core/lib/private/synthesis.js:1:2625)",
+        "App.synth (/project/durable-workflows-for-ai-agents-aws-workshop/node_modules/aws-cdk-lib/core/lib/stage.js:1:5061)",
+        "App.synth (/project/durable-workflows-for-ai-agents-aws-workshop/node_modules/aws-cdk-lib/core/lib/app.js:1:5126)",
+        "process.<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/node_modules/aws-cdk-lib/core/lib/app.js:1:4036)",
+        "Object.onceWrapper (node:events:639:26)",
+        "process.emit (node:events:524:28)",
+        "process.emit (node:domain:489:12)",
+        "process.emit.sharedData.processEmitHook.installedValue [as emit] (/home/participant/.npm/_npx/1bf7c3c15bf47d04/node_modules/@cspotcode/source-map-support/source-map-support.js:745:40)"
+      ]
+    }
+  ],
+  "/ScaBackendStack/ApiGatewayAccount": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ApiGatewayAccount"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new ScaBackendStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-backend-stack.ts:57:5)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:27:22)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaBackendStack/AwsCdkKinesisEncryptedStreamsUnsupportedRegions": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "AwsCdkKinesisEncryptedStreamsUnsupportedRegions"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Stream2 in aws-cdk-lib...",
+        "new ScaBackendStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-backend-stack.ts:62:32)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:27:22)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaBackendStack/TranscriptionsTable": [
+    {
+      "type": "aws:cdk:hasPhysicalName",
+      "data": {
+        "Ref": "TranscriptionsTableE617CB71"
+      }
+    }
+  ],
+  "/ScaBackendStack/AnalyticsTable": [
+    {
+      "type": "aws:cdk:hasPhysicalName",
+      "data": {
+        "Ref": "AnalyticsTable3F84C304"
+      }
+    }
+  ],
+  "/ScaBackendStack/AnalystGroup": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "AnalystGroup"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new ScaBackendStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-backend-stack.ts:206:5)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:27:22)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaBackendStack/AdminGroup": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "AdminGroup"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new ScaBackendStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-backend-stack.ts:213:5)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:27:22)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaBackendStack/AnalyticsProcessor": [
+    {
+      "type": "aws:cdk:info",
+      "data": "Modifying an existing lambda to use durability will trigger a resource replacement [ack: aws-lambda:Function.DurableConfig]",
+      "trace": [
+        "Annotations.addMessage (/project/durable-workflows-for-ai-agents-aws-workshop/node_modules/aws-cdk-lib/core/lib/annotations.js:1:3506)",
+        "Annotations.addInfoV2 (/project/durable-workflows-for-ai-agents-aws-workshop/node_modules/aws-cdk-lib/core/lib/annotations.js:1:2550)",
+        "PropertyInjectable.renderDurableConfig (/project/durable-workflows-for-ai-agents-aws-workshop/node_modules/aws-cdk-lib/aws-lambda/lib/function.js:1:37214)",
+        "new Function2 (/project/durable-workflows-for-ai-agents-aws-workshop/node_modules/aws-cdk-lib/aws-lambda/lib/function.js:1:22028)",
+        "new Function2 (/project/durable-workflows-for-ai-agents-aws-workshop/node_modules/aws-cdk-lib/core/lib/prop-injectable.js:1:861)",
+        "new ScaBackendStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-backend-stack.ts:221:40)",
+        "Object.<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:27:22)",
+        "Module._compile (node:internal/modules/cjs/loader:1521:14)",
+        "Module.m._compile (/home/participant/.npm/_npx/1bf7c3c15bf47d04/node_modules/ts-node/src/index.ts:1618:23)",
+        "Module._extensions..js (node:internal/modules/cjs/loader:1623:10)",
+        "Object.require.extensions.<computed> [as .ts] (/home/participant/.npm/_npx/1bf7c3c15bf47d04/node_modules/ts-node/src/index.ts:1621:12)",
+        "Module.load (node:internal/modules/cjs/loader:1266:32)",
+        "Function.Module._load (node:internal/modules/cjs/loader:1091:12)",
+        "Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)",
+        "phase4 (/home/participant/.npm/_npx/1bf7c3c15bf47d04/node_modules/ts-node/src/bin.ts:649:14)",
+        "bootstrap (/home/participant/.npm/_npx/1bf7c3c15bf47d04/node_modules/ts-node/src/bin.ts:95:10)",
+        "main (/home/participant/.npm/_npx/1bf7c3c15bf47d04/node_modules/ts-node/src/bin.ts:55:10)",
+        "Object.<anonymous> (/home/participant/.npm/_npx/1bf7c3c15bf47d04/node_modules/ts-node/src/bin.ts:800:3)",
+        "Module._compile (node:internal/modules/cjs/loader:1521:14)",
+        "Object.Module._extensions..js (node:internal/modules/cjs/loader:1623:10)",
+        "Module.load (node:internal/modules/cjs/loader:1266:32)",
+        "Function.Module._load (node:internal/modules/cjs/loader:1091:12)",
+        "Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)",
+        "node:internal/main/run_main_module:28:49"
+      ]
+    }
+  ],
+  "/ScaBackendStack/TranscriptionStreamName": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "TranscriptionStreamName"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new ScaBackendStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-backend-stack.ts:452:5)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:27:22)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaBackendStack/TranscriptionStreamArn": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "TranscriptionStreamArn"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new ScaBackendStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-backend-stack.ts:457:5)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:27:22)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaBackendStack/TranscriptionsTableName": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "TranscriptionsTableName"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new ScaBackendStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-backend-stack.ts:462:5)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:27:22)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaBackendStack/AnalyticsTableName": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "AnalyticsTableName"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new ScaBackendStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-backend-stack.ts:467:5)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:27:22)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaBackendStack/DeadLetterQueueUrl": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "DeadLetterQueueUrl"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new ScaBackendStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-backend-stack.ts:472:5)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:27:22)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaBackendStack/UserPoolId": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "UserPoolId"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new ScaBackendStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-backend-stack.ts:477:5)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:27:22)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaBackendStack/UserPoolClientId": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "UserPoolClientId"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new ScaBackendStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-backend-stack.ts:482:5)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:27:22)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaBackendStack/DataRetrievalApiId": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "DataRetrievalApiId"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new ScaBackendStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-backend-stack.ts:487:5)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:27:22)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaBackendStack/DataRetrievalApiEndpoint": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "DataRetrievalApiEndpoint"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new ScaBackendStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-backend-stack.ts:492:5)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:27:22)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaBackendStack/DataRetrievalApiVpcEndpoint": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "DataRetrievalApiVpcEndpoint"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new ScaBackendStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-backend-stack.ts:497:5)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:27:22)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaBackendStack/CreateUserCommand": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CreateUserCommand"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new ScaBackendStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-backend-stack.ts:502:5)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:27:22)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaBackendStack/BootstrapVersion": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "BootstrapVersion"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/ScaBackendStack/CheckBootstrapVersion": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CheckBootstrapVersion"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/ScaBackendStack/ApiGatewayCloudWatchRole/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ApiGatewayCloudWatchRole86F22A4D"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Role2 in aws-cdk-lib...",
+        "new ScaBackendStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-backend-stack.ts:50:38)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:27:22)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaBackendStack/TranscriptionStream/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "TranscriptionStream1497D4C4"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Stream2 in aws-cdk-lib...",
+        "new ScaBackendStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-backend-stack.ts:62:32)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:27:22)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaBackendStack/DeadLetterQueue/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "DeadLetterQueue9F481546"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Queue2 in aws-cdk-lib...",
+        "new ScaBackendStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-backend-stack.ts:70:28)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:27:22)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaBackendStack/TranscriptionsTable/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "TranscriptionsTableE617CB71"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Table2 in aws-cdk-lib...",
+        "new ScaBackendStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-backend-stack.ts:77:32)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:27:22)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaBackendStack/AnalyticsTable/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "AnalyticsTable3F84C304"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Table2 in aws-cdk-lib...",
+        "new ScaBackendStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-backend-stack.ts:108:27)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:27:22)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaBackendStack/TranscriptionProcessor/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "TranscriptionProcessor12E1D9F9"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Function2 in aws-cdk-lib...",
+        "new ScaBackendStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-backend-stack.ts:125:44)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:27:22)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaBackendStack/UserPool/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "UserPool6BA7E5F2"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new UserPool2 in aws-cdk-lib...",
+        "new ScaBackendStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-backend-stack.ts:165:28)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:27:22)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaBackendStack/AnalyticsProcessor/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "AnalyticsProcessor3FF027E0"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Function2 in aws-cdk-lib...",
+        "new ScaBackendStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-backend-stack.ts:221:40)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:27:22)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaBackendStack/AnalyticsProcessorAlias/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "AnalyticsProcessorAlias26AFE160"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Alias2 in aws-cdk-lib...",
+        "new ScaBackendStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-backend-stack.ts:280:37)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:27:22)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaBackendStack/DataRetrieval/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "DataRetrieval47192070"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Function2 in aws-cdk-lib...",
+        "new ScaBackendStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-backend-stack.ts:306:35)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:27:22)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaBackendStack/DataRetrievalApi/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "DataRetrievalApiD3894D3B"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new RestApi2 in aws-cdk-lib...",
+        "new ScaBackendStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-backend-stack.ts:348:29)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:27:22)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaBackendStack/DataRetrievalApi/Endpoint": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "DataRetrievalApiEndpoint65433DD2"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new RestApi2 in aws-cdk-lib...",
+        "new ScaBackendStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-backend-stack.ts:348:29)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:27:22)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaBackendStack/ChatApiAuthorizer/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ChatApiAuthorizer9D03B0E8"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new CognitoUserPoolsAuthorizer2 in aws-cdk-lib...",
+        "new ScaBackendStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-backend-stack.ts:409:31)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:27:22)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaBackendStack/CDKMetadata/Default": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CDKMetadata"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/ScaBackendStack/Exports/Output{\"Ref\":\"UserPool6BA7E5F2\"}": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ExportsOutputRefUserPool6BA7E5F296FD7236"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/ScaBackendStack/Exports/Output{\"Ref\":\"UserPoolWebAppClientCD2D5CB1\"}": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ExportsOutputRefUserPoolWebAppClientCD2D5CB13BAB4F14"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/ScaBackendStack/Exports/Output{\"Ref\":\"DataRetrievalApiD3894D3B\"}": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ExportsOutputRefDataRetrievalApiD3894D3B76AB2197"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/ScaBackendStack/DeadLetterQueue/Policy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "DeadLetterQueuePolicyB1FB890C"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...PropertyInjectable.addToResourcePolicy in aws-cdk-lib...",
+        "new ScaBackendStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-backend-stack.ts:668:26)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:27:22)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaBackendStack/TranscriptionProcessor/ServiceRole/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "TranscriptionProcessorServiceRoleF833FEA0"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Function2 in aws-cdk-lib...",
+        "new ScaBackendStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-backend-stack.ts:125:44)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:27:22)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaBackendStack/TranscriptionProcessor/KinesisEventSource:ScaBackendStackTranscriptionStream835EA03E/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "TranscriptionProcessorKinesisEventSourceScaBackendStackTranscriptionStream835EA03EC503127F"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...PropertyInjectable.addEventSource in aws-cdk-lib...",
+        "new ScaBackendStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-backend-stack.ts:153:36)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:27:22)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/ScaBackendStack/UserPool/WebAppClient/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "UserPoolWebAppClientCD2D5CB1"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...PropertyInjectable.addClient in aws-cdk-lib...",
+        "new ScaBackendStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-backend-stack.ts:190:55)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:27:22)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaBackendStack/AnalyticsProcessor/ServiceRole/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "AnalyticsProcessorServiceRoleCA410516"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Function2 in aws-cdk-lib...",
+        "new ScaBackendStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-backend-stack.ts:221:40)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:27:22)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaBackendStack/AnalyticsProcessor/CurrentVersion/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "AnalyticsProcessorCurrentVersionCEDCCF6151014472695b11d38fdb93d4c78e796b"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...PropertyInjectable.currentVersion in aws-cdk-lib...",
+        "new ScaBackendStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-backend-stack.ts:282:43)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:27:22)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaBackendStack/AnalyticsProcessorAlias/DynamoDBEventSource:ScaBackendStackTranscriptionsTable51E1B54B/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "AnalyticsProcessorAliasDynamoDBEventSourceScaBackendStackTranscriptionsTable51E1B54B3EB54407"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...PropertyInjectable.addEventSource in aws-cdk-lib...",
+        "new ScaBackendStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-backend-stack.ts:286:29)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:27:22)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/ScaBackendStack/DataRetrieval/ServiceRole/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "DataRetrievalServiceRole8ED2F6BB"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Function2 in aws-cdk-lib...",
+        "new ScaBackendStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-backend-stack.ts:306:35)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:27:22)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaBackendStack/DataRetrievalApi/Deployment/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "DataRetrievalApiDeployment9B4155BC8e17145e5a2bff474ae3efa69cd92f21"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new RestApi2 in aws-cdk-lib...",
+        "new ScaBackendStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-backend-stack.ts:348:29)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:27:22)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/ScaBackendStack/DataRetrievalApi/DeploymentStage.prod/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "DataRetrievalApiDeploymentStageprod6FC95F55"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new RestApi2 in aws-cdk-lib...",
+        "new ScaBackendStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-backend-stack.ts:348:29)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:27:22)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/ScaBackendStack/TranscriptionProcessor/ServiceRole/DefaultPolicy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "TranscriptionProcessorServiceRoleDefaultPolicy94DE3BCF"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Function2 in aws-cdk-lib...",
+        "new ScaBackendStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-backend-stack.ts:125:44)"
+      ]
+    }
+  ],
+  "/ScaBackendStack/AnalyticsProcessor/ServiceRole/DefaultPolicy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "AnalyticsProcessorServiceRoleDefaultPolicy3C47B8A8"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Function2 in aws-cdk-lib...",
+        "new ScaBackendStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-backend-stack.ts:221:40)"
+      ]
+    }
+  ],
+  "/ScaBackendStack/DataRetrieval/ServiceRole/DefaultPolicy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "DataRetrievalServiceRoleDefaultPolicy214CE40B"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Function2 in aws-cdk-lib...",
+        "new ScaBackendStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-backend-stack.ts:306:35)"
+      ]
+    }
+  ],
+  "/ScaBackendStack/DataRetrievalApi/Default/ANY/ApiPermission.ScaBackendStackDataRetrievalApi3984B0A9.ANY..": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "DataRetrievalApiANYApiPermissionScaBackendStackDataRetrievalApi3984B0A9ANY144EEFD0"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...RootResource.addMethod in aws-cdk-lib...",
+        "new ScaBackendStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-backend-stack.ts:392:32)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:27:22)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/ScaBackendStack/DataRetrievalApi/Default/ANY/ApiPermission.Test.ScaBackendStackDataRetrievalApi3984B0A9.ANY..": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "DataRetrievalApiANYApiPermissionTestScaBackendStackDataRetrievalApi3984B0A9ANYCC50DCF4"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...RootResource.addMethod in aws-cdk-lib...",
+        "new ScaBackendStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-backend-stack.ts:392:32)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:27:22)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/ScaBackendStack/DataRetrievalApi/Default/ANY/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "DataRetrievalApiANY2A580325"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...RootResource.addMethod in aws-cdk-lib...",
+        "new ScaBackendStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-backend-stack.ts:392:32)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:27:22)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaBackendStack/DataRetrievalApi/Default/{proxy+}/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "DataRetrievalApiproxy02615914"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...RootResource.addProxy in aws-cdk-lib...",
+        "new ScaBackendStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-backend-stack.ts:393:32)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:27:22)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/ScaBackendStack/DataRetrievalApi/Default/chat/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "DataRetrievalApichat4F25DCCC"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...RootResource.addResource in aws-cdk-lib...",
+        "new ScaBackendStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-backend-stack.ts:422:53)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:27:22)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaBackendStack/DataRetrievalApi/Default/call/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "DataRetrievalApicall14AF119D"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...RootResource.addResource in aws-cdk-lib...",
+        "new ScaBackendStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-backend-stack.ts:429:53)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:27:22)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaBackendStack/DataRetrievalApi/Default/{proxy+}/ANY/ApiPermission.ScaBackendStackDataRetrievalApi3984B0A9.ANY..{proxy+}": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "DataRetrievalApiproxyANYApiPermissionScaBackendStackDataRetrievalApi3984B0A9ANYproxy171134B6"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/ScaBackendStack/DataRetrievalApi/Default/{proxy+}/ANY/ApiPermission.Test.ScaBackendStackDataRetrievalApi3984B0A9.ANY..{proxy+}": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "DataRetrievalApiproxyANYApiPermissionTestScaBackendStackDataRetrievalApi3984B0A9ANYproxyEE72425C"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/ScaBackendStack/DataRetrievalApi/Default/{proxy+}/ANY/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "DataRetrievalApiproxyANY6717505F"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...RootResource.addProxy in aws-cdk-lib...",
+        "new ScaBackendStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-backend-stack.ts:393:32)"
+      ]
+    }
+  ],
+  "/ScaBackendStack/DataRetrievalApi/Default/chat/start/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "DataRetrievalApichatstartA9972838"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...PropertyInjectable.addResource in aws-cdk-lib...",
+        "new ScaBackendStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-backend-stack.ts:423:44)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:27:22)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaBackendStack/DataRetrievalApi/Default/call/start/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "DataRetrievalApicallstartF8A56595"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...PropertyInjectable.addResource in aws-cdk-lib...",
+        "new ScaBackendStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-backend-stack.ts:430:44)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:27:22)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaBackendStack/DataRetrievalApi/Default/chat/start/POST/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "DataRetrievalApichatstartPOST689469BF"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...PropertyInjectable.addMethod in aws-cdk-lib...",
+        "new ScaBackendStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-backend-stack.ts:424:23)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:27:22)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaBackendStack/DataRetrievalApi/Default/call/start/POST/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "DataRetrievalApicallstartPOSTCB5A94B9"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...PropertyInjectable.addMethod in aws-cdk-lib...",
+        "new ScaBackendStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-backend-stack.ts:431:23)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:27:22)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "version": "54.0.0",
+  "files": {
+    "02b51ab524e7bcf8f477de3e71e5f9a72e448301b26ba62e9e75a14f9c55a093": {
+      "displayName": "ScaNetworkStack/Custom::VpcRestrictDefaultSGCustomResourceProvider Code",
+      "source": {
+        "path": "asset.02b51ab524e7bcf8f477de3e71e5f9a72e448301b26ba62e9e75a14f9c55a093",
+        "packaging": "zip"
+      },
+      "destinations": {
+        "317067115698-us-east-1-8affe106": {
+          "bucketName": "cdk-hnb659fds-assets-317067115698-us-east-1",
+          "objectKey": "02b51ab524e7bcf8f477de3e71e5f9a72e448301b26ba62e9e75a14f9c55a093.zip",
+          "region": "us-east-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::317067115698:role/cdk-hnb659fds-file-publishing-role-317067115698-us-east-1"
+        }
+      }
+    },
+    "fe9cdfa6c459c0cd2665a6c3354986fb4cabf0f8a93561ffb4e0d22014e9e6c3": {
+      "displayName": "ScaNetworkStack Template",
+      "source": {
+        "path": "ScaNetworkStack.template.json",
+        "packaging": "file"
+      },
+      "destinations": {
+        "317067115698-us-east-1-37cbc30f": {
+          "bucketName": "cdk-hnb659fds-assets-317067115698-us-east-1",
+          "objectKey": "fe9cdfa6c459c0cd2665a6c3354986fb4cabf0f8a93561ffb4e0d22014e9e6c3.json",
+          "region": "us-east-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::317067115698:role/cdk-hnb659fds-file-publishing-role-317067115698-us-east-1"
+        }
+      }
+    }
+  },
+  "dockerImages": {}
+}

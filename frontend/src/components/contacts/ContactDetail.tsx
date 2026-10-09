@@ -13,7 +13,7 @@ export const ContactDetail: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<Tab>('overview');
-  // [PLACEHOLDER_LAB5_REVIEW_HANDLER] Lab 5: Add review state and handleReviewDecision function here
+  const [isSubmittingReview, setIsSubmittingReview] = useState(false);
 
   const { user } = useAuth();
   const { subscribe, isConnected } = useRealTime();
@@ -79,6 +79,31 @@ export const ContactDetail: React.FC = () => {
       setContact(null);
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const handleReviewDecision = async (decision: 'APPROVED' | 'DENIED') => {
+    if (!contact?.callbackId) return;
+    setIsSubmittingReview(true);
+    try {
+      const response = await fetch(`/api/contacts/${contactId}/review`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${user?.token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          decision,
+          callbackId: contact.callbackId,
+          reason: '',
+        }),
+      });
+      if (!response.ok) throw new Error('Failed to submit review');
+      if (contactId) fetchContactDetail(contactId);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to submit review');
+    } finally {
+      setIsSubmittingReview(false);
     }
   };
 
@@ -214,7 +239,42 @@ export const ContactDetail: React.FC = () => {
       {/* Tab content */}
       {activeTab === 'overview' && (
         <div className="detail-grid">
-          {/* [PLACEHOLDER_LAB5_REVIEW_PANEL] Lab 5: Add Supervisor Review Panel here */}
+          {/* Supervisor Review Panel */}
+          {contact.reviewStatus === 'PENDING_REVIEW' && (
+            <div className="detail-card detail-card-full review-panel">
+              <h3 className="card-title">⚠️ Supervisor Review Required</h3>
+              <p className="review-description">
+                This contact was flagged as <strong>HIGH</strong> risk by the fraud assessment.
+                Please review the eligibility and fraud details below, then approve or deny this application.
+              </p>
+              <div className="review-actions">
+                <button
+                  className="btn-approve"
+                  onClick={() => handleReviewDecision('APPROVED')}
+                  disabled={isSubmittingReview}
+                >
+                  ✓ Approve
+                </button>
+                <button
+                  className="btn-deny"
+                  onClick={() => handleReviewDecision('DENIED')}
+                  disabled={isSubmittingReview}
+                >
+                  ✗ Deny
+                </button>
+              </div>
+            </div>
+          )}
+
+          {/* Review Decision (for already-reviewed contacts) */}
+          {contact.reviewStatus && contact.reviewStatus !== 'PENDING_REVIEW' && contact.reviewStatus !== 'AUTO_APPROVED' && (
+            <div className="detail-card detail-card-full">
+              <h3 className="card-title">Review Decision</h3>
+              <span className={`status-pill review-${contact.reviewStatus.toLowerCase()}`}>
+                {contact.reviewStatus}
+              </span>
+            </div>
+          )}
 
           {/* Summary */}
           {contact.analytics?.summary && (
@@ -247,8 +307,6 @@ export const ContactDetail: React.FC = () => {
             </div>
           )}
 
-          {/* Fraud Assessment */}
-
           {/* Address Verification */}
           {contact.addressVerification && (
             <div className="detail-card">
@@ -277,7 +335,7 @@ export const ContactDetail: React.FC = () => {
             </div>
           )}
 
-
+          {/* Fraud Assessment */}
           {contact.fraudAssessment && (
             <div className="detail-card">
               <h3 className="card-title">Fraud Assessment</h3>

@@ -1,0 +1,427 @@
+{
+  "/ScaNetworkStack": [
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:24:22)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    },
+    {
+      "type": "aws:cdk:acknowledged-rules",
+      "data": {
+        "CloudFormation-Validate::W3010": "Literal AZs in template are the result of accessing stack.availabilityZones, this is expected and safe"
+      },
+      "trace": [
+        "    ...new Vpc2 in aws-cdk-lib...",
+        "    at new ScaNetworkStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-network-stack.ts:24:16)",
+        "    at <anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:24:22)",
+        "    ...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/ScaNetworkStack/Custom::VpcRestrictDefaultSGCustomResourceProvider": [
+    {
+      "type": "aws:cdk:is-custom-resource-handler-customResourceProvider",
+      "data": true
+    }
+  ],
+  "/ScaNetworkStack/VpcId": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "VpcId"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new ScaNetworkStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-network-stack.ts:97:5)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:24:22)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaNetworkStack/ApiGatewayVpcEndpointId": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ApiGatewayVpcEndpointId"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new ScaNetworkStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-network-stack.ts:102:5)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:24:22)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaNetworkStack/BootstrapVersion": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "BootstrapVersion"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/ScaNetworkStack/CheckBootstrapVersion": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CheckBootstrapVersion"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/ScaNetworkStack/ScaVpc/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ScaVpcF197898D"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Vpc2 in aws-cdk-lib...",
+        "new ScaNetworkStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-network-stack.ts:24:16)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:24:22)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaNetworkStack/Custom::VpcRestrictDefaultSGCustomResourceProvider/Role": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CustomVpcRestrictDefaultSGCustomResourceProviderRole26592FE0"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Vpc2 in aws-cdk-lib...",
+        "new ScaNetworkStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-network-stack.ts:24:16)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:24:22)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/ScaNetworkStack/Custom::VpcRestrictDefaultSGCustomResourceProvider/Handler": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CustomVpcRestrictDefaultSGCustomResourceProviderHandlerDC833E5E"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Vpc2 in aws-cdk-lib...",
+        "new ScaNetworkStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-network-stack.ts:24:16)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:24:22)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/ScaNetworkStack/EcrApiVpcEndpoint/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "EcrApiVpcEndpointFCB424DC"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new InterfaceVpcEndpoint2 in aws-cdk-lib...",
+        "new ScaNetworkStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-network-stack.ts:54:5)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:24:22)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaNetworkStack/EcrDkrVpcEndpoint/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "EcrDkrVpcEndpoint68071A14"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new InterfaceVpcEndpoint2 in aws-cdk-lib...",
+        "new ScaNetworkStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-network-stack.ts:64:5)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:24:22)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaNetworkStack/CloudWatchLogsVpcEndpoint/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CloudWatchLogsVpcEndpoint3BA8E444"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new InterfaceVpcEndpoint2 in aws-cdk-lib...",
+        "new ScaNetworkStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-network-stack.ts:74:5)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:24:22)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaNetworkStack/ApiGatewayVpcEndpoint/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ApiGatewayVpcEndpoint5729EBD2"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new InterfaceVpcEndpoint2 in aws-cdk-lib...",
+        "new ScaNetworkStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-network-stack.ts:84:34)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:24:22)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaNetworkStack/CDKMetadata/Default": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CDKMetadata"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/ScaNetworkStack/Exports/Output{\"Ref\":\"ApiGatewayVpcEndpoint5729EBD2\"}": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ExportsOutputRefApiGatewayVpcEndpoint5729EBD22A528B0F"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/ScaNetworkStack/Exports/Output{\"Ref\":\"ScaVpcF197898D\"}": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ExportsOutputRefScaVpcF197898D655E5863"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/ScaNetworkStack/Exports/Output{\"Ref\":\"ScaVpcPrivateSubnet1SubnetA0278F74\"}": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ExportsOutputRefScaVpcPrivateSubnet1SubnetA0278F745FB5EB65"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/ScaNetworkStack/Exports/Output{\"Ref\":\"ScaVpcPrivateSubnet2SubnetB60ED9DF\"}": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ExportsOutputRefScaVpcPrivateSubnet2SubnetB60ED9DFED91CF84"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/ScaNetworkStack/ScaVpc/PrivateSubnet1/Subnet": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ScaVpcPrivateSubnet1SubnetA0278F74"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        ".../project/durable-workflows-for-ai-agents-aws-workshop/node_modules/aws-cdk-lib/aws-ec2/lib/vpc.js:1:291 in aws-cdk-lib...",
+        "Array.forEach (:)",
+        "...aws-cdk-lib..."
+      ]
+    }
+  ],
+  "/ScaNetworkStack/ScaVpc/PrivateSubnet1/RouteTable": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ScaVpcPrivateSubnet1RouteTable744C9545"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        ".../project/durable-workflows-for-ai-agents-aws-workshop/node_modules/aws-cdk-lib/aws-ec2/lib/vpc.js:1:291 in aws-cdk-lib...",
+        "Array.forEach (:)",
+        "...aws-cdk-lib..."
+      ]
+    }
+  ],
+  "/ScaNetworkStack/ScaVpc/PrivateSubnet1/RouteTableAssociation": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ScaVpcPrivateSubnet1RouteTableAssociationF02248AF"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        ".../project/durable-workflows-for-ai-agents-aws-workshop/node_modules/aws-cdk-lib/aws-ec2/lib/vpc.js:1:291 in aws-cdk-lib...",
+        "Array.forEach (:)",
+        "...aws-cdk-lib..."
+      ]
+    }
+  ],
+  "/ScaNetworkStack/ScaVpc/PrivateSubnet2/Subnet": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ScaVpcPrivateSubnet2SubnetB60ED9DF"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        ".../project/durable-workflows-for-ai-agents-aws-workshop/node_modules/aws-cdk-lib/aws-ec2/lib/vpc.js:1:291 in aws-cdk-lib...",
+        "Array.forEach (:)",
+        "...aws-cdk-lib..."
+      ]
+    }
+  ],
+  "/ScaNetworkStack/ScaVpc/PrivateSubnet2/RouteTable": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ScaVpcPrivateSubnet2RouteTable6E78B683"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        ".../project/durable-workflows-for-ai-agents-aws-workshop/node_modules/aws-cdk-lib/aws-ec2/lib/vpc.js:1:291 in aws-cdk-lib...",
+        "Array.forEach (:)",
+        "...aws-cdk-lib..."
+      ]
+    }
+  ],
+  "/ScaNetworkStack/ScaVpc/PrivateSubnet2/RouteTableAssociation": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ScaVpcPrivateSubnet2RouteTableAssociation8BAE4EE7"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        ".../project/durable-workflows-for-ai-agents-aws-workshop/node_modules/aws-cdk-lib/aws-ec2/lib/vpc.js:1:291 in aws-cdk-lib...",
+        "Array.forEach (:)",
+        "...aws-cdk-lib..."
+      ]
+    }
+  ],
+  "/ScaNetworkStack/ScaVpc/RestrictDefaultSecurityGroupCustomResource/Default": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ScaVpcRestrictDefaultSecurityGroupCustomResource16E45204"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Vpc2 in aws-cdk-lib...",
+        "new ScaNetworkStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-network-stack.ts:24:16)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:24:22)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/ScaNetworkStack/ScaVpc/S3GatewayEndpoint/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ScaVpcS3GatewayEndpointB8B25491"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...PropertyInjectable.addGatewayEndpoint in aws-cdk-lib...",
+        "new ScaNetworkStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-network-stack.ts:44:14)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:24:22)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaNetworkStack/EcrApiVpcEndpoint/SecurityGroup/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "EcrApiVpcEndpointSecurityGroupEB48D348"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new InterfaceVpcEndpoint2 in aws-cdk-lib...",
+        "new ScaNetworkStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-network-stack.ts:54:5)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:24:22)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/ScaNetworkStack/EcrDkrVpcEndpoint/SecurityGroup/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "EcrDkrVpcEndpointSecurityGroup791AB3ED"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new InterfaceVpcEndpoint2 in aws-cdk-lib...",
+        "new ScaNetworkStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-network-stack.ts:64:5)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:24:22)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/ScaNetworkStack/CloudWatchLogsVpcEndpoint/SecurityGroup/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CloudWatchLogsVpcEndpointSecurityGroup1CFEBDA4"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new InterfaceVpcEndpoint2 in aws-cdk-lib...",
+        "new ScaNetworkStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-network-stack.ts:74:5)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:24:22)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/ScaNetworkStack/ApiGatewayVpcEndpoint/SecurityGroup/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ApiGatewayVpcEndpointSecurityGroupF8E62BB2"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new InterfaceVpcEndpoint2 in aws-cdk-lib...",
+        "new ScaNetworkStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-network-stack.ts:84:34)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:24:22)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ]
+}

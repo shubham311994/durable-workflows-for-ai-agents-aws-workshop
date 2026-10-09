@@ -1,0 +1,691 @@
+{
+ "Resources": {
+  "InternetGateway": {
+   "Type": "AWS::EC2::InternetGateway",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "SCA Internet Gateway"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaCloudFrontAccessStack/InternetGateway"
+   }
+  },
+  "VpcGatewayAttachment": {
+   "Type": "AWS::EC2::VPCGatewayAttachment",
+   "Properties": {
+    "InternetGatewayId": {
+     "Ref": "InternetGateway"
+    },
+    "VpcId": {
+     "Fn::ImportValue": "ScaNetworkStack:ExportsOutputRefScaVpcF197898D655E5863"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaCloudFrontAccessStack/VpcGatewayAttachment"
+   }
+  },
+  "PublicSubnet1": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": "us-east-1a",
+    "CidrBlock": "10.0.100.0/24",
+    "MapPublicIpOnLaunch": true,
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "SCA Public Subnet 1"
+     }
+    ],
+    "VpcId": {
+     "Fn::ImportValue": "ScaNetworkStack:ExportsOutputRefScaVpcF197898D655E5863"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaCloudFrontAccessStack/PublicSubnet1"
+   }
+  },
+  "PublicRouteTable1": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "SCA Public Route Table 1"
+     }
+    ],
+    "VpcId": {
+     "Fn::ImportValue": "ScaNetworkStack:ExportsOutputRefScaVpcF197898D655E5863"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaCloudFrontAccessStack/PublicRouteTable1"
+   }
+  },
+  "PublicSubnetRouteTableAssociation1": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "PublicRouteTable1"
+    },
+    "SubnetId": {
+     "Ref": "PublicSubnet1"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaCloudFrontAccessStack/PublicSubnetRouteTableAssociation1"
+   }
+  },
+  "PublicRoute1": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "GatewayId": {
+     "Ref": "InternetGateway"
+    },
+    "RouteTableId": {
+     "Ref": "PublicRouteTable1"
+    }
+   },
+   "DependsOn": [
+    "VpcGatewayAttachment"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "ScaCloudFrontAccessStack/PublicRoute1"
+   }
+  },
+  "PublicSubnet2": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": "us-east-1b",
+    "CidrBlock": "10.0.101.0/24",
+    "MapPublicIpOnLaunch": true,
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "SCA Public Subnet 2"
+     }
+    ],
+    "VpcId": {
+     "Fn::ImportValue": "ScaNetworkStack:ExportsOutputRefScaVpcF197898D655E5863"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaCloudFrontAccessStack/PublicSubnet2"
+   }
+  },
+  "PublicRouteTable2": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "SCA Public Route Table 2"
+     }
+    ],
+    "VpcId": {
+     "Fn::ImportValue": "ScaNetworkStack:ExportsOutputRefScaVpcF197898D655E5863"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaCloudFrontAccessStack/PublicRouteTable2"
+   }
+  },
+  "PublicSubnetRouteTableAssociation2": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "PublicRouteTable2"
+    },
+    "SubnetId": {
+     "Ref": "PublicSubnet2"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaCloudFrontAccessStack/PublicSubnetRouteTableAssociation2"
+   }
+  },
+  "PublicRoute2": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "GatewayId": {
+     "Ref": "InternetGateway"
+    },
+    "RouteTableId": {
+     "Ref": "PublicRouteTable2"
+    }
+   },
+   "DependsOn": [
+    "VpcGatewayAttachment"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "ScaCloudFrontAccessStack/PublicRoute2"
+   }
+  },
+  "NatGatewayEip": {
+   "Type": "AWS::EC2::EIP",
+   "Properties": {
+    "Domain": "vpc",
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "SCA NAT Gateway EIP"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaCloudFrontAccessStack/NatGatewayEip"
+   }
+  },
+  "NatGateway": {
+   "Type": "AWS::EC2::NatGateway",
+   "Properties": {
+    "AllocationId": {
+     "Fn::GetAtt": [
+      "NatGatewayEip",
+      "AllocationId"
+     ]
+    },
+    "SubnetId": {
+     "Ref": "PublicSubnet1"
+    },
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "SCA NAT Gateway"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaCloudFrontAccessStack/NatGateway"
+   }
+  },
+  "CloudFrontAccessLogs3109BA4C": {
+   "Type": "AWS::S3::Bucket",
+   "Properties": {
+    "BucketEncryption": {
+     "ServerSideEncryptionConfiguration": [
+      {
+       "ServerSideEncryptionByDefault": {
+        "SSEAlgorithm": "AES256"
+       }
+      }
+     ]
+    },
+    "BucketName": "sca-cloudfront-logs-317067115698-us-east-1",
+    "OwnershipControls": {
+     "Rules": [
+      {
+       "ObjectOwnership": "BucketOwnerPreferred"
+      }
+     ]
+    },
+    "PublicAccessBlockConfiguration": {
+     "BlockPublicAcls": true,
+     "BlockPublicPolicy": true,
+     "IgnorePublicAcls": true,
+     "RestrictPublicBuckets": true
+    },
+    "Tags": [
+     {
+      "Key": "aws-cdk:auto-delete-objects",
+      "Value": "true"
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "ScaCloudFrontAccessStack/CloudFrontAccessLogs/Resource",
+    "cdk_nag": {
+     "rules_to_suppress": [
+      {
+       "reason": "This S3 bucket stores CloudFront access logs. Access logs for a logging bucket would create a circular dependency and are not required.",
+       "id": "AwsSolutions-S1"
+      }
+     ]
+    }
+   }
+  },
+  "CloudFrontAccessLogsPolicyC68E22C4": {
+   "Type": "AWS::S3::BucketPolicy",
+   "Properties": {
+    "Bucket": {
+     "Ref": "CloudFrontAccessLogs3109BA4C"
+    },
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "s3:*",
+       "Condition": {
+        "Bool": {
+         "aws:SecureTransport": "false"
+        }
+       },
+       "Effect": "Deny",
+       "Principal": {
+        "AWS": "*"
+       },
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "CloudFrontAccessLogs3109BA4C",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "CloudFrontAccessLogs3109BA4C",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": [
+        "s3:DeleteObject*",
+        "s3:GetBucket*",
+        "s3:List*",
+        "s3:PutBucketPolicy"
+       ],
+       "Effect": "Allow",
+       "Principal": {
+        "AWS": {
+         "Fn::GetAtt": [
+          "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
+          "Arn"
+         ]
+        }
+       },
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "CloudFrontAccessLogs3109BA4C",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "CloudFrontAccessLogs3109BA4C",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaCloudFrontAccessStack/CloudFrontAccessLogs/Policy/Resource"
+   }
+  },
+  "CloudFrontAccessLogsAutoDeleteObjectsCustomResource5A931F2D": {
+   "Type": "Custom::S3AutoDeleteObjects",
+   "Properties": {
+    "ServiceToken": {
+     "Fn::GetAtt": [
+      "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F",
+      "Arn"
+     ]
+    },
+    "BucketName": {
+     "Ref": "CloudFrontAccessLogs3109BA4C"
+    }
+   },
+   "DependsOn": [
+    "CloudFrontAccessLogsPolicyC68E22C4"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "ScaCloudFrontAccessStack/CloudFrontAccessLogs/AutoDeleteObjectsCustomResource/Default"
+   }
+  },
+  "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Version": "2012-10-17",
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ]
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Sub": "arn:${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaCloudFrontAccessStack/Custom::S3AutoDeleteObjectsCustomResourceProvider/Role"
+   }
+  },
+  "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": "cdk-hnb659fds-assets-317067115698-us-east-1",
+     "S3Key": "faa95a81ae7d7373f3e1f242268f904eb748d8d0fdd306e8a6fe515a1905a7d6.zip"
+    },
+    "Timeout": 900,
+    "MemorySize": 128,
+    "Handler": "index.handler",
+    "Role": {
+     "Fn::GetAtt": [
+      "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs24.x",
+    "Description": {
+     "Fn::Join": [
+      "",
+      [
+       "Lambda function for auto-deleting objects in ",
+       {
+        "Ref": "CloudFrontAccessLogs3109BA4C"
+       },
+       " S3 bucket."
+      ]
+     ]
+    }
+   },
+   "DependsOn": [
+    "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "ScaCloudFrontAccessStack/Custom::S3AutoDeleteObjectsCustomResourceProvider/Handler",
+    "aws:asset:path": "asset.faa95a81ae7d7373f3e1f242268f904eb748d8d0fdd306e8a6fe515a1905a7d6",
+    "aws:asset:property": "Code"
+   }
+  },
+  "CloudFrontDistributionOrigin1VpcOrigin8B47AD7E": {
+   "Type": "AWS::CloudFront::VpcOrigin",
+   "Properties": {
+    "VpcOriginEndpointConfig": {
+     "Arn": {
+      "Fn::ImportValue": "ScaWebAppStack:ExportsOutputRefPrivateAlbF07A94D5685931C9"
+     },
+     "Name": "ScaCloudFrontAccessStackClouDistributionOrigin1VpcOriginCBE01334",
+     "OriginProtocolPolicy": "http-only",
+     "OriginSSLProtocols": [
+      "TLSv1.2"
+     ]
+    }
+   },
+   "DependsOn": [
+    "VpcGatewayAttachment"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "ScaCloudFrontAccessStack/CloudFrontDistribution/Origin1/VpcOrigin/Resource"
+   }
+  },
+  "CloudFrontDistributionBA64CE3A": {
+   "Type": "AWS::CloudFront::Distribution",
+   "Properties": {
+    "DistributionConfig": {
+     "CacheBehaviors": [
+      {
+       "AllowedMethods": [
+        "GET",
+        "HEAD",
+        "OPTIONS",
+        "PUT",
+        "PATCH",
+        "POST",
+        "DELETE"
+       ],
+       "CachePolicyId": "4135ea2d-6df8-44a3-9df3-4b5a84be39ad",
+       "CachedMethods": [
+        "GET",
+        "HEAD"
+       ],
+       "Compress": true,
+       "OriginRequestPolicyId": "216adef6-5c7f-47e4-b989-5492eafa07d3",
+       "PathPattern": "/api/*",
+       "TargetOriginId": "ScaCloudFrontAccessStackCloudFrontDistributionOrigin1FDF9CA93",
+       "ViewerProtocolPolicy": "redirect-to-https"
+      }
+     ],
+     "Comment": "SCA CloudFront Distribution with VPC Origin for Private ALB",
+     "DefaultCacheBehavior": {
+      "AllowedMethods": [
+       "GET",
+       "HEAD",
+       "OPTIONS",
+       "PUT",
+       "PATCH",
+       "POST",
+       "DELETE"
+      ],
+      "CachePolicyId": "658327ea-f89d-4fab-a63d-7e88639e58f6",
+      "CachedMethods": [
+       "GET",
+       "HEAD",
+       "OPTIONS"
+      ],
+      "Compress": true,
+      "OriginRequestPolicyId": "88a5eaf4-2fd4-4709-b370-b4c650ea3fcf",
+      "TargetOriginId": "ScaCloudFrontAccessStackCloudFrontDistributionOrigin1FDF9CA93",
+      "ViewerProtocolPolicy": "redirect-to-https"
+     },
+     "Enabled": true,
+     "HttpVersion": "http2",
+     "IPV6Enabled": true,
+     "Logging": {
+      "Bucket": {
+       "Fn::GetAtt": [
+        "CloudFrontAccessLogs3109BA4C",
+        "RegionalDomainName"
+       ]
+      },
+      "Prefix": "cloudfront-logs/"
+     },
+     "Origins": [
+      {
+       "DomainName": {
+        "Fn::ImportValue": "ScaWebAppStack:ExportsOutputFnGetAttPrivateAlbF07A94D5DNSName246C46B4"
+       },
+       "Id": "ScaCloudFrontAccessStackCloudFrontDistributionOrigin1FDF9CA93",
+       "VpcOriginConfig": {
+        "VpcOriginId": {
+         "Fn::GetAtt": [
+          "CloudFrontDistributionOrigin1VpcOrigin8B47AD7E",
+          "Id"
+         ]
+        }
+       }
+      }
+     ],
+     "PriceClass": "PriceClass_100"
+    }
+   },
+   "DependsOn": [
+    "VpcGatewayAttachment"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "ScaCloudFrontAccessStack/CloudFrontDistribution/Resource",
+    "cdk_nag": {
+     "rules_to_suppress": [
+      {
+       "reason": "Geo restrictions are not required for this application. The application is intended for global access.",
+       "id": "AwsSolutions-CFR1"
+      },
+      {
+       "reason": "AWS WAF is not enabled to reduce costs for this solution. Application-level security is handled by Amazon Cognito authentication. For production deployments with high security requirements, consider enabling WAF.",
+       "id": "AwsSolutions-CFR2"
+      },
+      {
+       "reason": "Using default CloudFront viewer certificate which enforces TLSv1.2 as minimum protocol. The distribution uses HTTPS with secure TLS configuration.",
+       "id": "AwsSolutions-CFR4"
+      }
+     ]
+    }
+   }
+  },
+  "SecurityHeadersPolicyE1741D63": {
+   "Type": "AWS::CloudFront::ResponseHeadersPolicy",
+   "Properties": {
+    "ResponseHeadersPolicyConfig": {
+     "Comment": "Security headers for SCA application",
+     "Name": "SCA-Security-Headers",
+     "SecurityHeadersConfig": {
+      "ContentTypeOptions": {
+       "Override": true
+      },
+      "FrameOptions": {
+       "FrameOption": "DENY",
+       "Override": true
+      },
+      "ReferrerPolicy": {
+       "Override": true,
+       "ReferrerPolicy": "strict-origin-when-cross-origin"
+      },
+      "StrictTransportSecurity": {
+       "AccessControlMaxAgeSec": 31536000,
+       "IncludeSubdomains": true,
+       "Override": true,
+       "Preload": true
+      }
+     }
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaCloudFrontAccessStack/SecurityHeadersPolicy/Resource"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/5VQwWrDMAz9lubseiU9DHZL07H1soZk9DLGcBylU5vYxZLblZB/H0m6pYVdBgY96T09SQ5leD+Xs4k60VQX+2mFuWwyVnov1Ik+GtChbOLSrAyDM8BPiuGkziIuzSaJL1nErPRnDYa7euZzAz1KrWd4VXkFY32sRURWo2K05lfcgcdV0oUX9TOsFTSXzcLr/WA7oLcmqPELTfAQXC/fbU1z2VMkB2nk2S6hAoZ1vgPNFLTvYqASW6E+j65D/g/voSFjxdB9QGfdCl1ZX5TOGpbNEokd5r6/c3PQa4db7C++SW5kKdDBGoJnUAU4Gpf8k2hbEXtiW6dA1jsNF+UF31CJs0cswC0UgYiIgDNWWzRbcd289nzw3ApjC5A7ujuGM9m9yY4Qp84bxhpkOsRvOzRfgkMCAAA="
+   },
+   "Metadata": {
+    "aws:cdk:path": "ScaCloudFrontAccessStack/CDKMetadata/Default"
+   }
+  }
+ },
+ "Outputs": {
+  "CloudFrontDistributionId": {
+   "Description": "CloudFront Distribution ID",
+   "Value": {
+    "Ref": "CloudFrontDistributionBA64CE3A"
+   }
+  },
+  "CloudFrontDomainName": {
+   "Description": "CloudFront Distribution Domain Name",
+   "Value": {
+    "Fn::GetAtt": [
+     "CloudFrontDistributionBA64CE3A",
+     "DomainName"
+    ]
+   }
+  },
+  "CloudFrontUrl": {
+   "Description": "CloudFront Distribution URL",
+   "Value": {
+    "Fn::Join": [
+     "",
+     [
+      "https://",
+      {
+       "Fn::GetAtt": [
+        "CloudFrontDistributionBA64CE3A",
+        "DomainName"
+       ]
+      }
+     ]
+    ]
+   }
+  },
+  "InternetGatewayId": {
+   "Description": "Internet Gateway ID",
+   "Value": {
+    "Ref": "InternetGateway"
+   }
+  },
+  "NatGatewayId": {
+   "Description": "NAT Gateway ID",
+   "Value": {
+    "Ref": "NatGateway"
+   }
+  },
+  "PublicSubnetIds": {
+   "Description": "Public Subnet IDs",
+   "Value": {
+    "Fn::Join": [
+     "",
+     [
+      {
+       "Ref": "PublicSubnet1"
+      },
+      ",",
+      {
+       "Ref": "PublicSubnet2"
+      }
+     ]
+    ]
+   }
+  }
+ },
+ "Parameters": {
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
+  }
+ }
+}

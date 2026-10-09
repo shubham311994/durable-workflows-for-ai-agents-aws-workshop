@@ -1,0 +1,133 @@
+{
+  "/ScaEcrStack": [
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:35:18)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaEcrStack/EcrRepositoryUri": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "EcrRepositoryUri"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new ScaEcrStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-ecr-stack.ts:35:5)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:35:18)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaEcrStack/EcrRepositoryName": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "EcrRepositoryName"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new ScaEcrStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-ecr-stack.ts:40:5)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:35:18)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaEcrStack/BuildAndPushCommand": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "BuildAndPushCommand"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new ScaEcrStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-ecr-stack.ts:45:5)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:35:18)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaEcrStack/BootstrapVersion": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "BootstrapVersion"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/ScaEcrStack/CheckBootstrapVersion": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CheckBootstrapVersion"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/ScaEcrStack/WebAppRepository/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "WebAppRepositoryE1B58524"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Repository2 in aws-cdk-lib...",
+        "new ScaEcrStack (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/lib/sca-ecr-stack.ts:24:26)",
+        "<anonymous> (/project/durable-workflows-for-ai-agents-aws-workshop/infrastructure/bin/sca-app.ts:35:18)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/ScaEcrStack/CDKMetadata/Default": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CDKMetadata"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/ScaEcrStack/Exports/Output{\"Fn::GetAtt\":[\"WebAppRepositoryE1B58524\",\"Arn\"]}": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ExportsOutputFnGetAttWebAppRepositoryE1B58524ArnCCB02788"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/ScaEcrStack/Exports/Output{\"Ref\":\"WebAppRepositoryE1B58524\"}": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ExportsOutputRefWebAppRepositoryE1B5852408BD7E67"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ]
+}
