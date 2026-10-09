@@ -1,0 +1,403 @@
+.crm-page {
+  max-width: 1400px;
+}
+
+/* Page header */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.page-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.page-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0;
+}
+
+.live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.live-badge.connected {
+  background-color: #dcfce7;
+  color: #16a34a;
+}
+
+.live-badge.disconnected {
+  background-color: #fef2f2;
+  color: #dc2626;
+}
+
+.live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: currentColor;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.btn-secondary {
+  background-color: #fff;
+  color: #374151;
+  border: 1px solid #d1d5db;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-secondary:hover {
+  background-color: #f9fafb;
+  border-color: #9ca3af;
+}
+
+/* Stats row */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.stat-card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 16px 20px;
+  border: 1px solid #e5e7eb;
+  border-left: 4px solid #6c8eef;
+}
+
+.stat-card.stat-progress { border-left-color: #3b82f6; }
+.stat-card.stat-completed { border-left-color: #16a34a; }
+.stat-card.stat-failed { border-left-color: #dc2626; }
+
+.stat-value {
+  display: block;
+  font-size: 28px;
+  font-weight: 700;
+  color: #111827;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: #6b7280;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Table toolbar */
+.table-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  flex: 1;
+}
+
+.table-search {
+  position: relative;
+  min-width: 260px;
+}
+
+.table-search-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 15px;
+  height: 15px;
+  color: #9ca3af;
+  pointer-events: none;
+}
+
+.table-search-input {
+  width: 100%;
+  padding: 8px 12px 8px 34px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 13px;
+  color: #374151;
+  background: #fff;
+}
+
+.table-search-input:focus {
+  outline: none;
+  border-color: #6c8eef;
+  box-shadow: 0 0 0 3px rgba(108, 142, 239, 0.1);
+}
+
+.filter-pills {
+  display: flex;
+  gap: 6px;
+}
+
+.filter-pill {
+  padding: 6px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #6b7280;
+  background: #fff;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.filter-pill:hover {
+  border-color: #9ca3af;
+  color: #374151;
+}
+
+.filter-pill.active {
+  background-color: #6c8eef;
+  border-color: #6c8eef;
+  color: #fff;
+}
+
+/* Table */
+.table-container {
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  overflow: hidden;
+}
+
+.crm-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.crm-table thead {
+  background-color: #f9fafb;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.crm-table th {
+  padding: 10px 16px;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 600;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.crm-table td {
+  padding: 12px 16px;
+  font-size: 13px;
+  color: #374151;
+  border-bottom: 1px solid #f3f4f6;
+  vertical-align: middle;
+}
+
+.table-row {
+  cursor: pointer;
+  transition: background-color 0.1s ease;
+}
+
+.table-row:hover {
+  background-color: #f9fafb;
+}
+
+.table-row:last-child td {
+  border-bottom: none;
+}
+
+.contact-id-cell {
+  font-weight: 600;
+  color: #6c8eef;
+  word-break: break-all;
+}
+
+/* Status pills */
+.status-pill {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.status-pill.status-in-progress {
+  background-color: #dbeafe;
+  color: #1d4ed8;
+}
+
+.status-pill.status-completed {
+  background-color: #dcfce7;
+  color: #16a34a;
+}
+
+.status-pill.status-failed {
+  background-color: #fef2f2;
+  color: #dc2626;
+}
+
+/* Sentiment */
+.sentiment-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.sentiment-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+.no-data {
+  color: #d1d5db;
+}
+
+/* Topics */
+.topics-cell {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  align-items: center;
+}
+
+.topic-chip {
+  display: inline-block;
+  padding: 2px 8px;
+  background-color: #f3f4f6;
+  border-radius: 4px;
+  font-size: 11px;
+  color: #4b5563;
+  font-weight: 500;
+}
+
+.topic-more {
+  font-size: 11px;
+  color: #9ca3af;
+  font-weight: 500;
+}
+
+.date-cell {
+  white-space: nowrap;
+  color: #6b7280;
+  font-size: 12px;
+}
+
+.count-cell {
+  text-align: center;
+  font-weight: 600;
+  color: #6b7280;
+}
+
+/* Empty state */
+.empty-state {
+  text-align: center;
+  padding: 48px 20px !important;
+}
+
+.empty-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  color: #9ca3af;
+}
+
+.empty-content p {
+  font-size: 14px;
+  margin: 0;
+}
+
+/* Skeleton */
+.skeleton-row td {
+  padding: 14px 16px !important;
+}
+
+.skel {
+  height: 14px;
+  background: linear-gradient(90deg, #f0f0f0 0%, #e5e5e5 50%, #f0f0f0 100%);
+  background-size: 200% 100%;
+  border-radius: 4px;
+  animation: shimmer 1.5s infinite;
+}
+
+.skel-text { width: 120px; }
+.skel-badge { width: 80px; height: 22px; border-radius: 12px; }
+.skel-sm { width: 30px; margin: 0 auto; }
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Load more */
+.load-more-row {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .stats-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .stats-row {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .filter-pills {
+    flex-wrap: wrap;
+  }
+
+  .table-search {
+    min-width: 100%;
+  }
+
+  .crm-table th:nth-child(4),
+  .crm-table td:nth-child(4) {
+    display: none;
+  }
+}
+
+/* Fraud risk pills */
+.fraud-low { background-color: #dcfce7; color: #16a34a; }
+.fraud-medium { background-color: #fef3c7; color: #d97706; }
+.fraud-high { background-color: #fef2f2; color: #dc2626; }
+.fraud-unknown { background-color: #f3f4f6; color: #6b7280; }

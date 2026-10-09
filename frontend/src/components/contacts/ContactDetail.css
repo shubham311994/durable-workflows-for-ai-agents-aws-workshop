@@ -1,0 +1,490 @@
+/* Breadcrumb */
+.detail-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.breadcrumb-link {
+  background: none;
+  border: none;
+  color: #6c8eef;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 0;
+}
+
+.breadcrumb-link:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb-sep {
+  color: #d1d5db;
+}
+
+.breadcrumb-current {
+  color: #6b7280;
+  font-weight: 500;
+  word-break: break-all;
+}
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Reuse live badge from ContactList */
+.live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.live-badge.connected {
+  background-color: #dcfce7;
+  color: #16a34a;
+}
+
+.live-badge.disconnected {
+  background-color: #fef2f2;
+  color: #dc2626;
+}
+
+.live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: currentColor;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* Record header */
+.record-header {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin-bottom: 20px;
+}
+
+.record-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.record-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0;
+  word-break: break-all;
+}
+
+.status-pill {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.status-pill.status-in-progress {
+  background-color: #dbeafe;
+  color: #1d4ed8;
+}
+
+.status-pill.status-completed {
+  background-color: #dcfce7;
+  color: #16a34a;
+}
+
+.status-pill.status-failed {
+  background-color: #fef2f2;
+  color: #dc2626;
+}
+
+.record-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.record-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.meta-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.meta-value {
+  font-size: 13px;
+  color: #374151;
+  font-weight: 500;
+}
+
+.meta-row {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 8px;
+}
+
+/* Tabs */
+.detail-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 2px solid #e5e7eb;
+  margin-bottom: 20px;
+}
+
+.tab-btn {
+  padding: 10px 20px;
+  border: none;
+  background: none;
+  font-size: 13px;
+  font-weight: 600;
+  color: #6b7280;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  transition: all 0.15s ease;
+}
+
+.tab-btn:hover {
+  color: #374151;
+}
+
+.tab-btn.active {
+  color: #6c8eef;
+  border-bottom-color: #6c8eef;
+}
+
+/* Detail grid */
+.detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.detail-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 20px 24px;
+}
+
+.detail-card-full {
+  grid-column: 1 / -1;
+}
+
+.card-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+  margin: 0 0 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Summary */
+.summary-text {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #4b5563;
+  margin: 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+/* Sentiment */
+.sentiment-display {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.sentiment-big {
+  font-size: 24px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.sentiment-conf {
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+.segment-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.segment-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  background: #f9fafb;
+  border-radius: 6px;
+  font-size: 12px;
+}
+
+.segment-sentiment {
+  font-weight: 700;
+  min-width: 70px;
+  text-transform: uppercase;
+  font-size: 11px;
+}
+
+.segment-text {
+  flex: 1;
+  color: #6b7280;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.segment-conf {
+  color: #9ca3af;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+/* Topics */
+.topics-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.topic-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.topic-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+  min-width: 100px;
+}
+
+.topic-bar-wrap {
+  flex: 1;
+  height: 6px;
+  background: #f3f4f6;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.topic-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #6c8eef, #818cf8);
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+.topic-mentions {
+  font-size: 11px;
+  color: #9ca3af;
+  white-space: nowrap;
+}
+
+/* Transcriptions panel */
+.transcript-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 16px;
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.transcript-msg {
+  padding: 10px 14px;
+  border-radius: 8px;
+}
+
+.transcript-msg.transcript-agent {
+  background-color: #eff6ff;
+}
+
+.transcript-msg.transcript-customer {
+  background-color: #faf5ff;
+}
+
+.msg-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 4px;
+  flex-wrap: wrap;
+}
+
+.msg-speaker {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.msg-speaker.speaker-agent {
+  background-color: #dbeafe;
+  color: #1d4ed8;
+}
+
+.msg-speaker.speaker-customer {
+  background-color: #f3e8ff;
+  color: #7c3aed;
+}
+
+.msg-time {
+  font-size: 11px;
+  color: #9ca3af;
+}
+
+.msg-sentiment {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-left: auto;
+}
+
+.msg-text {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #374151;
+  margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .record-meta-row {
+    gap: 16px;
+  }
+}
+
+/* Eligibility */
+.eligibility-status {
+  margin-bottom: 10px;
+}
+
+.eligibility-reason {
+  font-size: 13px;
+  color: #6b7280;
+  margin: 0 0 12px;
+}
+
+.eligibility-plans {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.plans-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Fraud Assessment */
+.fraud-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.fraud-score {
+  font-size: 12px;
+  color: #9ca3af;
+  font-weight: 500;
+}
+
+.fraud-summary {
+  font-size: 13px;
+  color: #6b7280;
+  margin: 0 0 12px;
+}
+
+.fraud-flags {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.fraud-flag {
+  font-size: 12px;
+  color: #92400e;
+  background: #fffbeb;
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+
+.fraud-low {
+  background-color: #dcfce7;
+  color: #16a34a;
+}
+
+.fraud-medium {
+  background-color: #fef3c7;
+  color: #d97706;
+}
+
+.fraud-high {
+  background-color: #fef2f2;
+  color: #dc2626;
+}
+
+.fraud-unknown {
+  background-color: #f3f4f6;
+  color: #6b7280;
+}
+
+/* [PLACEHOLDER_LAB5_REVIEW_CSS] Lab 5: Add Supervisor Review Panel styles here */

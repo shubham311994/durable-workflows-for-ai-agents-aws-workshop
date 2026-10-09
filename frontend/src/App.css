@@ -1,0 +1,72 @@
+.app {
+  min-height: 100vh;
+}
+
+.crm-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.crm-main {
+  flex: 1;
+  margin-left: 240px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f0f2f5;
+}
+
+.crm-content {
+  flex: 1;
+  padding: 24px 32px;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  font-size: 15px;
+  color: #8492a6;
+}
+
+.error {
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin: 16px 0;
+  color: #dc2626;
+  font-size: 14px;
+}
+
+.button {
+  background-color: #6c8eef;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.button:hover {
+  background-color: #5a7de8;
+}
+
+.button:disabled {
+  background-color: #d1d5db;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .crm-main {
+    margin-left: 60px;
+  }
+
+  .crm-content {
+    padding: 16px;
+  }
+}
